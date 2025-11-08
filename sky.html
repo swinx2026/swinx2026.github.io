@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>头条新闻</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background: #f0f2f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        /* 去掉标题和查询栏后，调整顶部间距 */
+        .status {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            display: none;
+        }
+        .news-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .news-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+        .news-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .news-content {
+            padding: 15px;
+        }
+        .news-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .news-info {
+            font-size: 12px;
+            color: #888;
+            display: flex;
+            justify-content: space-between;
+        }
+        .news-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #1677ff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .news-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 状态提示区（保留） -->
+        <div class="status" id="loading">加载中...</div>
+        <div class="status" id="error">请先设置有效的API Key</div>
+        <div class="status" id="empty">暂无新闻数据</div>
+        
+        <!-- 新闻列表展示区（保留） -->
+        <div class="news-list" id="newsList"></div>
+    </div>
+
+    <script>
+        // 替换为你的接口Key（必须填写）
+        const API_KEY = "6ae78b2907388d23fcd5578f740267af"; // 从聚合数据个人中心获取
+        
+        // 页面加载完成后自动查询推荐的10条新闻
+        window.onload = function() {
+            queryNews();
+        };
+        
+        // 新闻查询函数（固定参数：推荐、第1页、10条/页）
+        function queryNews() {
+            // 固定参数（不再通过查询栏获取）
+            const type = "top"; // 推荐
+            const page = 1; // 第1页
+            const pageSize = 10; // 每页10条
+            
+            // 验证API Key
+            if (!API_KEY || API_KEY === "6ae78b2907388d23fcd5578f740267af") {
+                showStatus("error");
+                return;
+            }
+            
+            // 显示加载状态
+            showStatus("loading");
+            document.getElementById("newsList").innerHTML = "";
+            
+            // 构建请求参数
+            const params = new URLSearchParams({
+                key: API_KEY,
+                type: type,
+                page: page,
+                page_size: pageSize,
+                is_filter: 1
+            });
+            
+            // 发送请求
+            fetch(`http://v.juhe.cn/toutiao/index?${params}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                }
+            })
+            .then(response => {
+                if (!response.ok) throw new Error("网络请求失败");
+                return response.json();
+            })
+            .then(data => {
+                if (data.error_code === 0) {
+                    const newsList = data.result.data || [];
+                    if (newsList.length === 0) {
+                        showStatus("empty");
+                        return;
+                    }
+                    renderNews(newsList);
+                    showStatus("none");
+                } else {
+                    showStatus("error");
+                    document.getElementById("error").textContent = `错误：${data.reason}`;
+                }
+            })
+            .catch(error => {
+                showStatus("error");
+                document.getElementById("error").textContent = `请求失败：${error.message}`;
+            });
+        }
+        
+        // 渲染新闻列表
+        function renderNews(newsList) {
+            const newsListEl = document.getElementById("newsList");
+            newsList.forEach(news => {
+                const newsCard = document.createElement("div");
+                newsCard.className = "news-card";
+                newsCard.innerHTML = `
+                    ${news.thumbnail_pic_s ? `<img class="news-img" src="${news.thumbnail_pic_s}" alt="${news.title}">` : ""}
+                    <div class="news-content">
+                        <div class="news-title">${news.title}</div>
+                        <div class="news-info">
+                            <span>${news.author_name}</span>
+                            <span>${news.date}</span>
+                        </div>
+                        <a class="news-link" href="${news.url}" target="_blank">查看详情 →</a>
+                    </div>
+                `;
+                newsListEl.appendChild(newsCard);
+            });
+        }
+        
+        // 控制状态提示显示
+        function showStatus(type) {
+            const statusEls = {
+                loading: document.getElementById("loading"),
+                error: document.getElementById("error"),
+                empty: document.getElementById("empty")
+            };
+            Object.values(statusEls).forEach(el => el.style.display = "none");
+            if (type !== "none" && statusEls[type]) {
+                statusEls[type].style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
