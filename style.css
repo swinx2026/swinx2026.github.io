@@ -491,6 +491,23 @@ main {
     flex-shrink: 0;
     margin-left: auto;
     margin-right: auto;
+    overflow: hidden;
+}
+
+/* 图标图片样式 */
+.site-icon-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* 当有图片时隐藏文字 */
+.site-icon:has(.site-icon-img) {
+    color: transparent;
 }
 
 .site-name {
