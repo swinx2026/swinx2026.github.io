@@ -124,5 +124,35 @@
     </div>
     
     <script src="script.js"></script>
-</body>
+    
+    <!-- 小程序链接横栏 -->
+     <section class="mini-programs">
+        
+         <h3 class="mini-programs-title">修仙<br>小程序</h3>
+         <div class="mini-programs-list">
+            <a href="#" class="mini-program-card" target="_blank">
+                 <div class="mini-program-icon"><img src="pic/X4.jpg" alt="小程序4"></div>
+                 <div class="mini-program-name">卜上一卦</div>
+             </a>
+             <a href="#" class="mini-program-card" target="_blank">
+                 <div class="mini-program-icon"><img src="pic/X.jpg" alt="小程序1"></div>
+                 <div class="mini-program-name">修炼中</div>
+             </a>
+             
+             <a href="#" class="mini-program-card view-more" target="_blank">
+                 <div class="mini-program-icon view-more-icon">...</div>
+                 <div class="mini-program-name">查看更多</div>
+             </a>
+         </div>
+     </section>
+<script src="fortune_telling.js"></script>
+    <script>
+        // 初始化卦象功能
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.initFortuneTelling) {
+                window.initFortuneTelling();
+            }
+        });
+    </script>
+    </body>
 </html>
