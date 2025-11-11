@@ -620,21 +620,6 @@ function initFortuneTelling() {
 
 // 显示卦象弹窗
 function showFortuneTelling() {
-    // 检查今天是否已经算过卦
-    const today = getTodayString();
-    const savedFortune = localStorage.getItem(`fortune_${today}`);
-    let fortune;
-    
-    if (savedFortune) {
-        // 如果今天已经算过卦，使用保存的卦象
-        fortune = JSON.parse(savedFortune);
-    } else {
-        // 如果今天没有算过卦，随机选择一个卦象
-        const randomIndex = Math.floor(Math.random() * fortuneQuotes.length);
-        fortune = fortuneQuotes[randomIndex];
-        // 保存今天的卦象结果
-        localStorage.setItem(`fortune_${today}`, JSON.stringify(fortune));
-    }
     // 创建弹窗元素
     const modal = document.createElement('div');
     modal.className = 'fortune-modal';
@@ -652,24 +637,7 @@ function showFortuneTelling() {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
     `;
     
-    // 生成卦象等级对应的颜色
-    let fortuneColor = '';
-    switch (fortune.fortune) {
-        case '大吉':
-            fortuneColor = '#c41e3a'; // 红色
-            break;
-        case '吉':
-            fortuneColor = '#5aac5e'; // 绿色
-            break;
-        case '平':
-            fortuneColor = '#e6a23c'; // 橙色
-            break;
-        case '凶':
-            fortuneColor = '#66462a'; // 棕色
-            break;
-    }
-    
-    // 弹窗内容
+    // 弹窗内容 - 初始显示动画图片和抽一签按钮
     modal.innerHTML = `
         <div class="fortune-container" style="
             background: rgba(255, 255, 255, 0.95);
@@ -684,6 +652,90 @@ function showFortuneTelling() {
             border: 1px solid #f0e8d9;
             background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d4b997' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
         ">
+            <div style="
+                text-align: center;
+                margin: 10px 0;
+            ">
+                <img src="pic/chou.gif" style="
+                    max-width: 100%;
+                    max-height: 250px;
+                    width: auto;
+                    height: auto;
+                " alt="抽签动画" />
+            </div>
+            
+            <div style="
+                text-align: center;
+                margin: 15px 0;
+            ">
+                <button id="draw-fortune" style="
+                    padding: 12px 40px;
+                    background-color: #c41e3a;
+                    color: white;
+                    border: none;
+                    border-radius: 25px;
+                    font-size: 16px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    transition: all 0.3s;
+                    box-shadow: 0 4px 10px rgba(196, 30, 58, 0.3);
+                ">抽一签</button>
+            </div>
+            
+            <div style="
+                text-align: center;
+                margin-bottom: 12px;
+            ">
+                <p style="
+                    color: #66462a;
+                    font-size: 0.9rem;
+                ">诚心诚意，抽一签以问吉凶</p>
+            </div>
+        </div>
+    `;
+    
+    // 添加到页面
+    document.body.appendChild(modal);
+    
+    // 抽一签按钮事件
+    const drawButton = document.getElementById('draw-fortune');
+    drawButton.addEventListener('click', function() {
+        // 检查今天是否已经算过卦
+        const today = getTodayString();
+        const savedFortune = localStorage.getItem(`fortune_${today}`);
+        let fortune;
+        
+        if (savedFortune) {
+            // 如果今天已经算过卦，使用保存的卦象
+            fortune = JSON.parse(savedFortune);
+        } else {
+            // 如果今天没有算过卦，随机选择一个卦象
+            const randomIndex = Math.floor(Math.random() * fortuneQuotes.length);
+            fortune = fortuneQuotes[randomIndex];
+            // 保存今天的卦象结果
+            localStorage.setItem(`fortune_${today}`, JSON.stringify(fortune));
+        }
+        
+        // 生成卦象等级对应的颜色
+        let fortuneColor = '';
+        switch (fortune.fortune) {
+            case '大吉':
+                fortuneColor = '#c41e3a'; // 红色
+                break;
+            case '吉':
+                fortuneColor = '#5aac5e'; // 绿色
+                break;
+            case '平':
+                fortuneColor = '#e6a23c'; // 橙色
+                break;
+            case '凶':
+                fortuneColor = '#66462a'; // 棕色
+                break;
+        }
+        
+        // 更新弹窗内容为卦象结果
+        const container = modal.querySelector('.fortune-container');
+        container.innerHTML = `
             <h2 style="
                 text-align: center;
                 font-size: 1.3rem;
@@ -825,11 +877,14 @@ function showFortuneTelling() {
                     box-shadow: 0 2px 6px rgba(196, 30, 58, 0.3);
                 ">关闭卦象</button>
             </div>
-        </div>
-    `;
-    
-    // 添加到页面
-    document.body.appendChild(modal);
+        `;
+        
+        // 重新绑定关闭按钮事件
+        const closeButton = container.querySelector('#close-fortune');
+        closeButton.addEventListener('click', function() {
+            document.body.removeChild(modal);
+        });
+    });
     
     // 关闭按钮事件
     const closeButton = document.getElementById('close-fortune');
