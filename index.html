@@ -23,6 +23,17 @@
                 <input type="text" id="mainSearchInput" class="search-input" placeholder="搜索...">
                 <button id="mainSearchBtn" class="search-btn">搜索</button>
             </div>
+            
+            <!-- 热门搜索 -->
+            <div class="hot-searches" style="margin-top: 10px; text-align: center; color: #666; font-size: 14px;">
+                <span style="margin-right: 10px;"><img src="pic/fire.png" alt="热门" style="width: 12px; height: 12px; vertical-align: middle; margin-right: 5px;">热门常用：</span>
+                <a href="https://mp.weixin.qq.com/s?__biz=Mzg3NTU2NTMwNw==&mid=2247526073&idx=1&sn=5dcdfea6a4074cb90cf0b0bcd5fc3007&chksm=cf3dbf2df84a363bee06a7670a28661e33e1f563a119f55f98bf2f3aa63097d8abb97ab1956c&scene=178&cur_album_id=3854794802835308550#rd" target="_blank" style="margin: 0 8px; color: #666; text-decoration: none;">软件下载</a>
+                <a href="https://www.psdashi.com/" target="_blank" style="margin: 0 8px; color: #666; text-decoration: none;">PS下载</a>
+                <a href="https://www.likefont.com/" target="_blank" style="margin: 0 8px; color: #666; text-decoration: none;">字体识别</a>
+                <a href="#" target="_blank" style="margin: 0 8px; color: #666; text-decoration: none;">设计素材</a>
+                <a href="#" target="_blank" style="margin: 0 8px; color: #666; text-decoration: none;">PS插件</a>
+                <a href="#" target="_blank" style="margin: 0 8px; color: #666; text-decoration: none;">素材模板</a>
+            </div>
         </header>
         
         <main>
@@ -128,14 +139,41 @@
     <!-- 小程序链接横栏 -->
      <section class="mini-programs">
         
-         <h3 class="mini-programs-title">修仙<br>小程序</h3>
+         <h3 class="mini-programs-title">修仙<br>APP</h3>
          <div class="mini-programs-list">
             <a href="#" class="mini-program-card" target="_blank">
-                 <div class="mini-program-icon"><img src="pic/X4.jpg" alt="小程序4"></div>
+                 <div class="mini-program-icon"><img src="pic/X1.png" alt="小程序4"></div>
                  <div class="mini-program-name">卜上一卦</div>
              </a>
+                <a href="#" class="mini-program-card" id="cultivation-guide-card" target="_blank">
+                 <div class="mini-program-icon"><img src="pic/X5.png" alt="修炼宝典"></div>
+                 <div class="mini-program-name">修炼宝典</div>
+             </a>
+             <a href="#" class="mini-program-card" id="treasure-hunt-card" target="_blank">
+                 <div class="mini-program-icon"><img src="pic/X3.png" alt="法宝获取"></div>
+                 <div class="mini-program-name">神器法宝</div>
+             </a>
+           
+              <a href="#" class="mini-program-card" target="_blank">
+                 <div class="mini-program-icon"><img src="pic/X4.png" alt="小程序1"></div>
+                 <div class="mini-program-name">修炼中</div>
+             </a>
+             
+              <a href="#" class="mini-program-card" target="_blank">
+                 <div class="mini-program-icon"><img src="pic/X6.png" alt="小程序1"></div>
+                 <div class="mini-program-name">修炼中</div>
+             </a>
+              <a href="#" class="mini-program-card" target="_blank">
+                 <div class="mini-program-icon"><img src="pic/X7.png" alt="小程序1"></div>
+                 <div class="mini-program-name">修炼中</div>
+             </a>
+              <a href="#" class="mini-program-card" target="_blank">
+                 <div class="mini-program-icon"><img src="pic/X8.png" alt="小程序1"></div>
+                 <div class="mini-program-name">修炼中</div>
+             </a>
+           
              <a href="#" class="mini-program-card" target="_blank">
-                 <div class="mini-program-icon"><img src="pic/X.jpg" alt="小程序1"></div>
+                 <div class="mini-program-icon"><img src="pic/X2.png" alt="小程序1"></div>
                  <div class="mini-program-name">修炼中</div>
              </a>
              
@@ -146,12 +184,23 @@
          </div>
      </section>
 <script src="fortune_telling.js"></script>
+<script src="treasure_hunt.js"></script>
     <script>
-        // 初始化卦象功能
+        // 初始化卦象功能和法宝获取功能
         document.addEventListener('DOMContentLoaded', function() {
             if (window.initFortuneTelling) {
                 window.initFortuneTelling();
             }
+            if (window.initTreasureHunt) {
+                window.initTreasureHunt();
+            }
+        });
+    </script>
+    <script src="cultivation_guide.js"></script>
+    <script>
+        // 页面加载完成后初始化修炼宝典功能
+        document.addEventListener('DOMContentLoaded', function() {
+            initCultivationGuide();
         });
     </script>
     </body>

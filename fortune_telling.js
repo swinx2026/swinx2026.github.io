@@ -886,14 +886,11 @@ function showFortuneTelling() {
         });
     });
     
-    // 关闭按钮事件
-    const closeButton = document.getElementById('close-fortune');
-    closeButton.addEventListener('click', function() {
-        document.body.removeChild(modal);
-    });
+    // 注意：初始弹窗没有关闭按钮，所以不需要绑定关闭按钮事件
     
     // 点击外部关闭
     modal.addEventListener('click', function(e) {
+        // 只有当点击的是modal本身（背景遮罩）而不是内部的container时，才关闭弹窗
         if (e.target === modal) {
             document.body.removeChild(modal);
         }
