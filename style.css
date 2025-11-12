@@ -436,27 +436,27 @@ main {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* 设计素材分类标题背景色 */
+/* 设计素材分类标题背景渐变色 */
 #design-materials .category-title {
-    background-color: #c41e3a; /* 丹砂 - 红色 */
+    background: linear-gradient(135deg, #c41e3a, #f05454); /* 丹砂红渐变 */
     box-shadow: 0 2px 6px rgba(196, 30, 58, 0.3);
 }
 
-/* AI设计分类标题背景色 */
+/* AI设计分类标题背景渐变色 */
 #ai-design .category-title {
-    background-color: #5aac5e; /* 碧山 - 绿色 */
+    background: linear-gradient(135deg, #5aac5e, #66cc66); /* 碧山绿渐变 */
     box-shadow: 0 2px 6px rgba(90, 172, 94, 0.3);
 }
 
-/* 电商网站分类标题背景色 */
+/* 电商网站分类标题背景渐变色 */
 #e-commerce .category-title {
-    background-color: #e6a23c; /* 库金 - 橙色 */
+    background: linear-gradient(135deg, #e6a23c, #ffc107); /* 库金橙渐变 */
     box-shadow: 0 2px 6px rgba(230, 162, 60, 0.3);
 }
 
-/* 常用网站分类标题背景色 */
+/* 常用网站分类标题背景渐变色 */
 #common-sites .category-title {
-    background-color: #5a9b97; /* 海浪 - 蓝色 */
+    background: linear-gradient(135deg, #5a9b97, #66b3b3); /* 海浪蓝渐变 */
     box-shadow: 0 2px 6px rgba(90, 155, 151, 0.3);
 }
 
