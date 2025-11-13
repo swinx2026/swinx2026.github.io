@@ -104,7 +104,7 @@ function showCultivationGuideModal() {
   
   // 创建弹窗标题
   const title = document.createElement('h2');
-  title.textContent = '修炼宝典 - 答案之书';
+  title.textContent = '感悟天机 - 答案之书';
   title.style.cssText = `
     margin-top: 0;
     color: #333;
