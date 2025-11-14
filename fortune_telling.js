@@ -1,126 +1,26 @@
-// 卦签话术数据 - 精简为49条卦签结果，增加吉祥物品、颜色、食物、作息等条目
+// 卦签话术数据 - 精简为49条卦签结果，增加旺运物品、颜色、食物、作息等条目
 const fortuneQuotes = [
     // 卦签数据保持不变
-    {
-        title: "乾卦初九",
-        fortune: "吉",
-        description: "潜龙勿用，厚积薄发。",
-        shouldDo: "今日宜潜心学习，积累知识，不宜冒进。",
-        avoid: "避免与人争执，保持低调谨慎。",
-        luckyItem: "玉佩、金色饰品",
-        luckyColor: "金色、天蓝色",
-        luckyFood: "清淡蔬菜、豆浆",
-        dailyRoutine: "早睡早起，晨间冥想15分钟"
-    },
-    {
-        title: "坤卦六二",
-        fortune: "大吉",
-        description: "直方大，不习无不利。",
-        shouldDo: "保持正直品格，真诚待人，自然顺遂。",
-        avoid: "避免虚伪做作，心口不一。",
-        luckyItem: "黄水晶、土地公符",
-        luckyColor: "黄色、棕色",
-        luckyFood: "根茎类蔬菜、小米粥",
-        dailyRoutine: "午后小睡20分钟，保持规律作息"
-    },
-    {
-        title: "屯卦六三",
-        fortune: "凶",
-        description: "即鹿无虞，惟入于林中。",
-        shouldDo: "今日宜深思熟虑，不可贸然行动。",
-        avoid: "避免盲目追求，不计后果。",
-        luckyItem: "黑曜石、平安符",
-        luckyColor: "黑色、深蓝色",
-        luckyFood: "温热食物、生姜茶",
-        dailyRoutine: "避免熬夜，22点前休息"
-    },
-    {
-        title: "蒙卦九二",
-        fortune: "吉",
-        description: "包蒙，吉。纳妇吉，子克家。",
-        shouldDo: "宜虚心受教，接受他人指导。",
-        avoid: "避免骄傲自满，固执己见。",
-        luckyItem: "文昌笔、绿幽灵",
-        luckyColor: "绿色、青色",
-        luckyFood: "补脑食物、坚果类",
-        dailyRoutine: "学习后适当休息，保证充足睡眠"
-    },
-    {
-        title: "需卦九五",
-        fortune: "大吉",
-        description: "需于酒食，贞吉。",
-        shouldDo: "今日宜享受生活，放松心情。",
-        avoid: "避免过度劳累，忽视健康。",
-        luckyItem: "红玛瑙、美食符",
-        luckyColor: "红色、粉色",
-        luckyFood: "新鲜水果、轻食沙拉",
-        dailyRoutine: "适当午休，晚饭后散步"
-    },
-    {
-        title: "讼卦上九",
-        fortune: "凶",
-        description: "或锡之鞶带，终朝三褫之。",
-        shouldDo: "宜和解退让，以和为贵。",
-        avoid: "避免争强好胜，执意诉讼。",
-        luckyItem: "和解符、紫水晶",
-        luckyColor: "紫色、淡灰色",
-        luckyFood: "和平鸽汤、静心茶",
-        dailyRoutine: "避免与人争论，保持心情平和"
-    },
-    {
-        title: "师卦九二",
-        fortune: "吉",
-        description: "在师中吉，无咎。王三锡命。",
-        shouldDo: "今日宜团队合作，听从指挥。",
-        avoid: "避免单打独斗，一意孤行。",
-        luckyItem: "团队符、白水晶",
-        luckyColor: "白色、银色",
-        luckyFood: "团队共享餐、汤品",
-        dailyRoutine: "主动沟通，保持团队协作"
-    },
-    {
-        title: "比卦六二",
-        fortune: "吉",
-        description: "比之自内，贞吉。",
-        shouldDo: "宜真诚交友，建立良好关系。",
-        avoid: "避免虚情假意，尔虞我诈。",
-        luckyItem: "友谊手链、粉水晶",
-        luckyColor: "粉色、淡紫色",
-        luckyFood: "朋友聚餐、分享美食",
-        dailyRoutine: "主动联系朋友，增进感情"
-    },
-    {
-        title: "小畜卦九三",
-        fortune: "平",
-        description: "舆说辐，夫妻反目。",
-        shouldDo: "宜反思自我，调和关系。",
-        avoid: "避免固执己见，激化矛盾。",
-        luckyItem: "调和符、月光石",
-        luckyColor: "月光白、浅青色",
-        luckyFood: "清淡饮食、和解茶",
-        dailyRoutine: "换位思考，保持耐心沟通"
-    },
-    {
-        title: "履卦九四",
-        fortune: "平",
-        description: "履虎尾，愬愬终吉。",
-        shouldDo: "宜小心谨慎，如履薄冰。",
-        avoid: "避免粗心大意，掉以轻心。",
-        luckyItem: "护身符、虎眼石",
-        luckyColor: "琥珀色、橙色",
-        luckyFood: "温补食物、明目茶",
-        dailyRoutine: "做事前仔细规划，避免冲动"
-    },
+    {        title: "乾卦初九",        fortune: "吉",        description: "潜龙勿用，厚积薄发。",        shouldDo: "今日宜潜心学习，积累知识，不宜冒进。",        avoid: "避免与人争执，保持低调谨慎。",        luckyItem: "笔记本、钢笔",        luckyColor: "金色、天蓝色",        luckyFood: "清淡蔬菜、豆浆",        fortuneDirection: "东"    },
+    {        title: "坤卦六二",        fortune: "大吉",        description: "直方大，不习无不利。",        shouldDo: "保持正直品格，真诚待人，自然顺遂。",        avoid: "避免虚伪做作，心口不一。",        luckyItem: "便利贴、文件架",        luckyColor: "黄色、棕色",        luckyFood: "根茎类蔬菜、小米粥",        fortuneDirection: "西"    },
+    {        title: "屯卦六三",        fortune: "凶",        description: "即鹿无虞，惟入于林中。",        shouldDo: "今日宜深思熟虑，不可贸然行动。",        avoid: "避免盲目追求，不计后果。",        luckyItem: "订书机、回形针",        luckyColor: "黑色、深蓝色",        luckyFood: "温热食物、生姜茶",        fortuneDirection: "南"    },
+    {        title: "蒙卦九二",        fortune: "吉",        description: "包蒙，吉。纳妇吉，子克家。",        shouldDo: "宜虚心受教，接受他人指导。",        avoid: "避免骄傲自满，固执己见。",        luckyItem: "计算器、便签本",        luckyColor: "绿色、青色",        luckyFood: "补脑食物、坚果类",        fortuneDirection: "北"    },
+    {        title: "需卦九五",        fortune: "大吉",        description: "需于酒食，贞吉。",        shouldDo: "今日宜享受生活，放松心情。",        avoid: "避免过度劳累，忽视健康。",        luckyItem: "文件夹、档案袋",        luckyColor: "红色、粉色",        luckyFood: "新鲜水果、轻食沙拉",        fortuneDirection: "东南"    },
+    {        title: "讼卦上九",        fortune: "凶",        description: "或锡之鞶带，终朝三褫之。",        shouldDo: "宜和解退让，以和为贵。",        avoid: "避免争强好胜，执意诉讼。",        luckyItem: "胶棒、剪刀",        luckyColor: "紫色、淡灰色",        luckyFood: "和平鸽汤、静心茶",        fortuneDirection: "西南"    },
+    {        title: "师卦九二",        fortune: "吉",        description: "在师中吉，无咎。王三锡命。",        shouldDo: "今日宜团队合作，听从指挥。",        avoid: "避免单打独斗，一意孤行。",        luckyItem: "白板笔、马克笔",        luckyColor: "白色、银色",        luckyFood: "团队共享餐、汤品",        fortuneDirection: "东北"    },
+    {        title: "比卦六二",        fortune: "吉",        description: "比之自内，贞吉。",        shouldDo: "宜真诚交友，建立良好关系。",        avoid: "避免虚情假意，尔虞我诈。",        luckyItem: "台历、笔筒",        luckyColor: "粉色、淡紫色",        luckyFood: "朋友聚餐、分享美食",        fortuneDirection: "西北"    },
+    {        title: "小畜卦九三",        fortune: "平",        description: "舆说辐，夫妻反目。",        shouldDo: "宜反思自我，调和关系。",        avoid: "避免固执己见，激化矛盾。",        luckyItem: "订书钉、长尾夹",        luckyColor: "月光白、浅青色",        luckyFood: "清淡饮食、和解茶",        fortuneDirection: "东"    },
+    {        title: "履卦九四",        fortune: "平",        description: "履虎尾，愬愬终吉。",        shouldDo: "宜小心谨慎，如履薄冰。",        avoid: "避免粗心大意，掉以轻心。",        luckyItem: "美工刀、尺子",        luckyColor: "琥珀色、橙色",        luckyFood: "温补食物、明目茶",        fortuneDirection: "西"    },
     {
         title: "泰卦九三",
         fortune: "吉",
         description: "无平不陂，无往不复。艰贞无咎。",
         shouldDo: "宜居安思危，未雨绸缪。",
         avoid: "避免得意忘形，忽视潜在风险。",
-        luckyItem: "平安扣、绿松石",
+        luckyItem: "笔记本电脑、鼠标垫",
         luckyColor: "青色、湖蓝色",
         luckyFood: "均衡饮食、养生茶",
-        dailyRoutine: "适度运动，保持健康生活"
+        fortuneDirection: "南"
     },
     {
         title: "否卦九五",
@@ -128,10 +28,10 @@ const fortuneQuotes = [
         description: "休否，大人吉。其亡其亡，系于苞桑。",
         shouldDo: "宜保持希望，等待转机。",
         avoid: "避免悲观绝望，自暴自弃。",
-        luckyItem: "转运珠、茶晶",
+        luckyItem: "U盘、移动硬盘",
         luckyColor: "茶褐色、暗绿色",
         luckyFood: "提神食物、能量棒",
-        dailyRoutine: "保持积极心态，适当运动"
+        fortuneDirection: "北"
     },
     {
         title: "同人卦六二",
@@ -139,10 +39,10 @@ const fortuneQuotes = [
         description: "同人于宗，吝。",
         shouldDo: "宜广结善缘，不局限于小圈子。",
         avoid: "避免狭隘排外，党同伐异。",
-        luckyItem: "人缘符、青金石",
+        luckyItem: "名片夹、名片盒",
         luckyColor: "青蓝色、海蓝色",
         luckyFood: "社交场合食物、分享蛋糕",
-        dailyRoutine: "参加社交活动，认识新朋友"
+        fortuneDirection: "东南"
     },
     {
         title: "大有卦九三",
@@ -150,10 +50,10 @@ const fortuneQuotes = [
         description: "公用亨于天子，小人弗克。",
         shouldDo: "宜慷慨分享，惠及他人。",
         avoid: "避免自私自利，独占利益。",
-        luckyItem: "聚宝盆、黄水晶",
+        luckyItem: "鼠标、键盘垫",
         luckyColor: "金黄色、橙色",
         luckyFood: "分享食物、公益餐",
-        dailyRoutine: "日行一善，保持分享心态"
+        fortuneDirection: "西南"
     },
     {
         title: "谦卦六二",
@@ -161,10 +61,10 @@ const fortuneQuotes = [
         description: "鸣谦，贞吉。",
         shouldDo: "宜保持谦逊，低调行事。",
         avoid: "避免傲慢自大，目中无人。",
-        luckyItem: "谦虚符、灰玉",
+        luckyItem: "修正带、橡皮",
         luckyColor: "灰色、米色",
         luckyFood: "朴素饮食、家常菜",
-        dailyRoutine: "保持低调，虚心学习"
+        fortuneDirection: "东北"
     },
     {
         title: "豫卦六三",
@@ -172,10 +72,10 @@ const fortuneQuotes = [
         description: "盱豫悔，迟有悔。",
         shouldDo: "宜当机立断，避免犹豫不决。",
         avoid: "避免拖延观望，错失良机。",
-        luckyItem: "果断符、红玛瑙",
+        luckyItem: "钢笔、墨水",
         luckyColor: "红色、深红色",
         luckyFood: "提神食物、辛辣食品",
-        dailyRoutine: "制定计划，立即执行"
+        fortuneDirection: "西北"
     },
     {
         title: "随卦六二",
@@ -183,10 +83,10 @@ const fortuneQuotes = [
         description: "系小子，失丈夫。",
         shouldDo: "宜明辨是非，选择正确的跟随对象。",
         avoid: "避免盲目跟风，追随错误的人。",
-        luckyItem: "智慧符、紫水晶",
+        luckyItem: "书籍、笔记本",
         luckyColor: "紫色、靛蓝色",
         luckyFood: "健脑食物、鱼类",
-        dailyRoutine: "独立思考，谨慎选择"
+        fortuneDirection: "东"
     },
     {
         title: "蛊卦九二",
@@ -194,10 +94,10 @@ const fortuneQuotes = [
         description: "干母之蛊，不可贞。",
         shouldDo: "宜改革创新，去除陈规陋习。",
         avoid: "避免墨守成规，固执保守。",
-        luckyItem: "创新符、红纹石",
+        luckyItem: "便签纸、荧光笔",
         luckyColor: "红色、粉红色",
         luckyFood: "新食物尝试、创意料理",
-        dailyRoutine: "尝试新事物，突破自我"
+        fortuneDirection: "西"
     },
     {
         title: "临卦初九",
@@ -205,10 +105,10 @@ const fortuneQuotes = [
         description: "咸临，贞吉。",
         shouldDo: "宜亲近他人，建立信任。",
         avoid: "避免高高在上，疏远他人。",
-        luckyItem: "亲和力符、粉晶",
+        luckyItem: "微笑贴、员工卡",
         luckyColor: "粉色、浅红色",
         luckyFood: "温馨料理、家庭聚餐",
-        dailyRoutine: "主动关心他人，建立联系"
+        fortuneDirection: "南"
     },
     {
         title: "观卦六三",
@@ -216,10 +116,10 @@ const fortuneQuotes = [
         description: "观我生，进退。",
         shouldDo: "宜自我反省，审时度势。",
         avoid: "避免盲目行动，缺乏思考。",
-        luckyItem: "自省镜、蓝玉",
+        luckyItem: "镜子、笔记本",
         luckyColor: "蓝色、青色",
         luckyFood: "静心茶、冥想餐",
-        dailyRoutine: "自我反思，调整计划"
+        fortuneDirection: "北"
     },
     {
         title: "噬嗑卦六五",
@@ -227,10 +127,10 @@ const fortuneQuotes = [
         description: "噬乾肉，得黄金。贞厉，无咎。",
         shouldDo: "宜坚守正道，虽有困难终会成功。",
         avoid: "避免投机取巧，违背原则。",
-        luckyItem: "正道符、赤铁矿",
+        luckyItem: "文件夹、标签纸",
         luckyColor: "红色、棕色",
         luckyFood: "坚实食物、烤肉",
-        dailyRoutine: "坚持原则，克服困难"
+        fortuneDirection: "东南"
     },
     {
         title: "贲卦初九",
@@ -238,10 +138,10 @@ const fortuneQuotes = [
         description: "贲其趾，舍车而徒。",
         shouldDo: "宜注重内在品质，不追求表面虚荣。",
         avoid: "避免华而不实，虚有其表。",
-        luckyItem: "内在美符、珍珠",
+        luckyItem: "绿植、水杯",
         luckyColor: "白色、淡粉色",
         luckyFood: "朴素食物、天然食材",
-        dailyRoutine: "注重内在修养，远离虚荣"
+        fortuneDirection: "西南"
     },
     {
         title: "剥卦六四",
@@ -249,10 +149,10 @@ const fortuneQuotes = [
         description: "剥床以肤，凶。",
         shouldDo: "宜谨慎行事，保护自己。",
         avoid: "避免暴露弱点，给人可乘之机。",
-        luckyItem: "保护符、黑碧玺",
+        luckyItem: "鼠标、键盘",
         luckyColor: "黑色、深灰色",
         luckyFood: "滋补食物、养生汤",
-        dailyRoutine: "避免独处，注意安全"
+        fortuneDirection: "东北"
     },
     {
         title: "复卦初九",
@@ -260,10 +160,10 @@ const fortuneQuotes = [
         description: "不远复，无祗悔，元吉。",
         shouldDo: "宜及时改过，迷途知返。",
         avoid: "避免执迷不悟，一错再错。",
-        luckyItem: "悔过符、白水晶",
+        luckyItem: "便签、笔",
         luckyColor: "白色、金色",
         luckyFood: "清新食物、悔过茶",
-        dailyRoutine: "勇于认错，及时改正"
+        fortuneDirection: "西北"
     },
     {
         title: "无妄卦六三",
@@ -271,10 +171,10 @@ const fortuneQuotes = [
         description: "无妄之灾，或系之牛，行人之得，邑人之灾。",
         shouldDo: "宜小心防范，避免意外之灾。",
         avoid: "避免粗心大意，疏忽大意。",
-        luckyItem: "避灾符、黑曜石",
+        luckyItem: "口罩、消毒液",
         luckyColor: "黑色、深蓝色",
         luckyFood: "安全食物、温热饮品",
-        dailyRoutine: "小心谨慎，避免冒险"
+        fortuneDirection: "东"
     },
     {
         title: "大畜卦六五",
@@ -282,10 +182,10 @@ const fortuneQuotes = [
         description: "豮豕之牙，吉。",
         shouldDo: "宜自我约束，控制欲望。",
         avoid: "避免放纵自我，失去控制。",
-        luckyItem: "自律符、黄玉",
+        luckyItem: "日历、定时器",
         luckyColor: "黄色、橙色",
         luckyFood: "节制饮食、健康食品",
-        dailyRoutine: "制定计划，严格执行"
+        fortuneDirection: "西"
     },
     {
         title: "颐卦初九",
@@ -293,10 +193,10 @@ const fortuneQuotes = [
         description: "舍尔灵龟，观我朵颐，凶。",
         shouldDo: "宜自力更生，不要依赖他人。",
         avoid: "避免贪图享乐，坐享其成。",
-        luckyItem: "自立符、绿松石",
+        luckyItem: "台灯、护眼灯",
         luckyColor: "绿色、青色",
         luckyFood: "自给自足食物、劳动果实",
-        dailyRoutine: "自己动手，丰衣足食"
+        fortuneDirection: "南"
     },
     {
         title: "坎卦九二",
@@ -304,10 +204,10 @@ const fortuneQuotes = [
         description: "坎有险，求小得。",
         shouldDo: "宜降低期望，脚踏实地。",
         avoid: "避免好高骛远，不切实际。",
-        luckyItem: "踏实符、海蓝宝",
+        luckyItem: "文件柜、抽屉",
         luckyColor: "蓝色、深蓝色",
         luckyFood: "脚踏实地食物、根茎类",
-        dailyRoutine: "一步一个脚印，稳步前进"
+        fortuneDirection: "北"
     },
     {
         title: "离卦九三",
@@ -315,10 +215,10 @@ const fortuneQuotes = [
         description: "日昃之离，不鼓缶而歌，则大耋之嗟，凶。",
         shouldDo: "宜乐观面对，保持积极心态。",
         avoid: "避免悲观消极，怨天尤人。",
-        luckyItem: "乐观符、太阳石",
+        luckyItem: "咖啡杯、茶包",
         luckyColor: "红色、橙色",
         luckyFood: "阳光食物、辛辣食品",
-        dailyRoutine: "保持笑容，积极面对"
+        fortuneDirection: "东南"
     },
     {
         title: "咸卦六二",
@@ -326,10 +226,10 @@ const fortuneQuotes = [
         description: "咸其腓，凶。居吉。",
         shouldDo: "宜安守本分，不要轻举妄动。",
         avoid: "避免冲动行事，不计后果。",
-        luckyItem: "安分符、月光石",
+        luckyItem: "椅垫、靠枕",
         luckyColor: "月光白、淡蓝色",
         luckyFood: "清淡食物、安神茶",
-        dailyRoutine: "修身养性，避免冲动"
+        fortuneDirection: "西南"
     },
     {
         title: "恒卦六五",
@@ -337,10 +237,10 @@ const fortuneQuotes = [
         description: "恒其德，贞。妇人吉，夫子凶。",
         shouldDo: "宜坚守美德，持之以恒。",
         avoid: "避免半途而废，缺乏毅力。",
-        luckyItem: "坚持符、红玛瑙",
+        luckyItem: "保温杯、暖手宝",
         luckyColor: "红色、深红色",
         luckyFood: "持久食物、坚果类",
-        dailyRoutine: "坚持锻炼，培养毅力"
+        fortuneDirection: "东北"
     },
     {
         title: "遁卦九四",
@@ -348,10 +248,10 @@ const fortuneQuotes = [
         description: "好遁，君子吉，小人否。",
         shouldDo: "宜审时度势，适时退避。",
         avoid: "避免盲目坚持，不知变通。",
-        luckyItem: "退避符、蓝水晶",
+        luckyItem: "耳机、降噪耳塞",
         luckyColor: "蓝色、淡紫色",
         luckyFood: "隐退食物、清淡饮食",
-        dailyRoutine: "学会退让，保存实力"
+        fortuneDirection: "西北"
     },
     {
         title: "大壮卦九三",
@@ -359,10 +259,10 @@ const fortuneQuotes = [
         description: "小人用壮，君子用罔。贞厉。羝羊触藩，羸其角。",
         shouldDo: "宜刚柔并济，不要恃强凌弱。",
         avoid: "避免锋芒毕露，盛气凌人。",
-        luckyItem: "刚柔符、虎眼石",
+        luckyItem: "订书机、起钉器",
         luckyColor: "黄棕色、橙色",
         luckyFood: "平衡食物、荤素搭配",
-        dailyRoutine: "保持谦逊，刚柔并济"
+        fortuneDirection: "东"
     },
     {
         title: "晋卦六五",
@@ -370,10 +270,10 @@ const fortuneQuotes = [
         description: "悔亡，失得勿恤。往吉无不利。",
         shouldDo: "宜向前看，不要过于计较得失。",
         avoid: "避免患得患失，犹豫不决。",
-        luckyItem: "前进符、绿幽灵",
+        luckyItem: "笔记本、钢笔",
         luckyColor: "绿色、青色",
         luckyFood: "前进食物、能量餐",
-        dailyRoutine: "勇敢前行，不计较得失"
+        fortuneDirection: "西"
     },
     {
         title: "明夷卦初九",
@@ -381,10 +281,10 @@ const fortuneQuotes = [
         description: "明夷于飞，垂其翼。君子于行，三日不食。有攸往，主人有言。",
         shouldDo: "宜韬光养晦，等待时机。",
         avoid: "避免锋芒毕露，招人嫉妒。",
-        luckyItem: "韬光符、黑曜石",
+        luckyItem: "便签、荧光笔",
         luckyColor: "黑色、深灰色",
         luckyFood: "低调食物、素食",
-        dailyRoutine: "低调行事，等待时机"
+        fortuneDirection: "南"
     },
     {
         title: "家人卦九三",
@@ -392,10 +292,10 @@ const fortuneQuotes = [
         description: "家人嗃嗃，悔厉吉。妇子嘻嘻，终吝。",
         shouldDo: "宜严格持家，不可过于放纵。",
         avoid: "避免溺爱家人，不加约束。",
-        luckyItem: "家庭符、粉水晶",
+        luckyItem: "照片、相框",
         luckyColor: "粉色、红色",
         luckyFood: "家庭聚餐、传统美食",
-        dailyRoutine: "关心家人，保持沟通"
+        fortuneDirection: "北"
     },
     {
         title: "睽卦九四",
@@ -403,10 +303,10 @@ const fortuneQuotes = [
         description: "睽孤，遇元夫，交孚，厉无咎。",
         shouldDo: "宜寻求合作，化解分歧。",
         avoid: "避免孤立无援，固执己见。",
-        luckyItem: "合作符、青金石",
+        luckyItem: "会议记录本、笔",
         luckyColor: "青色、蓝色",
         luckyFood: "合作餐、共享食物",
-        dailyRoutine: "主动合作，化解矛盾"
+        fortuneDirection: "东南"
     },
     {
         title: "蹇卦九五",
@@ -414,10 +314,10 @@ const fortuneQuotes = [
         description: "大蹇朋来。",
         shouldDo: "宜寻求帮助，共度难关。",
         avoid: "避免一意孤行，拒绝援助。",
-        luckyItem: "求助符、紫水晶",
+        luckyItem: "电话、手机",
         luckyColor: "紫色、深蓝色",
         luckyFood: "求助食物、朋友聚餐",
-        dailyRoutine: "主动求助，接受帮助"
+        fortuneDirection: "西南"
     },
     {
         title: "解卦九二",
@@ -425,10 +325,10 @@ const fortuneQuotes = [
         description: "田获三狐，得黄矢，贞吉。",
         shouldDo: "宜抓住机会，解决问题。",
         avoid: "避免犹豫不决，错失良机。",
-        luckyItem: "机会符、黄水晶",
+        luckyItem: "简历、名片",
         luckyColor: "黄色、金色",
         luckyFood: "机遇食物、应季水果",
-        dailyRoutine: "保持警觉，抓住机会"
+        fortuneDirection: "东北"
     },
     {
         title: "损卦六三",
@@ -436,10 +336,10 @@ const fortuneQuotes = [
         description: "三人行，则损一人；一人行，则得其友。",
         shouldDo: "宜精简团队，注重质量。",
         avoid: "避免人浮于事，效率低下。",
-        luckyItem: "精简符、白水晶",
+        luckyItem: "文件夹、文件袋",
         luckyColor: "白色、淡灰色",
         luckyFood: "精简食物、轻食",
-        dailyRoutine: "精简事务，提高效率"
+        fortuneDirection: "西北"
     },
     {
         title: "益卦六二",
@@ -447,10 +347,10 @@ const fortuneQuotes = [
         description: "或益之十朋之龟，弗克违，永贞吉。王用享于帝，吉。",
         shouldDo: "宜接受帮助，知恩图报。",
         avoid: "避免拒绝好意，孤芳自赏。",
-        luckyItem: "感恩符、粉晶",
+        luckyItem: "贺卡、感谢信",
         luckyColor: "粉色、淡红色",
         luckyFood: "感恩食物、分享餐",
-        dailyRoutine: "学会感恩，回馈社会"
+        fortuneDirection: "东"
     },
     {
         title: "夬卦初九",
@@ -458,10 +358,10 @@ const fortuneQuotes = [
         description: "壮于前趾，往不胜为吝。",
         shouldDo: "宜谨慎行动，不要盲目冒进。",
         avoid: "避免轻举妄动，不自量力。",
-        luckyItem: "谨慎符、红玛瑙",
+        luckyItem: "计算器、算盘",
         luckyColor: "红色、深红色",
         luckyFood: "谨慎食物、易消化食品",
-        dailyRoutine: "深思熟虑，谨慎行动"
+        fortuneDirection: "西"
     },
     {
         title: "萃卦六二",
@@ -469,10 +369,10 @@ const fortuneQuotes = [
         description: "引吉，无咎。孚乃利用禴。",
         shouldDo: "宜团结他人，凝聚力量。",
         avoid: "避免离心离德，各自为政。",
-        luckyItem: "团结符、绿幽灵",
+        luckyItem: "团队T恤、工作牌",
         luckyColor: "绿色、青色",
         luckyFood: "团结餐、集体活动",
-        dailyRoutine: "凝聚团队，共同进步"
+        fortuneDirection: "南"
     },
     {
         title: "升卦六四",
@@ -480,10 +380,10 @@ const fortuneQuotes = [
         description: "王用亨于岐山，吉无咎。",
         shouldDo: "宜循序渐进，稳步上升。",
         avoid: "避免急于求成，急功近利。",
-        luckyItem: "晋升符、黄水晶",
+        luckyItem: "笔记本、钢笔",
         luckyColor: "黄色、金色",
         luckyFood: "上升食物、营养均衡",
-        dailyRoutine: "稳步前进，厚积薄发"
+        fortuneDirection: "北"
     },
     {
         title: "困卦九二",
@@ -491,10 +391,10 @@ const fortuneQuotes = [
         description: "困于酒食，朱绂方来，利用亨祀。征凶，无咎。",
         shouldDo: "宜安于现状，等待转机。",
         avoid: "避免强行突破，适得其反。",
-        luckyItem: "脱困符、蓝水晶",
+        luckyItem: "螺丝刀、扳手",
         luckyColor: "蓝色、淡紫色",
         luckyFood: "安神食物、静心茶",
-        dailyRoutine: "耐心等待，寻找机会"
+        fortuneDirection: "东南"
     },
     {
         title: "井卦九三",
@@ -502,10 +402,10 @@ const fortuneQuotes = [
         description: "井渫不食，为我心恻。可用汲。王明，并受其福。",
         shouldDo: "宜修身养性，提升自我价值。",
         avoid: "避免自暴自弃，不思进取。",
-        luckyItem: "修身符、海蓝宝",
+        luckyItem: "书籍、书签",
         luckyColor: "蓝色、青色",
         luckyFood: "修身食物、清淡饮食",
-        dailyRoutine: "自我提升，充实内在"
+        fortuneDirection: "西南"
     },
     {
         title: "革卦六二",
@@ -513,10 +413,10 @@ const fortuneQuotes = [
         description: "已日乃革之，征吉，无咎。",
         shouldDo: "宜把握时机，进行变革。",
         avoid: "避免犹豫不决，错失良机。",
-        luckyItem: "变革符、红玛瑙",
+        luckyItem: "笔记本、钢笔",
         luckyColor: "红色、橙色",
         luckyFood: "变革食物、创新料理",
-        dailyRoutine: "勇于变革，突破自我"
+        fortuneDirection: "东北"
     },
     {
         title: "鼎卦六五",
@@ -524,10 +424,10 @@ const fortuneQuotes = [
         description: "鼎黄耳金铉，利贞。",
         shouldDo: "宜守正出奇，创新发展。",
         avoid: "避免墨守成规，固步自封。",
-        luckyItem: "创新符、黄玉",
+        luckyItem: "便签、荧光笔",
         luckyColor: "黄色、金色",
         luckyFood: "创新食物、精致料理",
-        dailyRoutine: "守正出奇，开拓创新"
+        fortuneDirection: "西北"
     },
     {
         title: "震卦初九",
@@ -535,10 +435,10 @@ const fortuneQuotes = [
         description: "震来虩虩，后笑言哑哑，吉。",
         shouldDo: "宜勇敢面对困难，保持乐观。",
         avoid: "避免惊慌失措，失去方寸。",
-        luckyItem: "勇气符、虎眼石",
+        luckyItem: "钢笔、墨水",
         luckyColor: "橙色、黄色",
         luckyFood: "勇气食物、辛辣食品",
-        dailyRoutine: "勇敢面对，保持乐观"
+        fortuneDirection: "东"
     },
     {
         title: "艮卦初六",
@@ -546,10 +446,10 @@ const fortuneQuotes = [
         description: "艮其趾，无咎，利永贞。",
         shouldDo: "宜适可而止，不要过度追求。",
         avoid: "避免贪得无厌，不知满足。",
-        luckyItem: "知足符、白水晶",
+        luckyItem: "水杯、绿植",
         luckyColor: "白色、淡粉色",
         luckyFood: "知足食物、简单饮食",
-        dailyRoutine: "知足常乐，适可而止"
+        fortuneDirection: "西"
     }
 ];
 
@@ -601,26 +501,30 @@ function getLunarDate(date) {
     return `${lunarYear}年${lunarMonth}${lunarDay}`;
 }
 
-// 初始化函数 - 为主页提供调用接口
+// 初始化函数，绑定按钮点击事件
 function initFortuneTelling() {
-    // 查找所有小程序卡片
-    const miniProgramCards = document.querySelectorAll('.mini-program-card');
-    
-    miniProgramCards.forEach(card => {
-        const nameElement = card.querySelector('.mini-program-name');
-        if (nameElement && nameElement.textContent.trim() === '卜上一卦') {
-            card.addEventListener('click', function(e) {
-                e.preventDefault(); // 阻止默认跳转
-                e.stopPropagation();
-                showFortuneTelling(); // 显示卦象
-            });
+    console.log('initFortuneTelling初始化函数执行');
+    // 使用事件委托来绑定点击事件
+    document.addEventListener('click', function(e) {
+        const target = e.target;
+        // 检查是否点击了卜上一卦卡片或其子元素
+        const fortuneCard = target.closest('#fortune-telling-card');
+        if (fortuneCard) {
+            console.log('卜上一卦按钮点击事件触发');
+            e.preventDefault();
+            e.stopPropagation();
+            // 调用显示卦象函数
+            showFortuneTelling();
         }
     });
+    console.log('已为卜上一卦按钮添加点击事件');
 }
 
 // 显示卦象弹窗
 function showFortuneTelling() {
-    // 创建弹窗元素
+    try {
+        console.log('showFortuneTelling函数执行');
+        // 创建模态框元素创建弹窗元素
     const modal = document.createElement('div');
     modal.className = 'fortune-modal';
     modal.style.cssText = `
@@ -633,7 +537,7 @@ function showFortuneTelling() {
         display: flex;
         justify-content: center;
         align-items: center;
-        z-index: 1000;
+        z-index: 9999;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
     `;
     
@@ -696,6 +600,7 @@ function showFortuneTelling() {
     
     // 添加到页面
     document.body.appendChild(modal);
+    console.log('弹窗已添加到页面:', modal);
     
     // 抽一签按钮事件
     const drawButton = document.getElementById('draw-fortune');
@@ -708,6 +613,12 @@ function showFortuneTelling() {
         if (savedFortune) {
             // 如果今天已经算过卦，使用保存的卦象
             fortune = JSON.parse(savedFortune);
+            // 检查是否有财运方位字段，没有则重新生成
+            if (!fortune.fortuneDirection) {
+                const randomIndex = Math.floor(Math.random() * fortuneQuotes.length);
+                fortune = fortuneQuotes[randomIndex];
+                localStorage.setItem(`fortune_${today}`, JSON.stringify(fortune));
+            }
         } else {
             // 如果今天没有算过卦，随机选择一个卦象
             const randomIndex = Math.floor(Math.random() * fortuneQuotes.length);
@@ -811,7 +722,7 @@ function showFortuneTelling() {
                     color: #c07b13;
                     line-height: 1.3;
                     font-size: 0.9rem;
-                "><strong>吉祥物品：</strong>${fortune.luckyItem}</p>
+                "><strong>旺运物品：</strong>${fortune.luckyItem}</p>
             </div>
             
             <div style="margin-bottom: 10px;">
@@ -842,12 +753,12 @@ function showFortuneTelling() {
                 <p style="
                     margin: 0;
                     padding: 6px;
-                    background-color: rgba(52, 152, 219, 0.1);
+                    background-color: rgba(241, 196, 15, 0.1);
                     border-radius: 6px;
-                    color: #2874a6;
+                    color: #f39c12;
                     line-height: 1.3;
                     font-size: 0.9rem;
-                "><strong>建议作息：</strong>${fortune.dailyRoutine}</p>
+                "><strong>财运方位：</strong>${fortune.fortuneDirection}</p>
             </div>
             
             <div style="margin-bottom: 12px;">
@@ -904,7 +815,14 @@ function showFortuneTelling() {
             }
         }
     });
+    // 将弹窗添加到页面
+    document.body.appendChild(modal);
+    console.log('弹窗已添加到页面:', modal);
+} catch (error) {
+    console.error('Error in showFortuneTelling:', error);
+}
 }
 
-// 导出初始化函数，供主页调用
+// 导出初始化函数和显示函数，供主页调用
 window.initFortuneTelling = initFortuneTelling;
+window.showFortuneTelling = showFortuneTelling;
