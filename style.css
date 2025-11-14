@@ -29,6 +29,18 @@ body {
     background-image: url('pic/bg.jpg');
     background-size: cover;
     background-position: center;
+    animation: backgroundSaturationAnimation 10s ease-in-out infinite;
+}
+
+@keyframes backgroundSaturationAnimation {
+  0% { filter: brightness(1) grayscale(0.3);transform: scale(1); }
+  20% { filter: brightness(1) grayscale(0);transform: scale(1.02); }
+  30% { filter: brightness(1) grayscale(0); transform: scale(1.02);}
+  50% { filter: brightness(1) grayscale(0.3); transform: scale(1);}
+    70% { filter: brightness(1) grayscale(0);transform: scale(1.02); }
+  80% { filter: brightness(1) grayscale(0); transform: scale(1.02);}
+  100% { filter: brightness(1) grayscale(0.3);transform: scale(1); }
+
 }
 
 /* 备用背景样式 */
