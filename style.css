@@ -29,7 +29,7 @@ body {
     background-image: url('pic/bg.jpg');
     background-size: cover;
     background-position: center;
-    animation: backgroundSaturationAnimation 10s ease-in-out infinite;
+    animation: backgroundSaturationAnimation 15s ease-in-out infinite;
 }
 
 @keyframes backgroundSaturationAnimation {
