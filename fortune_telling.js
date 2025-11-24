@@ -537,10 +537,11 @@ function showFortuneTelling() {
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(5px);
         display: flex;
         justify-content: center;
         align-items: center;
-        z-index: 9999;
+        z-index: 100000;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
     `;
     
@@ -557,6 +558,7 @@ function showFortuneTelling() {
             overflow-y: auto;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             border: 1px solid #f0e8d9;
+            animation: modalAppear 0.3s ease-out forwards;
             background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d4b997' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
         ">
             <div style="
@@ -603,6 +605,13 @@ function showFortuneTelling() {
     
     // 添加到页面
     document.body.appendChild(modal);
+    
+    // 阻止容器内部的点击事件冒泡到modal
+    const container = modal.querySelector('.fortune-container');
+    container.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+    
     console.log('弹窗已添加到页面:', modal);
     
     // 抽一签按钮事件
@@ -632,23 +641,62 @@ function showFortuneTelling() {
         
         // 生成卦象等级对应的颜色
         let fortuneColor = '';
-        switch (fortune.fortune) {
-            case '大吉':
-                fortuneColor = '#c41e3a'; // 红色
-                break;
-            case '吉':
-                fortuneColor = '#5aac5e'; // 绿色
-                break;
-            case '平':
-                fortuneColor = '#e6a23c'; // 橙色
-                break;
-            case '凶':
-                fortuneColor = '#66462a'; // 棕色
-                break;
+        let bonusDraws = 0;
+        let isBonusAwarded = false;
+        const hasClaimedBonusToday = localStorage.getItem(`fortune_bonus_${today}`) === 'true';
+        
+        if (!hasClaimedBonusToday) {
+            switch (fortune.fortune) {
+                case '大吉':
+                    fortuneColor = '#c41e3a'; // 红色
+                    bonusDraws = 3;
+                    break;
+                case '吉':
+                    fortuneColor = '#5aac5e'; // 绿色
+                    bonusDraws = 2;
+                    break;
+                case '平':
+                    fortuneColor = '#e6a23c'; // 橙色
+                    bonusDraws = 1;
+                    break;
+                case '凶':
+                    fortuneColor = '#66462a'; // 棕色
+                    bonusDraws = 0;
+                    break;
+            }
+            // 根据卦象等级增加相应的寻宝机会
+            if (bonusDraws > 0 && typeof cardGame !== 'undefined') {
+                cardGame.addDrawCount(bonusDraws);
+                // 标记今日已领取奖励
+                localStorage.setItem(`fortune_bonus_${today}`, 'true');
+                isBonusAwarded = true;
+            }
+        } else {
+            // 如果已经领取过奖励，根据卦象等级设置颜色
+            switch (fortune.fortune) {
+                case '大吉':
+                    fortuneColor = '#c41e3a'; // 红色
+                    break;
+                case '吉':
+                    fortuneColor = '#5aac5e'; // 绿色
+                    break;
+                case '平':
+                    fortuneColor = '#e6a23c'; // 橙色
+                    break;
+                case '凶':
+                    fortuneColor = '#66462a'; // 棕色
+                    break;
+            }
         }
         
         // 更新弹窗内容为卦象结果
         const container = modal.querySelector('.fortune-container');
+        
+        // 先隐藏容器，准备动画
+        container.style.opacity = '0';
+        container.style.transform = 'translateY(-20px)';
+        
+        // 更新内容
         container.innerHTML = `
             <h2 style="
                 text-align: center;
@@ -749,9 +797,8 @@ function showFortuneTelling() {
                     color: #6c3483;
                     line-height: 1.3;
                     font-size: 0.9rem;
-                "><strong>推荐食物：</strong>${fortune.luckyFood}</p>
+                "><strong>财运方位：</strong>${fortune.fortuneDirection}</p>
             </div>
-            
             <div style="margin-bottom: 10px;">
                 <p style="
                     margin: 0;
@@ -761,7 +808,7 @@ function showFortuneTelling() {
                     color: #f39c12;
                     line-height: 1.3;
                     font-size: 0.9rem;
-                "><strong>财运方位：</strong>${fortune.fortuneDirection}</p>
+                "><strong>推荐食物：</strong>${fortune.luckyFood}</p><strong>
             </div>
             
             <div style="margin-bottom: 12px;">
@@ -777,6 +824,34 @@ function showFortuneTelling() {
                     font-size: 0.85rem;
                 ">今日：${formatDateDisplay(new Date())}</p>
             </div>
+            <!-- 寻宝机会奖励信息 -->
+            ${isBonusAwarded ? `
+            <div style="margin-bottom: 10px;">
+                <p style="
+                    margin: 0;
+                    padding: 8px;
+                    background-color: rgba(241, 196, 15, 0.2);
+                    border-radius: 6px;
+                    color: #f39c12;
+                    line-height: 1.4;
+                    font-size: 0.95rem;
+                    text-align: center;
+                "><strong>恭喜获得额外寻宝机会${bonusDraws}次！</strong></p>
+            </div>
+            ` : hasClaimedBonusToday ? `
+            <div style="margin-bottom: 10px;">
+                <p style="
+                    margin: 0;
+                    padding: 8px;
+                    background-color: rgba(200, 200, 200, 0.2);
+                    border-radius: 6px;
+                    color: #666;
+                    line-height: 1.4;
+                    font-size: 0.9rem;
+                    text-align: center;
+                "><strong>今日已领取过寻宝机会奖励</strong></p>
+            </div>
+            ` : ''}
             
             <div style="text-align: center;">
                 <button id="close-fortune" style="
@@ -798,6 +873,11 @@ function showFortuneTelling() {
         closeButton.addEventListener('click', function() {
             document.body.removeChild(modal);
         });
+        
+        // 重新触发动画
+        container.style.animation = 'none';
+        container.offsetHeight; // 触发重排
+        container.style.animation = 'modalAppear 0.3s ease-out forwards';
     });
     
     // 注意：初始弹窗没有关闭按钮，所以不需要绑定关闭按钮事件

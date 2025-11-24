@@ -11,7 +11,7 @@ const designWebsites = [
   { name: "设计达人", url: "https://www.shejidaren.com/", category: "综合设计,UI设计,UX设计", description: "设计师学习交流社区和资源分享平台" },
   { name: "掘金设计", url: "https://juejin.cn/design", category: "综合设计,UI设计,UX设计,前端开发", description: "设计师技术交流和分享平台" },
   { name: "UI公园", url: "https://www.uipark.cn/", category: "综合设计,UI设计,UX设计,灵感收集", description: "UI设计资源和灵感分享平台" },
-  { name: "UI设计师联盟", url: "http://www.uidashi.com/", category: "综合设计,UI设计,UX设计", description: "UI设计师交流和学习社区" },
+  { name: "站酷海洛", url: "https://www.hellorf.com/", category: "综合设计,UI设计,素材下载", description: "站酷旗下正版素材平台" },
   { name: "优优教程网", url: "https://uiiiuiii.com/", category: "综合设计,UI设计,教程资源", description: "设计教程和资源分享平台" },
   
   // UI/UX设计
@@ -29,8 +29,8 @@ const designWebsites = [
   
   // 平面设计
   { name: "红动中国", url: "https://www.redocn.com/", category: "平面设计", description: "中国专业设计网站和素材下载平台" },
-  { name: "设计中国", url: "http://www.designcnw.com/", category: "平面设计", description: "平面设计作品展示和学习平台" },
-  { name: "平面设计网", url: "http://www.pmsjw.cn/", category: "平面设计", description: "平面设计教程和资源分享平台" },
+  { name: "设计癖", url: "https://www.shejipi.com/", category: "平面设计,设计资讯", description: "设计资讯和作品展示平台" },
+  { name: "平面设计学院", url: "https://www.pmsjw.com/", category: "平面设计,教程资源", description: "平面设计教程和资源平台" },
   { name: "Designup", url: "https://www.designup.com/", category: "平面设计", description: "设计师自由职业接单平台" },
   { name: "创可贴", url: "https://www.chuangkit.com/designtools/designer", category: "平面设计", description: "平面设计在线工具和模板" },
   { name: "海报工厂", url: "https://hb.wondershare.cn/", category: "平面设计", description: "海报设计在线工具" },
@@ -43,7 +43,7 @@ const designWebsites = [
   { name: "昵图网", url: "https://www.nipic.com/", category: "素材下载", description: "原创设计素材和图片分享平台" },
   { name: "我图网", url: "https://www.ooopic.com/", category: "素材下载", description: "正版商业图片和设计素材库" },
   { name: "素材中国", url: "https://www.sccnn.com/", category: "素材下载", description: "设计素材和图片分享平台" },
-  { name: "素材天下", url: "https://www.sucaitianxia.com/", category: "素材下载", description: "设计素材和模板分享平台" },
+  { name: "千库网", url: "https://www.588ku.com/", category: "素材下载", description: "国内领先的设计素材下载平台" },
   { name: "懒人图库", url: "https://www.lanrentuku.com/", category: "素材下载", description: "网页设计素材和模板下载" },
   { name: "汇图网", url: "https://www.huitu.com/", category: "素材下载", description: "商业图片和设计素材交易平台" },
   { name: "中国素材网", url: "https://www.sucai.com/", category: "素材下载", description: "设计素材和图片分享平台" },
@@ -66,8 +66,8 @@ const designWebsites = [
   { name: "插画师", url: "https://www.chahua.org/", category: "插画设计", description: "插画师交流和作品展示社区" },
   { name: "插画中国", url: "https://www.chahua.net/", category: "插画设计", description: "中国插画师交流和作品展示平台" },
   { name: "插画星球", url: "https://www.chahua.website/", category: "插画设计", description: "插画作品展示和学习平台" },
-  { name: "米画师", url: "https://www.artstation.cn/", category: "插画设计", description: "插画师约稿和作品展示平台" },
-  { name: "插画师联盟", url: "http://www.chahua123.com/", category: "插画设计", description: "插画师交流和资源分享平台" },
+  { name: "米画师", url: "https://www.mihuashi.com/", category: "插画设计", description: "插画师约稿和作品展示平台" },
+  { name: "画盟网", url: "https://www.huashilm.com/", category: "插画设计", description: "自由画师的自由联合平台" },
   { name: "站酷插画", url: "https://www.zcool.com.cn/special/chahuatupian/", category: "插画设计", description: "站酷插画作品展示平台" },
   { name: "小红书插画", url: "https://www.xiaohongshu.com/explore/illustration", category: "插画设计", description: "小红书插画作品和灵感分享" },
   
@@ -90,16 +90,16 @@ const designWebsites = [
   { name: "VRay渲染网", url: "https://www.vraychina.com/", category: "3D设计", description: "VRay渲染器学习和资源平台" },
   
   // 网页设计
-  { name: "网页设计师联盟", url: "http://www.w3cn.org/", category: "网页设计", description: "专业网页设计师学习交流平台" },
-  { name: "HTML5中文网", url: "http://www.html5cn.org/", category: "网页设计", description: "HTML5技术和设计资源平台" },
+  { name: "前端开发者社区", url: "https://segmentfault.com/", category: "网页设计,前端开发", description: "前端开发和网页设计社区" },
+  { name: "MDN Web Docs 中文", url: "https://developer.mozilla.org/zh-CN/", category: "网页设计,前端开发", description: "权威的Web技术文档平台" },
   { name: "蓝色理想", url: "https://www.blueidea.com/", category: "网页设计", description: "网页设计和前端开发社区" },
   { name: "前端网", url: "https://www.qdfuns.com/", category: "网页设计", description: "前端开发和网页设计社区" },
   { name: "Awwwards中文", url: "https://www.awwwards.cn/", category: "网页设计", description: "优秀网页设计作品展示平台" },
   { name: "网页设计网", url: "http://www.wangyesheji.com/", category: "网页设计", description: "网页设计教程和资源分享平台" },
   
   // 动效设计
-  { name: "MG动画网", url: "http://www.mgdhw.com/", category: "动效设计", description: "Motion Graphic动画学习平台" },
-  { name: "动画中国", url: "http://www.animationcn.com/", category: "动效设计", description: "动画和动效设计学习平台" },
+  { name: "新片场学院", url: "https://www.xinpianchang.com/academy", category: "动效设计,视频制作", description: "MG动画和视频制作学习平台" },
+  { name: "CG帮", url: "https://www.cgboom.com/", category: "动效设计,3D设计,教程资源", description: "专业CG动效学习和资源分享平台" },
   { name: "AE学习网", url: "https://www.aemac.cn/", category: "动效设计", description: "After Effects学习和资源平台" },
   { name: "Principle学习", url: "https://principleformac.cn/", category: "动效设计", description: "Principle动效设计学习平台" },
   { name: "Lottie中国", url: "https://lottiefiles.cn/", category: "动效设计", description: "Lottie动画和动效资源平台" },
@@ -109,13 +109,13 @@ const designWebsites = [
   { name: "方正字库", url: "http://www.foundertype.com/", category: "专业字库", description: "方正集团专业中文字库" },
   { name: "汉仪字库", url: "https://www.hanyi.com.cn/", category: "专业字库", description: "汉仪股份专业中文字库" },
   { name: "文鼎字库", url: "https://www.arphic.com/", category: "专业字库", description: "文鼎科技专业中文字库" },
-  { name: "华文字库", url: "http://www.hwfonts.com/", category: "专业字库", description: "华文字体设计公司专业字库" },
+  { name: "造字工房", url: "http://www.makefont.com/", category: "专业字库", description: "国内知名字体设计公司" },
   { name: "蒙纳字库", url: "https://www.monotype.com/", category: "专业字库", description: "国际知名字库品牌" },
   { name: "字体管家", url: "https://www.fonts.cn/", category: "专业字库", description: "字体管理和下载平台" },
   { name: "字由", url: "https://www.hellofont.cn/", category: "专业字库", description: "在线字体管理和使用平台" },
   { name: "字体视界", url: "https://www.fonts.net.cn/", category: "字体下载", description: "字体下载和预览平台" },
   { name: "字客网", url: "https://www.fontke.com/", category: "字体工具", description: "字体识别和字体下载综合平台" },
-  { name: "字体大师", url: "https://www.zitidashi.com/", category: "字体工具", description: "字体设计和下载工具平台" },
+  { name: "字魂", url: "https://www.izihun.com/", category: "字体工具,字体下载", description: "专业字体设计和下载平台" },
   
   // 在线设计
   { name: "创客贴", url: "https://www.chuangkit.com/", category: "在线设计", description: "简单易用的在线设计工具" },
@@ -129,21 +129,20 @@ const designWebsites = [
   // 设计协作
   { name: "蓝湖", url: "https://lanhuapp.com/", category: "设计协作", description: "高效的产品设计协作平台" },
   { name: "即时设计", url: "https://js.design/", category: "设计协作", description: "国内优秀的在线设计协作平台" },
-  { name: "Figma中国", url: "https://www.figma.com/", category: "设计协作", description: "国际领先的设计协作平台" },
+  { name: "MasterGo", url: "https://www.mastergo.com/", category: "设计协作", description: "国内优秀的在线设计协作平台" },
   { name: "Sketch中文社区", url: "https://www.sketchchina.com/", category: "设计协作", description: "Sketch设计工具和资源平台" },
   { name: "Zeplin中文", url: "https://www.zeplin.io/zh-cn", category: "设计协作", description: "设计协作和交付工具" },
-  { name: "Marvel App", url: "https://marvelapp.com/", category: "设计协作", description: "原型设计和协作平台" },
+  { name: "摹客", url: "https://www.mockplus.cn/", category: "设计协作,原型设计", description: "原型设计和协作平台" },
   
   // 原型设计
   { name: "墨刀", url: "https://modao.cc/", category: "原型设计", description: "专业UI原型设计和协作工具" },
   { name: "Axure中文网", url: "https://www.axure.com.cn/", category: "原型设计", description: "Axure原型设计工具和教程" },
   { name: "Justinmind", url: "https://www.justinmind.com/", category: "原型设计", description: "原型设计和交互设计工具" },
-  { name: "Framer", url: "https://www.framer.com/", category: "原型设计", description: "动效原型设计工具" },
-  { name: "InVision", url: "https://www.invisionapp.com/", category: "原型设计", description: "原型设计和设计协作平台" },
+  { name: "Pixso", url: "https://pixso.cn/", category: "原型设计,设计协作", description: "集设计、协作、交付于一体的在线设计工具" },
   
   // UI组件
   { name: "Ant Design", url: "https://ant.design/", category: "UI组件", description: "国内优秀的企业级UI设计语言" },
-  { name: "Element UI", url: "https://element.eleme.io/", category: "UI组件", description: "基于Vue的UI组件库" },
+  { name: "Naive UI", url: "https://www.naiveui.com/", category: "UI组件", description: "基于Vue 3的现代UI组件库" },
   { name: "Vant UI", url: "https://vant-contrib.gitee.io/vant/#/zh-CN/", category: "UI组件", description: "轻量级移动端UI组件库" },
   { name: "iView UI", url: "https://www.iviewui.com/", category: "UI组件", description: "基于Vue的高质量UI组件库" },
   { name: "TDesign", url: "https://tdesign.tencent.com/", category: "UI组件", description: "腾讯开源设计系统" },
@@ -196,11 +195,12 @@ function showTreasureHuntModal() {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 100000;
   `;
   
   // 创建弹窗容器
@@ -214,10 +214,12 @@ function showTreasureHuntModal() {
     max-width: 800px;
     max-height: 85vh;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+    position: relative;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
     z-index: 1001;
+    animation: modalAppear 0.3s ease-out;
   `;
   
   // 创建弹窗标题
@@ -499,27 +501,36 @@ function showTreasureHuntModal() {
   
   // 创建关闭按钮
   const closeButton = document.createElement('button');
-  closeButton.textContent = '关闭';
+  closeButton.textContent = '×';
   closeButton.style.cssText = `
-    background-color: #f44336;
+    background-color: #d32f2f;
     color: white;
     border: none;
-    padding: 12px 30px;
-    font-size: 16px;
-    border-radius: 5px;
+    padding: 5px 12px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 50%;
     cursor: pointer;
-    margin-top: 20px;
-    transition: background-color 0.3s;
-    align-self: center;
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+    transition: all 0.3s ease;
+    z-index: 1002;
+    box-shadow: 0 2px 8px rgba(211, 47, 47, 0.4);
+    opacity: 1;
   `;
   
   // 添加悬停效果
   closeButton.addEventListener('mouseover', function() {
-    this.style.backgroundColor = '#d32f2f';
+    this.style.backgroundColor = '#b71c1c';
+    this.style.transform = 'scale(1.1)';
+    this.style.boxShadow = '0 4px 12px rgba(211, 47, 47, 0.6)';
   });
   
   closeButton.addEventListener('mouseout', function() {
-    this.style.backgroundColor = '#f44336';
+    this.style.backgroundColor = '#d32f2f';
+    this.style.transform = 'scale(1)';
+    this.style.boxShadow = '0 2px 8px rgba(211, 47, 47, 0.4)';
   });
   
   // 添加抽卡事件

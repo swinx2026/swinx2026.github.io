@@ -82,13 +82,13 @@ function showCultivationGuideModal() {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 100000;
   `;
-  
   // 创建弹窗容器
   const modal = document.createElement('div');
   modal.className = 'cultivation-guide-modal';
@@ -100,6 +100,7 @@ function showCultivationGuideModal() {
     max-width: 500px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
+    animation: modalAppear 0.3s ease-out;
   `;
   
   // 创建弹窗标题

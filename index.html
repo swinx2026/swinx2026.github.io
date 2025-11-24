@@ -9,16 +9,23 @@
 <body>
     <!-- 视频背景 -->
     <video autoplay muted loop id="background-video">
-        <source src="video/bg.mp4" type="video/mp4">
-        <!-- 视频不支持时显示背景图片 -->
+
     </video>
     <div class="container">
         <header>
             <img src="pic/logo.png" alt="仙人指路" class="site-logo">
             <div class="search-box">
                 <select id="searchEngineSelect" class="search-engine">
-                    <option value="baidu">百度搜索</option>
-                    <option value="360">360搜索</option>
+                    <option value="baidu">百度</option>
+                    <option value="360">360</option>
+                    <option value="taobao">淘宝</option>
+                    <option value="jd">京东</option>
+                    <option value="weixin">微信</option>
+                    <option value="weibo">微博</option>
+                    <option value="zhihu">知乎</option>
+                    <option value="douban">豆瓣</option>
+                    <option value="xiachufang">下厨房</option>
+                    <option value="kuaidi100">快递100</option>
                 </select>
                 <input type="text" id="mainSearchInput" class="search-input" placeholder="搜索...">
                 <button id="mainSearchBtn" class="search-btn">搜索</button>
@@ -30,9 +37,8 @@
                 <a href="https://mp.weixin.qq.com/s?__biz=Mzg3NTU2NTMwNw==&mid=2247526073&idx=1&sn=5dcdfea6a4074cb90cf0b0bcd5fc3007&chksm=cf3dbf2df84a363bee06a7670a28661e33e1f563a119f55f98bf2f3aa63097d8abb97ab1956c&scene=178&cur_album_id=3854794802835308550#rd" target="_blank" style="margin: 0 8px; color: #666; text-decoration: none;">软件下载</a>
                 <a href="https://www.psdashi.com/" target="_blank" style="margin: 0 8px; color: #666; text-decoration: none;">PS下载</a>
                 <a href="https://www.likefont.com/" target="_blank" style="margin: 0 8px; color: #666; text-decoration: none;">字体识别</a>
-                <a href="#" target="_blank" style="margin: 0 8px; color: #666; text-decoration: none;">设计素材</a>
-                <a href="#" target="_blank" style="margin: 0 8px; color: #666; text-decoration: none;">PS插件</a>
-                <a href="#" target="_blank" style="margin: 0 8px; color: #666; text-decoration: none;">素材模板</a>
+                <a href="https://ps.gaoding.com/" target="_blank" style="margin: 0 8px; color: #666; text-decoration: none;">PS网页版</a>
+           
             </div>
         </header>
         
@@ -59,6 +65,37 @@
             </a>
                 </div>
             </section>
+
+<!-- 灵丹妙药游戏模态框 -->
+<div id="pill-game-modal" class="modal">
+    <div class="modal-content">
+        <span id="close-pill-game" class="close">&times;</span>
+        <h3>灵丹妙药</h3>
+        <div class="pill-game-container">
+            <div class="game-header">
+                <div class="game-timer">时间: <span id="game-timer">30</span>秒</div>
+                <div class="game-score">积分: <span id="game-score">0</span></div>
+            </div>
+            <div class="game-main">
+                <div class="ingredient-area">
+                    <div class="ingredient-display" id="ingredient-display">
+                        <img src="pic/X5.png" alt="草药" id="current-ingredient" style="width: 120px; height: 120px;">
+                    </div>
+                    <button id="collect-button" class="collect-button">采集药材</button>
+                </div>
+                <div class="ingredients-list">
+                    <h4>已采集药材:</h4>
+                    <div id="collected-ingredients">无</div>
+                </div>
+            </div>
+            <div class="game-actions">
+                <button id="make-pill-button" class="make-pill-button">炼制丹药</button>
+                <button id="restart-button" class="restart-button">重新开始</button>
+            </div>
+            <div id="game-result" class="game-result"></div>
+        </div>
+    </div>
+</div>
             
             <!-- AI设计分类 -->
             <section class="category" id="ai-design">
@@ -115,9 +152,9 @@
                 <div class="site-icon bg-red"><img src="pic/13.jpg" alt="360导航" class="site-icon-img">360</div>
                 <div class="site-name">360导航</div>
             </a>
-            <a href="https://www.douyin.com/" class="site-card" target="_blank">
-                <div class="site-icon bg-red"><img src="pic/14.jpg" alt="抖音" class="site-icon-img">抖</div>
-                <div class="site-name">抖音</div>
+            <a href="https://github.com/" class="site-card" target="_blank">
+                <div class="site-icon bg-red"><img src="pic/17.jpg" alt="抖音" class="site-icon-img">抖</div>
+                <div class="site-name">Github</div>
             </a>
               <a href="https://www.amap.com/" class="site-card" target="_blank">
                 <div class="site-icon bg-blue"><img src="pic/15.jpg" alt="百度" class="site-icon-img">百</div>
@@ -155,17 +192,17 @@
                  <div class="mini-program-name">秘境探索</div>
              </a>
 
-                           <a href="#" class="mini-program-card" target="_blank">
+                           <a href="#" class="mini-program-card" id="heavenly-materials-card">
                  <div class="mini-program-icon"><img src="pic/X11.png" alt="小程序1"></div>
                  <div class="mini-program-name">天材地宝</div>
              </a>
-    <a href="#" class="mini-program-card" target="_blank">
-                 <div class="mini-program-icon"><img src="pic/X4.png" alt="小程序1"></div>
+    <a href="#" class="mini-program-card" id="pill-game-card">
+                 <div class="mini-program-icon"><img src="pic/X4.png" alt="灵丹妙药"></div>
                  <div class="mini-program-name">灵丹妙药</div>
              </a>
              
               <a href="#" class="mini-program-card" target="_blank">
-                 <div class="mini-program-icon"><img src="pic/X10.png" alt="小程序1"></div>
+                 <div class="mini-program-icon"><img src="pic/X9.png" alt="小程序1"></div>
                  <div class="mini-program-name">功法修炼</div>
              </a>
 
@@ -174,9 +211,9 @@
                  <div class="mini-program-icon"><img src="pic/X3.png" alt="神器法宝"></div>
                  <div class="mini-program-name">神器法宝</div>
              </a>
-                                       <a href="#" class="mini-program-card"  target="_blank">
-                 <div class="mini-program-icon"><img src="pic/X9.png" alt="修炼宝典"></div>
-                 <div class="mini-program-name">法术神通</div>
+                                       <a href="javascript:void(0)" class="mini-program-card" id="character-info-card" onclick="showCharacterInfoModal()">
+                 <div class="mini-program-icon"><img src="pic/X10.png" alt="修炼宝典"></div>
+                 <div class="mini-program-name">人物信息</div>
              </a>
              
              <a href="#" class="mini-program-card view-more" target="_blank">
@@ -185,9 +222,14 @@
              </a>
          </div>
      </section>
-<script src="fortune_telling.js"></script>
+<section class="copyright-section">
+    <div class="copyright">Copyright © 2025 Swin.X 测试版本8.11.18</div>
+</section>
+<script src="treasure_card_game.js"></script>
+    <script src="fortune_telling.js"></script>
     <script src="cultivation_guide.js"></script>
     <script src="treasure_hunt.js"></script>
+    <script src="pill_game.js"></script>
     <script>
         // 初始化卦象功能和法宝获取功能
         document.addEventListener('DOMContentLoaded', function() {
@@ -197,6 +239,9 @@
             if (window.initTreasureHunt) {
                 window.initTreasureHunt();
             }
+            if (window.initTreasureCardGame) {
+                window.initTreasureCardGame();
+            }
         });
     </script>
     <script>
@@ -205,5 +250,20 @@
             initCultivationGuide();
         });
     </script>
+    
+    <!-- 人物信息窗口 -->
+    <div id="character-info-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>人物信息</h2>
+                <span class="close-btn" id="close-character-info">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="character-info-content"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="character_info.js"></script>
     </body>
 </html>

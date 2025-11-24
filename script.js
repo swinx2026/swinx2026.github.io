@@ -17,6 +17,45 @@ function performMainSearch() {
             case '360':
                 searchUrl = `https://www.so.com/s?q=${encodeURIComponent(query)}`;
                 break;
+            case 'taobao':
+                searchUrl = `https://s.taobao.com/search?q=${encodeURIComponent(query)}`;
+                break;
+            case 'jd':
+                searchUrl = `https://search.jd.com/Search?keyword=${encodeURIComponent(query)}`;
+                break;
+            case 'google':
+                searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                break;
+            case 'sougou':
+                searchUrl = `https://www.sogou.com/web?query=${encodeURIComponent(query)}`;
+                break;
+            case 'toutiao':
+                searchUrl = `https://so.toutiao.com/search?q=${encodeURIComponent(query)}`;
+                break;
+            case 'weixin':
+                searchUrl = `https://weixin.sogou.com/weixin?query=${encodeURIComponent(query)}`;
+                break;
+            case 'weibo':
+                searchUrl = `https://s.weibo.com/weibo?q=${encodeURIComponent(query)}`;
+                break;
+            case 'zhihu':
+                searchUrl = `https://www.zhihu.com/search?type=content&q=${encodeURIComponent(query)}`;
+                break;
+            case 'douban':
+                searchUrl = `https://www.douban.com/search?q=${encodeURIComponent(query)}`;
+                break;
+            case 'xiachufang':
+                searchUrl = `https://www.xiachufang.com/search/?keyword=${encodeURIComponent(query)}`;
+                break;
+            case 'xiangha':
+                searchUrl = `https://www.xiangha.com/search?q=${encodeURIComponent(query)}`;
+                break;
+            case '12306':
+                searchUrl = `https://www.12306.cn/index/querySingleTicket.html?leftTicketDTO.train_date=2023-12-31&leftTicketDTO.from_station=BJP&leftTicketDTO.to_station=SHH&purpose_codes=ADULT`;
+                break;
+            case 'kuaidi100':
+                searchUrl = `https://www.kuaidi100.com/query?type=auto&postid=${encodeURIComponent(query)}`;
+                break;
             default:
                 searchUrl = `https://www.baidu.com/s?wd=${encodeURIComponent(query)}`;
         }
@@ -89,21 +128,6 @@ function initPage() {
    } catch (error) {
         console.error('初始化页面出错:', error);
     }
-}
-
-// 平滑滚动
-if (document.querySelectorAll('a[href^="#"]').length > 0) {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            if (targetId !== '#' && document.querySelector(targetId)) {
-                document.querySelector(targetId).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
 }
 
 // 页面加载完成后初始化
