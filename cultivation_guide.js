@@ -291,5 +291,563 @@ function showCultivationGuideModal() {
   document.body.appendChild(overlay);
 }
 
-// 导出初始化函数，供主页调用
+// 功法修炼价格弹窗函数
+function showCultivationPriceModal() {
+  // 创建遮罩层
+  const overlay = document.createElement('div');
+  overlay.className = 'cultivation-price-overlay';
+  overlay.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+  `;
+  
+  // 创建弹窗容器
+  const modal = document.createElement('div');
+  modal.className = 'cultivation-price-modal';
+  modal.style.cssText = `
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    animation: modalAppear 0.3s ease-out;
+  `;
+  
+  // 创建弹窗标题
+  const title = document.createElement('h2');
+  title.textContent = '功法修炼';
+  title.style.cssText = `
+    margin-top: 0;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+  `;
+  
+  // 创建价格展示区域
+  const priceArea = document.createElement('div');
+  priceArea.id = 'cultivation-price-area';
+  priceArea.style.cssText = `
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  `;
+  
+  // 创建等级选择
+  const levelSelect = document.createElement('select');
+  levelSelect.id = 'cultivation-level-select';
+  levelSelect.style.cssText = `
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 80%;
+  `;
+  
+  // 添加等级选项
+  const levels = ['入门', '小成', '大成', '圆满', '超凡', '入圣'];
+  levels.forEach((level, index) => {
+    const option = document.createElement('option');
+    option.value = index + 1;
+    option.textContent = level;
+    levelSelect.appendChild(option);
+  });
+  
+  // 创建价格显示
+  const priceDisplay = document.createElement('div');
+  priceDisplay.id = 'cultivation-price-display';
+  priceDisplay.style.cssText = `
+    margin: 15px 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: #e64a19;
+  `;
+  priceDisplay.textContent = '价格: 100 金币';
+  
+  // 更新价格显示的函数
+  function updatePriceDisplay() {
+    const level = parseInt(levelSelect.value);
+    const basePrice = 100;
+    // 价格随等级递增
+    const price = basePrice * Math.pow(2, level - 1);
+    priceDisplay.textContent = `价格: ${price} 金币`;
+  }
+  
+  // 添加等级变更事件
+  levelSelect.addEventListener('change', updatePriceDisplay);
+  
+  // 创建按钮容器
+  const buttonContainer = document.createElement('div');
+  buttonContainer.style.cssText = `
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+  `;
+  
+  // 创建确认按钮
+  const confirmButton = document.createElement('button');
+  confirmButton.textContent = '确认修炼';
+  confirmButton.style.cssText = `
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  `;
+  
+  // 添加悬停效果
+  confirmButton.addEventListener('mouseover', function() {
+    this.style.backgroundColor = '#45a049';
+  });
+  
+  confirmButton.addEventListener('mouseout', function() {
+    this.style.backgroundColor = '#4CAF50';
+  });
+  
+  // 创建取消按钮
+  const cancelButton = document.createElement('button');
+  cancelButton.textContent = '取消';
+  cancelButton.style.cssText = `
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  `;
+  
+  // 添加悬停效果
+  cancelButton.addEventListener('mouseover', function() {
+    this.style.backgroundColor = '#d32f2f';
+  });
+  
+  cancelButton.addEventListener('mouseout', function() {
+    this.style.backgroundColor = '#f44336';
+  });
+  
+  // 添加确认事件
+  confirmButton.addEventListener('click', function() {
+    const level = parseInt(levelSelect.value);
+    const price = 100 * Math.pow(2, level - 1);
+    alert(`确认花费 ${price} 金币进行${levels[level - 1]}级功法修炼！`);
+    overlay.remove();
+  });
+  
+  // 添加取消事件
+  cancelButton.addEventListener('click', function() {
+    overlay.remove();
+  });
+  
+  // 创建关闭按钮
+  const closeButton = document.createElement('button');
+  
+  // 添加关闭事件
+  closeButton.addEventListener('click', function() {
+    overlay.remove();
+  });
+  closeButton.textContent = '关闭';
+  closeButton.style.cssText = `
+    background-color: #757575;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+  `;
+  
+  // 添加悬停效果
+  closeButton.addEventListener('mouseover', function() {
+    this.style.backgroundColor = '#616161';
+  });
+  
+  closeButton.addEventListener('mouseout', function() {
+    this.style.backgroundColor = '#757575';
+  });
+  
+  // 点击遮罩层关闭弹窗
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) {
+      overlay.remove();
+    }
+  });
+  
+  // 添加ESC键关闭弹窗
+  document.addEventListener('keydown', function handleEscKey(e) {
+    if (e.key === 'Escape') {
+      overlay.remove();
+      document.removeEventListener('keydown', handleEscKey);
+    }
+  });
+  
+  // 组装弹窗
+  priceArea.appendChild(document.createTextNode('选择修炼等级:'));
+  priceArea.appendChild(levelSelect);
+  priceArea.appendChild(priceDisplay);
+  buttonContainer.appendChild(confirmButton);
+  buttonContainer.appendChild(cancelButton);
+  modal.appendChild(title);
+  modal.appendChild(priceArea);
+  modal.appendChild(buttonContainer);
+  modal.appendChild(closeButton);
+  overlay.appendChild(modal);
+  
+  // 添加到页面
+  document.body.appendChild(overlay);
+}
+
+// 神器法宝弹窗函数
+function showArtifactModal() {
+  // 创建遮罩层
+  const overlay = document.createElement('div');
+  overlay.className = 'artifact-overlay';
+  overlay.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+  `;
+  
+  // 创建弹窗容器
+  const modal = document.createElement('div');
+  modal.className = 'artifact-modal';
+  modal.style.cssText = `
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    animation: modalAppear 0.3s ease-out;
+    max-height: 80vh;
+    overflow-y: auto;
+  `;
+  
+  // 创建弹窗标题
+  const title = document.createElement('h2');
+  title.textContent = '神器法宝';
+  title.style.cssText = `
+    margin-top: 0;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+  `;
+  
+  // 创建法宝展示区域
+  const artifactArea = document.createElement('div');
+  artifactArea.id = 'artifact-display-area';
+  artifactArea.style.cssText = `
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    min-height: 200px;
+  `;
+  
+  // 创建法宝等级选择
+  const levelSelect = document.createElement('select');
+  levelSelect.id = 'artifact-level-select';
+  levelSelect.style.cssText = `
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 80%;
+  `;
+  
+  // 添加法宝等级选项
+  const levels = ['凡器', '灵器', '宝器', '仙器', '神器', '先天灵宝'];
+  levels.forEach((level, index) => {
+    const option = document.createElement('option');
+    option.value = index + 1;
+    option.textContent = level;
+    levelSelect.appendChild(option);
+  });
+  
+  // 法宝数据
+  const artifacts = [
+    {
+      level: 1,
+      name: '青钢剑',
+      description: '普通精钢打造的长剑，锋利耐用，适合初学者使用。',
+      power: '攻击力 +10',
+      rarity: '普通',
+      color: '#757575'
+    },
+    {
+      level: 2,
+      name: '玄铁重剑',
+      description: '玄铁铸造，剑身厚重，蕴含一丝灵气。',
+      power: '攻击力 +30',
+      rarity: '稀有',
+      color: '#9c27b0'
+    },
+    {
+      level: 3,
+      name: '紫电剑',
+      description: '千年紫晶矿脉中孕育而出，挥动时有电光流转。',
+      power: '攻击力 +100',
+      rarity: '珍稀',
+      color: '#ff9800'
+    },
+    {
+      level: 4,
+      name: '九霄环佩',
+      description: '上古仙人遗留之物，内有一方小世界。',
+      power: '攻击力 +300',
+      rarity: '传说',
+      color: '#e91e63'
+    },
+    {
+      level: 5,
+      name: '混沌钟',
+      description: '开天辟地时诞生的神器，钟声可镇压一切邪祟。',
+      power: '攻击力 +1000',
+      rarity: '神话',
+      color: '#f44336'
+    },
+    {
+      level: 6,
+      name: '太极图',
+      description: '先天灵宝，可演化天地，镇压气运。',
+      power: '攻击力 +3000',
+      rarity: '至高',
+      color: '#d32f2f'
+    }
+  ];
+  
+  // 创建法宝信息展示区域
+  const artifactInfo = document.createElement('div');
+  artifactInfo.id = 'artifact-info';
+  artifactInfo.style.cssText = `
+    margin: 20px 0;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  `;
+  
+  // 初始显示第一个法宝信息
+  function updateArtifactInfo() {
+    const level = parseInt(levelSelect.value);
+    const artifact = artifacts.find(a => a.level === level);
+    
+    if (artifact) {
+      artifactInfo.innerHTML = '';
+      
+      // 创建法宝名称
+      const nameElement = document.createElement('h3');
+      nameElement.textContent = artifact.name;
+      nameElement.style.cssText = `
+        margin: 0 0 10px 0;
+        color: ${artifact.color};
+        font-size: 24px;
+      `;
+      
+      // 创建法宝描述
+      const descElement = document.createElement('p');
+      descElement.textContent = artifact.description;
+      descElement.style.cssText = `
+        margin: 10px 0;
+        color: #666;
+        font-size: 16px;
+      `;
+      
+      // 创建法宝属性
+      const powerElement = document.createElement('p');
+      powerElement.textContent = artifact.power;
+      powerElement.style.cssText = `
+        margin: 10px 0;
+        color: #4CAF50;
+        font-weight: bold;
+      `;
+      
+      // 创建法宝稀有度
+      const rarityElement = document.createElement('p');
+      rarityElement.textContent = `稀有度: ${artifact.rarity}`;
+      rarityElement.style.cssText = `
+        margin: 10px 0;
+        color: #ff5722;
+        font-style: italic;
+      `;
+      
+      artifactInfo.appendChild(nameElement);
+      artifactInfo.appendChild(descElement);
+      artifactInfo.appendChild(powerElement);
+      artifactInfo.appendChild(rarityElement);
+    }
+  }
+  
+  // 添加等级变更事件
+  levelSelect.addEventListener('change', updateArtifactInfo);
+  
+  // 初始化显示
+  updateArtifactInfo();
+  
+  // 创建按钮容器
+  const buttonContainer = document.createElement('div');
+  buttonContainer.style.cssText = `
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+  `;
+  
+  // 创建获取按钮
+  const obtainButton = document.createElement('button');
+  obtainButton.textContent = '获取法宝';
+  obtainButton.style.cssText = `
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  `;
+  
+  // 添加悬停效果
+  obtainButton.addEventListener('mouseover', function() {
+    this.style.backgroundColor = '#45a049';
+  });
+  
+  obtainButton.addEventListener('mouseout', function() {
+    this.style.backgroundColor = '#4CAF50';
+  });
+  
+  // 创建取消按钮
+  const cancelButton = document.createElement('button');
+  cancelButton.textContent = '取消';
+  cancelButton.style.cssText = `
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  `;
+  
+  // 添加悬停效果
+  cancelButton.addEventListener('mouseover', function() {
+    this.style.backgroundColor = '#d32f2f';
+  });
+  
+  cancelButton.addEventListener('mouseout', function() {
+    this.style.backgroundColor = '#f44336';
+  });
+  
+  // 添加获取法宝事件
+  obtainButton.addEventListener('click', function() {
+    const level = parseInt(levelSelect.value);
+    const artifact = artifacts.find(a => a.level === level);
+    if (artifact) {
+      alert(`恭喜获得${artifact.name}！\n${artifact.power}`);
+    }
+  });
+  
+  // 添加取消事件
+  cancelButton.addEventListener('click', function() {
+    overlay.remove();
+  });
+  
+  // 创建关闭按钮
+  const closeButton = document.createElement('button');
+  closeButton.textContent = '关闭';
+  closeButton.style.cssText = `
+    background-color: #757575;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+  `;
+  
+  // 添加悬停效果
+  closeButton.addEventListener('mouseover', function() {
+    this.style.backgroundColor = '#616161';
+  });
+  
+  closeButton.addEventListener('mouseout', function() {
+    this.style.backgroundColor = '#757575';
+  });
+  
+  // 添加关闭事件
+  closeButton.addEventListener('click', function() {
+    overlay.remove();
+  });
+  
+  // 点击遮罩层关闭弹窗
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) {
+      overlay.remove();
+    }
+  });
+  
+  // 添加ESC键关闭弹窗
+  document.addEventListener('keydown', function handleEscKey(e) {
+    if (e.key === 'Escape') {
+      overlay.remove();
+      document.removeEventListener('keydown', handleEscKey);
+    }
+  });
+  
+  // 组装弹窗
+  artifactArea.appendChild(document.createTextNode('选择法宝等级:'));
+  artifactArea.appendChild(levelSelect);
+  artifactArea.appendChild(artifactInfo);
+  buttonContainer.appendChild(obtainButton);
+  buttonContainer.appendChild(cancelButton);
+  modal.appendChild(title);
+  modal.appendChild(artifactArea);
+  modal.appendChild(buttonContainer);
+  modal.appendChild(closeButton);
+  overlay.appendChild(modal);
+  
+  // 添加到页面
+  document.body.appendChild(overlay);
+}
+
+// 导出函数，供主页调用
 window.initCultivationGuide = initCultivationGuide;
+window.showCultivationPriceModal = showCultivationPriceModal;
+window.showArtifactModal = showArtifactModal;

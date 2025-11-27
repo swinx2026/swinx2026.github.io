@@ -192,28 +192,29 @@
                  <div class="mini-program-name">秘境探索</div>
              </a>
 
-                           <a href="#" class="mini-program-card" id="heavenly-materials-card">
+                           <a href="#" class="mini-program-card" id="heavenly-materials-card" style="display: none;">
                  <div class="mini-program-icon"><img src="pic/X11.png" alt="小程序1"></div>
                  <div class="mini-program-name">天材地宝</div>
              </a>
-    <a href="#" class="mini-program-card" id="pill-game-card">
+    <a href="#" class="mini-program-card" id="pill-game-card" style="display: none;">
                  <div class="mini-program-icon"><img src="pic/X4.png" alt="灵丹妙药"></div>
                  <div class="mini-program-name">灵丹妙药</div>
              </a>
              
-              <a href="#" class="mini-program-card" target="_blank">
-                 <div class="mini-program-icon"><img src="pic/X9.png" alt="小程序1"></div>
+              <a href="#" class="mini-program-card" id="cultivation-practice-card" style="display: none;">
+                 <div class="mini-program-icon"><img src="pic/X9.png" alt="功法修炼"></div>
                  <div class="mini-program-name">功法修炼</div>
              </a>
 
-           
-                                     <a href="#" class="mini-program-card"  target="_blank">
+            
+                                     <a href="#" class="mini-program-card" id="artifact-card" style="display: none;">
                  <div class="mini-program-icon"><img src="pic/X3.png" alt="神器法宝"></div>
                  <div class="mini-program-name">神器法宝</div>
              </a>
-                                       <a href="javascript:void(0)" class="mini-program-card" id="character-info-card" onclick="showCharacterInfoModal()">
-                 <div class="mini-program-icon"><img src="pic/X10.png" alt="修炼宝典"></div>
-                 <div class="mini-program-name">人物信息</div>
+             
+             <a href="#" class="mini-program-card" id="ps-cultivation-card">
+                 <div class="mini-program-icon"><img src="pic/X6.png" alt="PS修仙"></div>
+                 <div class="mini-program-name">PS修仙</div>
              </a>
              
              <a href="#" class="mini-program-card view-more" target="_blank">
@@ -244,26 +245,67 @@
             }
         });
     </script>
-    <script>
-        // 初始化修炼宝典功能
-        document.addEventListener('DOMContentLoaded', function() {
-            initCultivationGuide();
-        });
-    </script>
-    
-    <!-- 人物信息窗口 -->
-    <div id="character-info-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>人物信息</h2>
-                <span class="close-btn" id="close-character-info">&times;</span>
+    <!-- PS修仙弹窗 -->
+    <div id="ps-cultivation-modal" class="modal" style="display: none; background-color: rgba(0,0,0,0.5); backdrop-filter: blur(5px); overflow: hidden !important;">
+        <div class="modal-content" style="width: 1400px; height: 800px; max-width: none; max-height: none; margin: 2% auto; border-radius: 10px; border: none; box-shadow: 0 5px 15px rgba(0,0,0,0.3); animation: none; overflow: hidden !important; padding: 0; position: relative;">
+            <div class="modal-header" style="padding: 0; background-color: transparent; color: white; border-top-left-radius: 10px; border-top-right-radius: 10px; display: flex; justify-content: flex-end; align-items: flex-start; margin: 0; position: absolute; top: 0; left: 0; right: 0; z-index: 10;">
+                <span class="close-btn" id="close-ps-cultivation" style="font-size: 24px; color: white; background-color: rgba(0,0,0,0.5); width: 30px; height: 30px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; margin: 10px 10px; padding: 0;">&times;</span>
             </div>
-            <div class="modal-body">
-                <div id="character-info-content"></div>
+            <div class="modal-body" style="height: 100%; padding: 0; overflow: hidden !important; margin: 0;">
+                <iframe src="PS.html" style="width: 100%; height: 100%; border: none; overflow: hidden !important; scrollbar-width: none; -ms-overflow-style: none; display: block;"></iframe>
             </div>
         </div>
     </div>
     
-    <script src="character_info.js"></script>
+    <script>
+        // 初始化修炼宝典功能
+        document.addEventListener('DOMContentLoaded', function() {
+            initCultivationGuide();
+            
+            // 为功法修炼卡片添加点击事件
+            const cultivationPracticeCard = document.getElementById('cultivation-practice-card');
+            if (cultivationPracticeCard) {
+                cultivationPracticeCard.addEventListener('click', function(e) {
+                    e.preventDefault(); // 阻止默认链接行为
+                    showCultivationPriceModal();
+                });
+            }
+            
+            // 为神器法宝卡片添加点击事件
+            const artifactCard = document.getElementById('artifact-card');
+            if (artifactCard) {
+                artifactCard.addEventListener('click', function(e) {
+                    e.preventDefault(); // 阻止默认链接行为
+                    showArtifactModal();
+                });
+            }
+            
+            // 为PS修仙卡片添加点击事件
+            const psCultivationCard = document.getElementById('ps-cultivation-card');
+            if (psCultivationCard) {
+                psCultivationCard.addEventListener('click', function(e) {
+                    e.preventDefault(); // 阻止默认链接行为
+                    document.getElementById('ps-cultivation-modal').style.display = 'block';
+                });
+            }
+            
+            // 关闭PS修仙弹窗
+            const closePsCultivationBtn = document.getElementById('close-ps-cultivation');
+            if (closePsCultivationBtn) {
+                closePsCultivationBtn.addEventListener('click', function() {
+                    document.getElementById('ps-cultivation-modal').style.display = 'none';
+                });
+            }
+            
+            // 点击模态框外部关闭
+            window.addEventListener('click', function(e) {
+                const modal = document.getElementById('ps-cultivation-modal');
+                if (modal && e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    
     </body>
 </html>

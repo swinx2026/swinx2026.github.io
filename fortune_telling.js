@@ -641,52 +641,21 @@ function showFortuneTelling() {
         
         // 生成卦象等级对应的颜色
         let fortuneColor = '';
-        let bonusDraws = 0;
-        let isBonusAwarded = false;
-        const hasClaimedBonusToday = localStorage.getItem(`fortune_bonus_${today}`) === 'true';
         
-        if (!hasClaimedBonusToday) {
-            switch (fortune.fortune) {
-                case '大吉':
-                    fortuneColor = '#c41e3a'; // 红色
-                    bonusDraws = 3;
-                    break;
-                case '吉':
-                    fortuneColor = '#5aac5e'; // 绿色
-                    bonusDraws = 2;
-                    break;
-                case '平':
-                    fortuneColor = '#e6a23c'; // 橙色
-                    bonusDraws = 1;
-                    break;
-                case '凶':
-                    fortuneColor = '#66462a'; // 棕色
-                    bonusDraws = 0;
-                    break;
-            }
-            // 根据卦象等级增加相应的寻宝机会
-            if (bonusDraws > 0 && typeof cardGame !== 'undefined') {
-                cardGame.addDrawCount(bonusDraws);
-                // 标记今日已领取奖励
-                localStorage.setItem(`fortune_bonus_${today}`, 'true');
-                isBonusAwarded = true;
-            }
-        } else {
-            // 如果已经领取过奖励，根据卦象等级设置颜色
-            switch (fortune.fortune) {
-                case '大吉':
-                    fortuneColor = '#c41e3a'; // 红色
-                    break;
-                case '吉':
-                    fortuneColor = '#5aac5e'; // 绿色
-                    break;
-                case '平':
-                    fortuneColor = '#e6a23c'; // 橙色
-                    break;
-                case '凶':
-                    fortuneColor = '#66462a'; // 棕色
-                    break;
-            }
+        // 根据卦象等级设置颜色
+        switch (fortune.fortune) {
+            case '大吉':
+                fortuneColor = '#c41e3a'; // 红色
+                break;
+            case '吉':
+                fortuneColor = '#5aac5e'; // 绿色
+                break;
+            case '平':
+                fortuneColor = '#e6a23c'; // 橙色
+                break;
+            case '凶':
+                fortuneColor = '#66462a'; // 棕色
+                break;
         }
         
         // 更新弹窗内容为卦象结果
@@ -824,34 +793,7 @@ function showFortuneTelling() {
                     font-size: 0.85rem;
                 ">今日：${formatDateDisplay(new Date())}</p>
             </div>
-            <!-- 寻宝机会奖励信息 -->
-            ${isBonusAwarded ? `
-            <div style="margin-bottom: 10px;">
-                <p style="
-                    margin: 0;
-                    padding: 8px;
-                    background-color: rgba(241, 196, 15, 0.2);
-                    border-radius: 6px;
-                    color: #f39c12;
-                    line-height: 1.4;
-                    font-size: 0.95rem;
-                    text-align: center;
-                "><strong>恭喜获得额外寻宝机会${bonusDraws}次！</strong></p>
-            </div>
-            ` : hasClaimedBonusToday ? `
-            <div style="margin-bottom: 10px;">
-                <p style="
-                    margin: 0;
-                    padding: 8px;
-                    background-color: rgba(200, 200, 200, 0.2);
-                    border-radius: 6px;
-                    color: #666;
-                    line-height: 1.4;
-                    font-size: 0.9rem;
-                    text-align: center;
-                "><strong>今日已领取过寻宝机会奖励</strong></p>
-            </div>
-            ` : ''}
+
             
             <div style="text-align: center;">
                 <button id="close-fortune" style="

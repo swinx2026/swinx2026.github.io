@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试功法修炼价格弹窗</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        .test-container {
+            text-align: center;
+            padding: 50px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-button {
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .test-button:hover {
+            background-color: #1976D2;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>功法修炼价格弹窗测试</h1>
+        <p>点击下方按钮测试功法修炼价格弹窗功能</p>
+        <button id="test-modal-button" class="test-button">打开功法修炼价格弹窗</button>
+    </div>
+    
+    <!-- 导入我们的cultivation_guide.js文件 -->
+    <script src="cultivation_guide.js"></script>
+    
+    <!-- 测试脚本 -->
+    <script>
+        document.getElementById('test-modal-button').addEventListener('click', function() {
+            // 确保函数已加载
+            if (typeof showCultivationPriceModal === 'function') {
+                showCultivationPriceModal();
+            } else {
+                alert('弹窗函数未加载，请检查cultivation_guide.js文件');
+            }
+        });
+        
+        // 添加动画样式
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes modalAppear {
+                from {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

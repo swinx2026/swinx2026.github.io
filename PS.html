@@ -1,0 +1,3358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PS修仙大师 - PS修仙挑战</title>
+  <style>
+    /* 隐藏整个页面的滚动条 */
+    html, body {
+      overflow: hidden !important;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
+    
+    /* 跨浏览器隐藏滚动条 */
+    * {
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+    }
+    
+    *::-webkit-scrollbar {
+      display: none !important;
+    }
+  </style>
+  <!-- 引入Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 引入Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- 引入Google字体 -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind配置 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#165DFF',
+            secondary: '#FF7D00',
+            accent: '#9D2933',
+            dark: '#0F172A',
+            light: '#F8FAFC',
+            success: '#00B42A',
+            danger: '#F53F3F',
+            info: '#86909C',
+            'ink-light': '#E2E8F0',
+            'ink-medium': '#94A3B8',
+            'ink-dark': '#334155'
+          },
+          fontFamily: {
+            sans: ['Noto Sans SC', 'sans-serif'],
+          },
+          animation: {
+            'float': 'float 3s ease-in-out infinite',
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'shake': 'shake 0.5s ease-in-out',
+            'fade-in': 'fadeIn 0.5s ease-out',
+            'fade-out': 'fadeOut 0.3s ease-out',
+            'slide-up': 'slideUp 0.5s ease-out',
+            'scale-in': 'scaleIn 0.3s ease-out',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
+            },
+            shake: {
+              '0%, 100%': { transform: 'rotate(0deg)' },
+              '25%': { transform: 'rotate(-5deg)' },
+              '75%': { transform: 'rotate(5deg)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            fadeOut: {
+              '0%': { opacity: '1' },
+              '100%': { opacity: '0' },
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(20px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' },
+            },
+            scaleIn: {
+              '0%': { transform: 'scale(0.8)', opacity: '0' },
+              '100%': { transform: 'scale(1)', opacity: '1' },
+            }
+          }
+        },
+      }
+    }
+  </script>
+  
+  <!-- 自定义工具类 -->
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .text-shadow-lg {
+        text-shadow: 0 4px 8px rgba(0,0,0,0.25);
+      }
+      .card-glow {
+        box-shadow: 0 0 20px rgba(22, 93, 255, 0.3);
+      }
+      .card-glow-danger {
+        box-shadow: 0 0 20px rgba(245, 63, 63, 0.3);
+      }
+      .card-glow-success {
+        box-shadow: 0 0 20px rgba(0, 180, 42, 0.3);
+      }
+      
+      /* 4-5星怪物闪耀效果 */
+      .star-glow-orange {
+        position: relative;
+        animation: glow-pulse-orange 1.5s infinite alternate;
+      }
+      
+      .star-glow-red {
+        position: relative;
+        animation: glow-pulse-red 1.5s infinite alternate;
+      }
+      
+      @keyframes glow-pulse-orange {
+        0% {
+          box-shadow: 0 0 3px rgba(249, 115, 22, 0.7);
+          border-color: rgba(249, 115, 22, 0.7);
+        }
+        50% {
+          box-shadow: 0 0 8px rgba(249, 115, 22, 0.9), 0 0 12px rgba(249, 115, 22, 0.5);
+          border-color: rgba(249, 115, 22, 1);
+        }
+        100% {
+          box-shadow: 0 0 5px rgba(249, 115, 22, 0.8);
+          border-color: rgba(249, 115, 22, 0.8);
+        }
+      }
+      
+      @keyframes glow-pulse-red {
+        0% {
+          box-shadow: 0 0 3px rgba(239, 68, 68, 0.7);
+          border-color: rgba(239, 68, 68, 0.7);
+        }
+        50% {
+          box-shadow: 0 0 8px rgba(239, 68, 68, 0.9), 0 0 12px rgba(239, 68, 68, 0.5);
+          border-color: rgba(239, 68, 68, 1);
+        }
+        100% {
+          box-shadow: 0 0 5px rgba(239, 68, 68, 0.8);
+          border-color: rgba(239, 68, 68, 0.8);
+        }
+      }
+      .bg-gradient-xianxia {
+        background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+      }
+      .bg-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-xianxia text-light min-h-screen font-sans overflow-x-hidden">
+  <!-- 背景装饰 -->
+  <div class="fixed inset-0 z-0 overflow-hidden">
+   
+   
+  </div>
+
+  <div class="relative z-10 container mx-auto px-4 py-6 max-w-6xl">
+    <!-- 游戏标题区域 -->
+    <header class="text-center mb-6 pt-4">
+      <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary mb-2 text-shadow-lg">
+        PS修仙大师
+      </h1>
+      <p class="text-ink-medium text-[clamp(1rem,2vw,1.2rem)] max-w-2xl mx-auto">
+        PS挑战！击败PS妖魔鬼怪，习得无上PS仙法，晋升修仙境界
+      </p>
+    </header>
+
+    <!-- 游戏状态区域 -->
+      <div id="game-status" class="bg-card rounded-xl p-4 mb-6 flex flex-wrap justify-between items-center">
+        <div class="flex items-center mb-2 sm:mb-0">
+          <i class="fa fa-balance-scale text-secondary text-xl mr-2"></i>
+          <span class="text-lg font-medium">难度:</span>
+          <span id="difficulty-display" class="ml-2 text-2xl font-bold text-secondary">简单</span>
+        </div>
+      
+      <div class="flex items-center mb-2 sm:mb-0">
+          <i class="fa fa-star text-yellow-400 text-xl mr-2"></i>
+          <span class="text-lg font-medium">等级:</span>
+          <span id="level" class="ml-2 text-xl font-bold">1</span>
+          <span id="level-title" class="ml-1 text-ink-medium">(筑基期)</span>
+        </div>
+      
+      <div class="flex items-center mb-2 sm:mb-0">
+        <i class="fa fa-heart text-danger text-xl mr-2"></i>
+        <span class="text-lg font-medium">血量:</span>
+        <div class="ml-2 w-32 h-2 bg-ink-medium/30 rounded-full overflow-hidden">
+          <div id="health-bar" class="h-full bg-danger rounded-full" style="width: 100%"></div>
+        </div>
+        <span id="health-text" class="ml-2 text-sm text-ink-medium">100/100</span>
+      </div>
+      
+      <div class="flex items-center">
+        <i class="fa fa-trophy text-primary text-xl mr-2"></i>
+        <span class="text-lg font-medium">经验:</span>
+        <div class="ml-2 w-32 h-2 bg-ink-medium/30 rounded-full overflow-hidden">
+          <div id="exp-bar" class="h-full bg-primary rounded-full" style="width: 0%"></div>
+        </div>
+        <span id="exp-text" class="ml-2 text-sm text-ink-medium">0/100</span>
+      </div>
+    </div>
+
+    <!-- 游戏主区域 -->
+    <main class="mb-8">
+      <!-- 开始界面 -->
+      <div id="start-screen" class="flex flex-col items-center justify-center  animate-fade-in">
+        <div class="bg-card rounded-2xl p-8 max-w-md w-full card-glow">
+          <div class="text-center mb-6">
+            <i class="fa fa-magic text-primary text-5xl mb-4 animate-float"></i>
+            <h2 class="text-2xl font-bold mb-2">准备开始修仙之旅</h2>
+            <p class="text-ink-medium">选择难度，挑战PS妖魔鬼怪，提升修仙境界！</p>
+          </div>
+          
+          <div class="space-y-4 mb-6">
+            <div class="flex items-start">
+              <i class="fa fa-check-circle text-success mt-1 mr-2"></i>
+              <p class="text-sm text-ink-medium">随机刷新PS妖魔鬼怪，选择挑战目标</p>
+            </div>
+            <div class="flex items-start">
+              <i class="fa fa-check-circle text-success mt-1 mr-2"></i>
+              <p class="text-sm text-ink-medium">回答PS相关问题，正确则击败怪兽</p>
+            </div>
+            <div class="flex items-start">
+              <i class="fa fa-check-circle text-success mt-1 mr-2"></i>
+              <p class="text-sm text-ink-medium">获得经验和宝物，提升修仙等级</p>
+            </div>
+          </div>
+          
+          <p id="difficulty-info" class="text-lg mb-4 text-center text-secondary">请选择一个难度开始游戏</p>
+          <div class="grid grid-cols-3 gap-3 mb-6">
+            <button id="easy-btn" class="bg-primary/80 hover:bg-primary text-white font-bold py-3 px-4 rounded-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary/50">
+              简单
+            </button>
+            <button id="medium-btn" class="bg-secondary/80 hover:bg-secondary text-white font-bold py-3 px-4 rounded-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-secondary/50">
+              中等
+            </button>
+            <button id="hard-btn" class="bg-accent/80 hover:bg-accent text-white font-bold py-3 px-4 rounded-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-accent/50">
+              困难
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 游戏界面 -->
+      <div id="game-screen" class="hidden relative">
+      <!-- 伤害提示容器 -->
+      <div id="damage-container" class="absolute top-0 left-0 right-0 pointer-events-none"></div>
+      
+      <!-- 怪兽卡牌区域 -->
+      <div class="flex justify-between items-center mb-4">
+          <h2 class="text-xl font-bold flex items-center">
+            <i class="fa fa-dragon text-secondary mr-2"></i>
+            出现的PS妖魔鬼怪
+          </h2>
+          <div class="flex space-x-2">
+            <button id="end-challenge-btn" class="bg-danger hover:bg-danger/90 text-white font-bold py-2 px-4 rounded-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-danger/50">
+              <i class="fa fa-stop-circle mr-2"></i>结束挑战
+            </button>
+          </div>
+        </div>
+        
+        <div id="monsters-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-8">
+          <!-- 怪兽卡牌将通过JS动态生成 -->
+        </div>
+        
+        <!-- 物品栏 -->
+        <div class="bg-card rounded-xl p-4">
+          <h2 class="text-xl font-bold mb-3 flex items-center">
+            <i class="fa fa-bag text-primary mr-2"></i>
+            修仙宝物
+          </h2>
+          <div id="items-container" class="flex space-x-3 overflow-x-auto scrollbar-hide py-2">
+            <div class="flex-shrink-0 w-16 h-16 bg-ink-dark/30 rounded-lg flex items-center justify-center text-ink-medium text-sm">
+              <span>空空如也</span>
+            </div>
+            <!-- 物品将通过JS动态生成 -->
+          </div>
+        </div>
+      </div>
+
+      <!-- 问答界面 -->
+      <div id="quiz-screen" class="hidden fixed inset-0 bg-dark/80 z-50 flex items-center justify-center p-4">
+        <div class="bg-card rounded-2xl p-6 max-w-md w-full card-glow animate-scale-in">
+          <div class="flex justify-between items-center mb-4">
+            <h3 id="monster-name" class="text-xl font-bold"></h3>
+            <span id="quiz-timer" class="bg-secondary/20 text-secondary px-3 py-1 rounded-full text-sm font-medium">10秒</span>
+          </div>
+          
+          <p id="quiz-question" class="text-lg mb-6"></p>
+          
+          <div id="quiz-options" class="space-y-3 mb-6">
+            <!-- 选项将通过JS动态生成 -->
+          </div>
+          
+          <div id="quiz-feedback" class="hidden mb-4 text-center p-3 rounded-lg">
+            <!-- 反馈信息将通过JS动态生成 -->
+          </div>
+          
+          <button id="quiz-next" class="hidden w-full bg-primary hover:bg-primary/90 text-white font-bold py-2 px-4 rounded-xl transition-all duration-300">
+            继续挑战
+          </button>
+        </div>
+      </div>
+
+      <!-- 结束界面 -->
+      <div id="end-screen" class="hidden fixed inset-0 bg-dark/80 z-50 flex items-center justify-center p-4">
+        <div class="bg-card rounded-2xl p-6 max-w-md w-full card-glow animate-scale-in">
+          <div class="text-center mb-6">
+            <i id="end-icon" class="text-5xl mb-4"></i>
+            <h2 id="end-title" class="text-2xl font-bold mb-2"></h2>
+            <p id="end-message" class="text-ink-medium"></p>
+          </div>
+          
+          <div class="bg-dark/50 rounded-xl p-4 mb-6">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-ink-medium">最终等级</span>
+              <span id="end-level" class="font-bold text-xl"></span>
+            </div>
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-ink-medium">击败怪兽</span>
+              <span id="end-monsters" class="font-bold text-xl"></span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-ink-medium">获得宝物</span>
+              <span id="end-items" class="font-bold text-xl"></span>
+            </div>
+          </div>
+          
+          <button id="restart-btn" class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary/50">
+            <i class="fa fa-refresh mr-2"></i>再来一局
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="text-center text-ink-medium text-sm ">
+      <p>PS修仙大师 &copy; 2025 | 边玩边学PS技巧</p>
+    </footer>
+  </div>
+
+  <!-- 游戏逻辑脚本 -->
+  <script>
+    // 游戏状态变量
+    const gameState = {
+      isPlaying: false,
+      level: 1,
+      exp: 0,
+      expToNextLevel: 100, // 1级需要100点经验
+      monstersDefeated: 0,
+      itemsCollected: 0,
+      items: [],
+      hasProtection: false,
+      hasAcceleration: false,
+      isItemBeingUsed: false,
+      currentQuiz: null,
+      quizTimer: null,
+      quizTimeLeft: 10,
+      difficulty: 1, // 1: 简单, 2: 中等, 3: 困难
+      difficultyNames: ['简单', '中等', '困难'],
+      // 连续答对计数器，用于奖励机制
+      consecutiveCorrectAnswers: 0
+    };
+
+    // 难度配置
+    const difficultyConfigs = {
+      1: { // 简单
+        quizTimeLimit: 20, // 20秒答题时间
+        expMultiplier: 1.0, // 经验倍数
+        monsterHealth: 1, // 需要答对的题目数
+        maxMonsters: 4, // 最大怪兽数量（限制为4个）
+        maxHealth: 100,
+        damageAmount: 15 // 简单模式答错损失15点血
+      },
+      2: { // 中等
+        quizTimeLimit: 15, // 15秒答题时间
+        expMultiplier: 1.5, // 经验倍数
+        monsterHealth: 1, // 需要答对的题目数
+        maxMonsters: 4, // 最大怪兽数量（限制为4个）
+        maxHealth: 100,
+        damageAmount: 20 // 中等模式答错损失20点血
+      },
+      3: { // 困难
+        quizTimeLimit: 10, // 10秒答题时间
+        expMultiplier: 2.0, // 经验倍数
+        monsterHealth: 2, // 需要答对的题目数
+        maxMonsters: 4, // 最大怪兽数量（限制为4个）
+        maxHealth: 100,
+        damageAmount: 30 // 困难模式答错损失30点血
+      }
+    };
+
+    // PS相关题目库
+    const questionBank = [
+      {
+        question: "在Photoshop中，哪个工具可以快速选择颜色相近的区域？",
+        options: [
+          "套索工具",
+          "魔棒工具",
+          "钢笔工具",
+          "画笔工具"
+        ],
+        answer: 1,
+        difficulty: 1,
+        exp: 20,
+        theme: "选择工具"
+      },
+      {
+        question: "Photoshop中，快捷键Ctrl+T的作用是？",
+        options: [
+          "复制图层",
+          "自由变换",
+          "撤销操作",
+          "保存文件"
+        ],
+        answer: 1,
+        difficulty: 1,
+        exp: 20,
+        theme: "快捷键"
+      },
+      {
+        question: "以下哪种格式支持透明背景？",
+        options: [
+          "JPG",
+          "PNG",
+          "BMP",
+          "GIF"
+        ],
+        answer: 1,
+        difficulty: 1,
+        exp: 20,
+        theme: "文件格式"
+      },
+      {
+        question: "在Photoshop中，如何创建选区后只对选区内的内容进行操作？",
+        options: [
+          "使用蒙版",
+          "使用图层样式",
+          "使用调整图层",
+          "使用路径"
+        ],
+        answer: 0,
+        difficulty: 2,
+        exp: 30,
+        theme: "蒙版"
+      },
+      {
+        question: "Photoshop中的“图层蒙版”主要作用是？",
+        options: [
+          "隐藏或显示图层部分内容",
+          "调整图层颜色",
+          "添加文字效果",
+          "创建3D效果"
+        ],
+        answer: 0,
+        difficulty: 2,
+        exp: 30,
+        theme: "图层"
+      },
+      {
+        question: "以下哪个工具可以修复图片中的瑕疵？",
+        options: [
+          "裁剪工具",
+          "修补工具",
+          "渐变工具",
+          "文字工具"
+        ],
+        answer: 1,
+        difficulty: 1,
+        exp: 20,
+        theme: "修复工具"
+      },
+      {
+        question: "在Photoshop中，“曲线”调整可以用来？",
+        options: [
+          "调整图片亮度和对比度",
+          "添加特殊效果",
+          "创建选区",
+          "修改图片尺寸"
+        ],
+        answer: 0,
+        difficulty: 2,
+        exp: 30,
+        theme: "色彩调整"
+      },
+      {
+        question: "以下哪种方法可以快速复制一个图层？",
+        options: [
+          "Ctrl+C和Ctrl+V",
+          "Ctrl+D",
+          "Ctrl+J",
+          "Ctrl+S"
+        ],
+        answer: 2,
+        difficulty: 1,
+        exp: 20,
+        theme: "图层"
+      },
+      {
+        question: "Photoshop中的“混合模式”用于控制？",
+        options: [
+          "图层之间的叠加效果",
+          "图片的保存格式",
+          "选区的羽化程度",
+          "画笔的粗细"
+        ],
+        answer: 0,
+        difficulty: 2,
+        exp: 30,
+        theme: "图层"
+      },
+      {
+        question: "在Photoshop中，如何创建一个新的空白文档？",
+        options: [
+          "Ctrl+N",
+          "Ctrl+O",
+          "Ctrl+S",
+          "Ctrl+W"
+        ],
+        answer: 0,
+        difficulty: 1,
+        exp: 20,
+        theme: "文件操作"
+      },
+      {
+        question: "以下哪个功能可以将图片中的颜色替换为其他颜色？",
+        options: [
+          "色相/饱和度",
+          "色阶",
+          "曲线",
+          "亮度/对比度"
+        ],
+        answer: 0,
+        difficulty: 2,
+        exp: 30,
+        theme: "色彩调整"
+      },
+      {
+        question: "Photoshop中，“钢笔工具”主要用于？",
+        options: [
+          "绘制自由形状",
+          "创建精确选区",
+          "添加文字",
+          "修复图片"
+        ],
+        answer: 1,
+        difficulty: 3,
+        exp: 40,
+        theme: "钢笔工具"
+      },
+      {
+        question: "以下哪种方法可以调整图片的分辨率？",
+        options: [
+          "图像 > 图像大小",
+          "图像 > 画布大小",
+          "编辑 > 偏好设置",
+          "文件 > 导出"
+        ],
+        answer: 0,
+        difficulty: 2,
+        exp: 30,
+        theme: "图像大小"
+      },
+      {
+        question: "Photoshop中的“智能对象”具有什么特性？",
+        options: [
+          "可以无损缩放",
+          "占用更少内存",
+          "只能用于文字图层",
+          "无法应用滤镜"
+        ],
+        answer: 0,
+        difficulty: 3,
+        exp: 40,
+        theme: "图层"
+      },
+      {
+        question: "以下哪个快捷键可以快速撤销上一步操作？",
+        options: [
+          "Ctrl+Z",
+          "Ctrl+Y",
+          "Ctrl+U",
+          "Ctrl+X"
+        ],
+        answer: 0,
+        difficulty: 1,
+        exp: 20,
+        theme: "快捷键"
+      },
+      // 新增题目
+      {
+        question: "Photoshop中的\"渐变映射\"调整图层可以实现什么效果？",
+        options: [
+          "将图像转换为黑白效果",
+          "使用渐变颜色替换图像色调",
+          "创建模糊效果",
+          "添加文字阴影"
+        ],
+        answer: 1,
+        difficulty: 3,
+        exp: 40,
+        theme: "色彩调整"
+      },
+      {
+        question: "在Photoshop中，\"液化\"滤镜主要用于什么目的？",
+        options: [
+          "修复图片噪点",
+          "扭曲和重塑图像内容",
+          "创建发光效果",
+          "调整图像分辨率"
+        ],
+        answer: 1,
+        difficulty: 2,
+        exp: 30,
+        theme: "滤镜"
+      },
+      {
+        question: "以下哪个工具可以创建精确的直线或形状？",
+        options: [
+          "套索工具",
+          "钢笔工具",
+          "形状工具",
+          "模糊工具"
+        ],
+        answer: 2,
+        difficulty: 1,
+        exp: 20,
+        theme: "形状工具"
+      },
+      {
+        question: "Photoshop中的\"3D\"功能可以用来做什么？",
+        options: [
+          "创建和编辑三维对象",
+          "只查看图片元数据",
+          "批量处理多张图片",
+          "添加水印"
+        ],
+        answer: 0,
+        difficulty: 3,
+        exp: 40,
+        theme: "3D"
+      },
+      {
+        question: "以下哪个选项是图层样式中的发光效果？",
+        options: [
+          "斜面和浮雕",
+          "投影",
+          "外发光",
+          "描边"
+        ],
+        answer: 2,
+        difficulty: 2,
+        exp: 30,
+        theme: "图层"
+      },
+      {
+        question: "在Photoshop中，如何创建动作来自动化重复操作？",
+        options: [
+          "窗口 > 动作",
+          "编辑 > 动作",
+          "文件 > 动作",
+          "图层 > 动作"
+        ],
+        answer: 0,
+        difficulty: 3,
+        exp: 40,
+        theme: "自动化"
+      },
+      {
+        question: "以下哪个快捷键可以将选区羽化？",
+        options: [
+          "Ctrl+Alt+D",
+          "Ctrl+Shift+D",
+          "Ctrl+D",
+          "Ctrl+T"
+        ],
+        answer: 0,
+        difficulty: 2,
+        exp: 30,
+        theme: "选区"
+      },
+      {
+        question: "在Photoshop中，\"内容识别填充\"功能主要用于？",
+        options: [
+          "调整图片亮度",
+          "智能删除或替换图像部分内容",
+          "创建文本效果",
+          "调整色彩平衡"
+        ],
+        answer: 1,
+        difficulty: 2,
+        exp: 30,
+        theme: "填充"
+      },
+      {
+        question: "以下哪种格式适合在网页上使用且文件较小？",
+        options: [
+          "PSD",
+          "TIFF",
+          "WebP",
+          "EPS"
+        ],
+        answer: 2,
+        difficulty: 1,
+        exp: 20,
+        theme: "文件格式"
+      },
+      {
+        question: "Photoshop中的\"路径选择工具\"用于？",
+        options: [
+          "选择整个路径或形状",
+          "编辑路径上的锚点",
+          "填充路径",
+          "创建新路径"
+        ],
+        answer: 0,
+        difficulty: 3,
+        exp: 40,
+        theme: "路径"
+      },
+      // 新增图层相关题目
+      {
+        question: "在Photoshop中，如何锁定图层的透明度？",
+        options: [
+          "点击图层面板上的锁图标",
+          "使用快捷键Ctrl+L",
+          "在图层菜单中选择锁定透明度",
+          "右键点击图层选择锁定透明度"
+        ],
+        answer: 0,
+        difficulty: 2,
+        exp: 30,
+        theme: "图层"
+      },
+      {
+        question: "Photoshop中，如何将多个图层合并为一个图层？",
+        options: [
+          "使用快捷键Ctrl+E",
+          "使用快捷键Ctrl+Shift+E",
+          "右键点击图层选择合并图层",
+          "在图层菜单中选择合并可见图层"
+        ],
+        answer: 1,
+        difficulty: 2,
+        exp: 30,
+        theme: "图层"
+      },
+      {
+        question: "以下哪个选项可以调整图层的不透明度？",
+        options: [
+          "图层面板中的不透明度滑块",
+          "编辑菜单中的不透明度选项",
+          "图像菜单中的调整选项",
+          "滤镜菜单中的效果选项"
+        ],
+        answer: 0,
+        difficulty: 1,
+        exp: 20,
+        theme: "图层"
+      },
+      // 新增蒙版相关题目
+      {
+        question: "在Photoshop中，如何创建快速蒙版？",
+        options: [
+          "使用快捷键Q",
+          "在选择菜单中选择快速蒙版",
+          "点击图层面板上的蒙版图标",
+          "右键点击图层选择快速蒙版"
+        ],
+        answer: 0,
+        difficulty: 2,
+        exp: 30,
+        theme: "蒙版"
+      },
+      {
+        question: "以下哪种方法可以反转蒙版效果？",
+        options: [
+          "使用快捷键Ctrl+I",
+          "在蒙版上右键选择反转",
+          "点击图层面板上的反转图标",
+          "在图像菜单中选择反转"
+        ],
+        answer: 0,
+        difficulty: 2,
+        exp: 30,
+        theme: "蒙版"
+      },
+      // 新增滤镜相关题目
+      {
+        question: "Photoshop中的\"高斯模糊\"滤镜主要用于？",
+        options: [
+          "创建模糊效果",
+          "增强图像对比度",
+          "调整图像色彩",
+          "修复图像瑕疵"
+        ],
+        answer: 0,
+        difficulty: 1,
+        exp: 20,
+        theme: "滤镜"
+      },
+      {
+        question: "以下哪个滤镜可以创建油画效果？",
+        options: [
+          "油画滤镜",
+          "艺术效果滤镜组",
+          "模糊滤镜组",
+          "风格化滤镜组"
+        ],
+        answer: 0,
+        difficulty: 2,
+        exp: 30,
+        theme: "滤镜"
+      },
+      // 新增钢笔工具和路径相关题目
+      {
+        question: "Photoshop中，钢笔工具创建的路径可以转换为？",
+        options: [
+          "选区",
+          "图层",
+          "蒙版",
+          "智能对象"
+        ],
+        answer: 0,
+        difficulty: 2,
+        exp: 30,
+        theme: "钢笔工具"
+      },
+      {
+        question: "以下哪个工具可以编辑路径上的锚点？",
+        options: [
+          "路径选择工具",
+          "直接选择工具",
+          "移动工具",
+          "魔棒工具"
+        ],
+        answer: 1,
+        difficulty: 2,
+        exp: 30,
+        theme: "钢笔工具"
+      },
+      {
+        question: "Photoshop中的\"钢笔工具\"默认创建的是？",
+        options: [
+          "开放路径",
+          "闭合路径",
+          "形状图层",
+          "矢量蒙版"
+        ],
+        answer: 0,
+        difficulty: 3,
+        exp: 40,
+        theme: "钢笔工具"
+      },
+      {
+        question: "以下哪个快捷键可以将路径转换为选区？",
+        options: [
+          "Ctrl+Enter",
+          "Ctrl+Shift+Enter",
+          "Ctrl+Alt+Enter",
+          "Ctrl+T"
+        ],
+        answer: 0,
+        difficulty: 2,
+        exp: 30,
+        theme: "路径"
+      },
+      {
+        question: "Photoshop中的\"路径\"可以保存为哪种格式？",
+        options: [
+          ".PSD",
+          ".AI",
+          ".EPS",
+          ".SVG"
+        ],
+        answer: 3,
+        difficulty: 3,
+        exp: 40,
+        theme: "路径"
+      },
+      // 新增图像大小和分辨率相关题目
+      {
+        question: "Photoshop中，图像分辨率的单位通常是？",
+        options: [
+          "像素/英寸",
+          "像素/厘米",
+          "英寸/像素",
+          "厘米/像素"
+        ],
+        answer: 0,
+        difficulty: 1,
+        exp: 20,
+        theme: "图像大小"
+      },
+      {
+        question: "以下哪个选项可以在不改变图像像素数量的情况下调整图像大小？",
+        options: [
+          "图像 > 图像大小",
+          "图像 > 画布大小",
+          "编辑 > 自由变换",
+          "滤镜 > 液化"
+        ],
+        answer: 1,
+        difficulty: 2,
+        exp: 30,
+        theme: "图像大小"
+      },
+      {
+        question: "Photoshop中，如何将图像从低分辨率转换为高分辨率？",
+        options: [
+          "使用图像大小对话框",
+          "使用画布大小对话框",
+          "使用自由变换工具",
+          "使用液化滤镜"
+        ],
+        answer: 0,
+        difficulty: 2,
+        exp: 30,
+        theme: "图像大小"
+      },
+      // 新增3D相关题目
+      {
+        question: "Photoshop中的3D图层可以转换为？",
+        options: [
+          "智能对象",
+          "普通图层",
+          "蒙版",
+          "路径"
+        ],
+        answer: 1,
+        difficulty: 3,
+        exp: 40,
+        theme: "3D"
+      },
+      {
+        question: "以下哪个选项可以调整3D对象的光照效果？",
+        options: [
+          "3D > 渲染设置",
+          "3D > 光照设置",
+          "3D > 材质设置",
+          "3D > 相机设置"
+        ],
+        answer: 1,
+        difficulty: 3,
+        exp: 40,
+        theme: "3D"
+      },
+      {
+        question: "Photoshop中的3D功能支持导入哪种3D文件格式？",
+        options: [
+          ".PSD",
+          ".JPG",
+          ".OBJ",
+          ".PNG"
+        ],
+        answer: 2,
+        difficulty: 3,
+        exp: 40,
+        theme: "3D"
+      },
+      // 新增快捷键相关题目
+      {
+        question: "Photoshop中，快捷键Ctrl+Shift+N的作用是？",
+        options: [
+          "新建图层",
+          "新建文档",
+          "新建路径",
+          "新建蒙版"
+        ],
+        answer: 0,
+        difficulty: 1,
+        exp: 20,
+        theme: "快捷键"
+      },
+      {
+        question: "以下哪个快捷键可以快速显示/隐藏标尺？",
+        options: [
+          "Ctrl+R",
+          "Ctrl+T",
+          "Ctrl+D",
+          "Ctrl+E"
+        ],
+        answer: 0,
+        difficulty: 2,
+        exp: 30,
+        theme: "快捷键"
+      },
+      {
+        question: "Photoshop中，快捷键Ctrl+Shift+Alt+T的作用是？",
+        options: [
+          "自由变换",
+          "重复变换",
+          "变换并复制",
+          "旋转图层"
+        ],
+        answer: 2,
+        difficulty: 3,
+        exp: 40,
+        theme: "快捷键"
+      },
+      // 新增文件格式相关题目
+      {
+        question: "以下哪种格式支持图层信息？",
+        options: [
+          "JPG",
+          "PNG",
+          "PSD",
+          "GIF"
+        ],
+        answer: 2,
+        difficulty: 1,
+        exp: 20,
+        theme: "文件格式"
+      },
+      {
+        question: "以下哪种格式适合用于印刷？",
+        options: [
+          "JPG",
+          "PNG",
+          "TIFF",
+          "WebP"
+        ],
+        answer: 2,
+        difficulty: 2,
+        exp: 30,
+        theme: "文件格式"
+      },
+      // 新增选择工具相关题目
+      {
+        question: "Photoshop中，套索工具包括以下哪种类型？",
+        options: [
+          "自由套索工具",
+          "多边形套索工具",
+          "磁性套索工具",
+          "以上都是"
+        ],
+        answer: 3,
+        difficulty: 1,
+        exp: 20,
+        theme: "选择工具"
+      },
+      {
+        question: "以下哪个工具可以通过绘制路径来创建选区？",
+        options: [
+          "钢笔工具",
+          "套索工具",
+          "魔棒工具",
+          "快速选择工具"
+        ],
+        answer: 0,
+        difficulty: 2,
+        exp: 30,
+        theme: "选择工具"
+      },
+      // 新增修复工具相关题目
+      {
+        question: "Photoshop中的\"修复画笔工具\"主要用于？",
+        options: [
+          "修复图像瑕疵",
+          "创建选区",
+          "调整图像色彩",
+          "添加文字效果"
+        ],
+        answer: 0,
+        difficulty: 1,
+        exp: 20,
+        theme: "修复工具"
+      },
+      {
+        question: "以下哪个工具可以克隆图像的一部分？",
+        options: [
+          "修复画笔工具",
+          "修补工具",
+          "仿制图章工具",
+          "内容识别填充"
+        ],
+        answer: 2,
+        difficulty: 2,
+        exp: 30,
+        theme: "修复工具"
+      },
+      // 新增渐变相关题目
+      {
+        question: "Photoshop中的渐变工具包括以下哪种类型？",
+        options: [
+          "线性渐变",
+          "径向渐变",
+          "角度渐变",
+          "以上都是"
+        ],
+        answer: 3,
+        difficulty: 1,
+        exp: 20,
+        theme: "渐变"
+      },
+      {
+        question: "以下哪个选项可以创建自定义渐变？",
+        options: [
+          "渐变工具选项栏",
+          "渐变编辑器",
+          "图层样式",
+          "调整图层"
+        ],
+        answer: 1,
+        difficulty: 2,
+        exp: 30,
+        theme: "渐变"
+      },
+      // 新增画笔工具相关题目
+      {
+        question: "Photoshop中的画笔工具可以调整以下哪个参数？",
+        options: [
+          "大小",
+          "硬度",
+          "不透明度",
+          "以上都是"
+        ],
+        answer: 3,
+        difficulty: 1,
+        exp: 20,
+        theme: "画笔工具"
+      },
+      {
+        question: "以下哪个选项可以保存自定义画笔？",
+        options: [
+          "画笔预设面板",
+          "图层样式",
+          "调整图层",
+          "路径面板"
+        ],
+        answer: 0,
+        difficulty: 2,
+        exp: 30,
+        theme: "画笔工具"
+      },
+      // 新增动画相关题目
+      {
+        question: "Photoshop中的动画功能主要通过哪个面板实现？",
+        options: [
+          "时间轴面板",
+          "图层面板",
+          "路径面板",
+          "通道面板"
+        ],
+        answer: 0,
+        difficulty: 2,
+        exp: 30,
+        theme: "动画"
+      },
+      {
+        question: "Photoshop中，如何创建帧动画？",
+        options: [
+          "窗口 > 时间轴",
+          "图层 > 新建 > 动画图层",
+          "滤镜 > 动画",
+          "编辑 > 动画"
+        ],
+        answer: 0,
+        difficulty: 2,
+        exp: 30,
+        theme: "动画"
+      },
+      // 新增路径相关题目
+      {
+        question: "Photoshop中的\"路径\"可以转换为以下哪种类型？",
+        options: [
+          "选区",
+          "形状图层",
+          "矢量蒙版",
+          "以上都是"
+        ],
+        answer: 3,
+        difficulty: 2,
+        exp: 30,
+        theme: "路径"
+      },
+      // 新增渐变相关题目
+      {
+        question: "以下哪个选项可以应用渐变到文字？",
+        options: [
+          "使用渐变工具",
+          "使用图层样式",
+          "使用调整图层",
+          "使用滤镜"
+        ],
+        answer: 1,
+        difficulty: 2,
+        exp: 30,
+        theme: "渐变"
+      },
+      // 新增画笔工具相关题目
+      {
+        question: "Photoshop中的\"画笔预设\"可以保存以下哪个参数？",
+        options: [
+          "大小",
+          "硬度",
+          "形状",
+          "以上都是"
+        ],
+        answer: 3,
+        difficulty: 2,
+        exp: 30,
+        theme: "画笔工具"
+      },
+      // 新增动画相关题目
+      {
+        question: "Photoshop中，如何调整动画帧的延迟时间？",
+        options: [
+          "在时间轴面板中设置",
+          "在图层面板中设置",
+          "在路径面板中设置",
+          "在通道面板中设置"
+        ],
+        answer: 0,
+        difficulty: 2,
+        exp: 30,
+        theme: "动画"
+      },
+      // 新增文件操作相关题目
+      {
+        question: "Photoshop中，如何保存当前文档的副本？",
+        options: [
+          "文件 > 保存",
+          "文件 > 另存为",
+          "文件 > 导出",
+          "编辑 > 复制"
+        ],
+        answer: 1,
+        difficulty: 1,
+        exp: 20,
+        theme: "文件操作"
+      },
+      {
+        question: "Photoshop中，如何关闭当前文档？",
+        options: [
+          "文件 > 关闭",
+          "Ctrl+W",
+          "点击文档标签上的关闭按钮",
+          "以上都是"
+        ],
+        answer: 3,
+        difficulty: 1,
+        exp: 20,
+        theme: "文件操作"
+      },
+      // 新增形状工具相关题目
+      {
+        question: "Photoshop中的形状工具包括以下哪种类型？",
+        options: [
+          "矩形工具",
+          "椭圆工具",
+          "多边形工具",
+          "以上都是"
+        ],
+        answer: 3,
+        difficulty: 1,
+        exp: 20,
+        theme: "形状工具"
+      },
+      {
+        question: "以下哪个选项可以调整形状的填充颜色？",
+        options: [
+          "图层面板",
+          "形状工具选项栏",
+          "图层样式",
+          "调整图层"
+        ],
+        answer: 1,
+        difficulty: 2,
+        exp: 30,
+        theme: "形状工具"
+      },
+      // 新增自动化相关题目
+      {
+        question: "Photoshop中的\"动作\"可以用来做什么？",
+        options: [
+          "自动化重复操作",
+          "创建选区",
+          "调整图像色彩",
+          "添加文字效果"
+        ],
+        answer: 0,
+        difficulty: 1,
+        exp: 20,
+        theme: "自动化"
+      },
+      {
+        question: "以下哪个选项可以录制新动作？",
+        options: [
+          "窗口 > 动作",
+          "编辑 > 动作",
+          "文件 > 动作",
+          "图层 > 动作"
+        ],
+        answer: 0,
+        difficulty: 2,
+        exp: 30,
+        theme: "自动化"
+      },
+      // 新增选区相关题目
+      {
+        question: "Photoshop中，如何取消选区？",
+        options: [
+          "使用快捷键Ctrl+D",
+          "在选择菜单中选择取消选择",
+          "点击画布上的任意位置",
+          "以上都是"
+        ],
+        answer: 3,
+        difficulty: 1,
+        exp: 20,
+        theme: "选区"
+      },
+      {
+        question: "以下哪个选项可以调整选区的大小？",
+        options: [
+          "选择 > 修改 > 扩展",
+          "选择 > 修改 > 收缩",
+          "选择 > 变换选区",
+          "以上都是"
+        ],
+        answer: 3,
+        difficulty: 2,
+        exp: 30,
+        theme: "选区"
+      },
+      // 新增填充相关题目
+      {
+        question: "Photoshop中，如何填充选区？",
+        options: [
+          "使用油漆桶工具",
+          "使用快捷键Alt+Delete",
+          "编辑 > 填充",
+          "以上都是"
+        ],
+        answer: 3,
+        difficulty: 1,
+        exp: 20,
+        theme: "填充"
+      },
+      {
+        question: "以下哪个选项可以使用前景色填充选区？",
+        options: [
+          "使用快捷键Alt+Delete",
+          "使用快捷键Ctrl+Delete",
+          "使用油漆桶工具",
+          "编辑 > 填充"
+        ],
+        answer: 0,
+        difficulty: 1,
+        exp: 20,
+        theme: "填充"
+      }
+    ];
+
+    // 怪兽数据库
+    const monsterDatabase = [
+      {
+        name: "像素小妖",
+        icon: "fa-cube",
+        color: "text-blue-400",
+        difficulty: 1,
+        star: 1,
+        description: "初级PS妖怪，擅长扰乱像素"
+      },
+      {
+        name: "图层精怪",
+        icon: "fa-layer-group",
+        color: "text-green-400",
+        difficulty: 1,
+        star: 1,
+        description: "喜欢在图层间穿梭的精怪"
+      },
+      {
+        name: "蒙版妖",
+        icon: "fa-mask",
+        color: "text-purple-400",
+        difficulty: 2,
+        star: 2,
+        description: "擅长隐藏真相的妖怪"
+      },
+      {
+        name: "滤镜狂魔",
+        icon: "fa-filter",
+        color: "text-yellow-400",
+        difficulty: 2,
+        star: 2,
+        description: "喜欢滥用滤镜的怪物"
+      },
+      {        name: "钢笔妖君",
+        icon: "fa-pen-fancy",
+        color: "text-red-400",
+        difficulty: 2,
+        star: 3,
+        description: "精通钢笔工具的强大妖君"
+      },
+      {        name: "调色魔皇",
+        icon: "fa-palette",
+        color: "text-pink-400",
+        difficulty: 2,
+        star: 3,
+        description: "掌控色彩的魔皇"
+      },
+      {
+        name: "分辨率巨兽",
+        icon: "fa-expand-arrows-alt",
+        color: "text-orange-400",
+        difficulty: 2,
+        star: 2,
+        description: "能随意改变分辨率的巨兽"
+      },
+      {
+        name: "智能妖灵",
+        icon: "fa-brain",
+        color: "text-teal-400",
+        difficulty: 3,
+        star: 3,
+        description: "拥有智能对象能力的妖灵"
+      },
+      // 新增星等级怪兽卡
+      {
+        name: "✨渐变龙神✨",
+        icon: "fa-dragon",
+        color: "text-gradient-to-r from-purple-500 to-pink-500",
+        difficulty: 3,
+        star: 4,
+        description: "掌控渐变之力的神龙，能创造绚丽色彩过渡"
+      },
+      {
+        name: "✨笔刷麒麟✨",
+        icon: "fa-paint-brush",
+        color: "text-gradient-to-r from-orange-400 to-red-500",
+        difficulty: 3,
+        star: 4,
+        description: "上古神兽，其毛发化为无尽笔刷效果"
+      },
+      {
+        name: "✨光影凤凰✨",
+        icon: "fa-feather-alt",
+        color: "text-gradient-to-r from-yellow-400 to-amber-500",
+        difficulty: 3,
+        star: 4,
+        description: "掌控光影变化的凤凰，能随意调整明暗"
+      },
+      {
+        name: "✨3D玄武✨",
+        icon: "fa-cube",
+        color: "text-gradient-to-r from-cyan-500 to-blue-500",
+        difficulty: 3,
+        star: 5,
+        description: "精通三维空间的玄武，擅长创建立体效果"
+      },
+      {
+        name: "✨动效白虎✨",
+        icon: "fa-running",
+        color: "text-gradient-to-r from-gray-400 to-gray-700",
+        difficulty: 3,
+        star: 5,
+        description: "速度如闪电的白虎，擅长创建动画效果"
+      }
+    ];
+
+    // 物品数据库
+    const itemDatabase = [
+      {
+        name: "PS入门秘籍",
+        icon: "fa-book",
+        color: "text-blue-400",
+        effect: "经验+10",
+        type: "exp"
+      },
+      {
+        name: "快捷键宝典",
+        icon: "fa-keyboard",
+        color: "text-green-400",
+        effect: "答题经验加倍",
+        type: "acceleration"
+      },
+      {
+        name: "图层护符",
+        icon: "fa-layer-group",
+        color: "text-purple-400",
+        effect: "血量+30",
+        type: "health"
+      },
+      {
+        name: "魔棒法器",
+        icon: "fa-wand-magic-sparkles",
+        color: "text-yellow-400",
+        effect: "刷新怪物",
+        type: "refresh"
+      },
+      {
+        name: "撤销神符",
+        icon: "fa-undo",
+        color: "text-red-400",
+        effect: "答错无惩罚",
+        type: "protect"
+      },
+      {
+
+        name: "蒙版宝镜",
+        icon: "fa-mirror",
+        color: "text-teal-400",
+        effect: "经验+30",
+        type: "exp"
+      }
+    ];
+
+    // DOM元素
+     const elements = {
+       startScreen: document.getElementById('start-screen'),
+       gameScreen: document.getElementById('game-screen'),
+       quizScreen: document.getElementById('quiz-screen'),
+       endScreen: document.getElementById('end-screen'),
+       easyBtn: document.getElementById('easy-btn'),
+       mediumBtn: document.getElementById('medium-btn'),
+       hardBtn: document.getElementById('hard-btn'),
+       difficultyInfo: document.getElementById('difficulty-info'),
+       difficultyDisplay: document.getElementById('difficulty-display'),
+       restartBtn: document.getElementById('restart-btn'),
+       quizNext: document.getElementById('quiz-next'),
+       level: document.getElementById('level'),
+       levelTitle: document.getElementById('level-title'),
+       expBar: document.getElementById('exp-bar'),
+       expText: document.getElementById('exp-text'),
+       healthBar: document.getElementById('health-bar'),
+        healthText: document.getElementById('health-text'),
+        damageContainer: document.getElementById('damage-container'),
+       monstersContainer: document.getElementById('monsters-container'),
+       itemsContainer: document.getElementById('items-container'),
+       monsterName: document.getElementById('monster-name'),
+       quizQuestion: document.getElementById('quiz-question'),
+       quizOptions: document.getElementById('quiz-options'),
+       quizFeedback: document.getElementById('quiz-feedback'),
+       quizTimer: document.getElementById('quiz-timer'),
+       endIcon: document.getElementById('end-icon'),
+       endTitle: document.getElementById('end-title'),
+       endMessage: document.getElementById('end-message'),
+       endLevel: document.getElementById('end-level'),
+       endMonsters: document.getElementById('end-monsters'),
+       endItems: document.getElementById('end-items'),
+       endChallengeBtn: document.getElementById('end-challenge-btn')
+     };
+
+    // 初始化游戏
+     function initGame() {
+       // 重置游戏状态
+       gameState.isPlaying = false;
+       gameState.level = 1;
+       gameState.exp = 0;
+       gameState.expToNextLevel = 100;
+       gameState.monstersDefeated = 0;
+       gameState.itemsCollected = 0;
+       gameState.items = [];
+       gameState.hasProtection = false;
+       gameState.currentQuiz = null;
+       gameState.quizTimer = null;
+       gameState.quizTimeLeft = 10;
+       gameState.difficulty = 1; // 1: 简单, 2: 中等, 3: 困难
+       gameState.health = 100;
+       gameState.maxHealth = 100;
+       
+       // 更新UI
+       updateGameUI();
+       
+       // 绑定事件监听
+       elements.easyBtn.addEventListener('click', () => selectDifficulty(1));
+       elements.mediumBtn.addEventListener('click', () => selectDifficulty(2));
+       elements.hardBtn.addEventListener('click', () => selectDifficulty(3));
+       elements.restartBtn.addEventListener('click', restartGame);
+       elements.quizNext.addEventListener('click', closeQuiz);
+       elements.endChallengeBtn.addEventListener('click', endGame);
+     }
+    
+     // 选择难度
+     function selectDifficulty(difficulty) {
+       gameState.difficulty = difficulty;
+       elements.difficultyInfo.textContent = `已选择 ${gameState.difficultyNames[difficulty - 1]} 难度，准备开始修仙之旅！`;
+       
+       // 延迟一秒后开始游戏
+       setTimeout(() => {
+         startGame();
+       }, 1000);
+     }
+
+    // 开始游戏
+    function startGame() {
+      // 切换屏幕
+      elements.startScreen.classList.add('hidden');
+      elements.gameScreen.classList.remove('hidden');
+      
+      // 更新游戏状态
+      gameState.isPlaying = true;
+      
+      // 根据难度设置初始参数
+      const config = difficultyConfigs[gameState.difficulty];
+      gameState.expToNextLevel = 100; // 1级需要100点经验，固定值
+      gameState.quizTimeLeft = config.quizTimeLimit;
+      // 根据难度设置血量
+      gameState.maxHealth = config.maxHealth || 100;
+      gameState.health = gameState.maxHealth;
+      
+      // 更新难度显示
+      elements.difficultyDisplay.textContent = gameState.difficultyNames[gameState.difficulty - 1];
+      
+      // 生成初始怪兽
+      generateMonsters();
+    }
+
+    // 重新开始游戏
+     function restartGame() {
+       // 清除计时器
+       if (gameState.quizTimer) {
+         clearInterval(gameState.quizTimer);
+         gameState.quizTimer = null;
+       }
+       
+       // 切换屏幕
+       elements.endScreen.classList.add('hidden');
+       elements.startScreen.classList.remove('hidden');
+       elements.gameScreen.classList.add('hidden');
+       
+       // 重置游戏状态
+       gameState.isPlaying = false;
+       gameState.level = 1;
+       gameState.exp = 0;
+       gameState.expToNextLevel = 100;
+       gameState.monstersDefeated = 0;
+       gameState.itemsCollected = 0;
+       gameState.items = [];
+       gameState.hasProtection = false;
+       gameState.currentQuiz = null;
+       gameState.quizTimeLeft = 10;
+       // 重置血量
+       gameState.maxHealth = 100;
+       gameState.health = 100;
+       
+       // 重置难度信息
+       elements.difficultyInfo.textContent = '请选择一个难度开始游戏';
+       
+       // 更新UI
+       updateGameUI();
+     }
+
+    // 生成怪兽卡牌
+    function generateMonsters() {
+      // 清空容器
+      elements.monstersContainer.innerHTML = '';
+      
+      // 根据难度生成怪兽数量
+      const config = difficultyConfigs[gameState.difficulty];
+      const monsterCount = Math.min(Math.floor(Math.random() * 3) + 3, config.maxMonsters);
+      
+      // 根据难度过滤可用怪兽
+      const availableMonsters = monsterDatabase.filter(monster => {
+        // 简单难度只显示难度1和部分难度2的怪兽，且星级不超过3星
+        if (gameState.difficulty === 1) {
+          return monster.star <= 3 && (monster.difficulty <= 1 || (monster.difficulty === 2 && Math.random() > 0.5));
+        }
+        // 中等难度显示难度1、2和部分难度3的怪兽，且星级不超过4星
+        else if (gameState.difficulty === 2) {
+          return monster.star <= 4 && (monster.difficulty <= 2 || (monster.difficulty === 3 && Math.random() > 0.3));
+        }
+        // 困难难度显示所有难度的怪兽
+        else {
+          return true;
+        }
+      });
+      
+      const shuffledMonsters = [...availableMonsters].sort(() => 0.5 - Math.random());
+      const selectedMonsters = shuffledMonsters.slice(0, monsterCount);
+      
+      // 创建怪兽卡牌
+        selectedMonsters.forEach((monster, index) => {
+          const monsterCard = document.createElement('div');
+          
+          // 根据难度调整样式
+          let glowClass = '';
+          if (gameState.difficulty === 1) {
+            glowClass = 'hover:card-glow';
+          } else if (gameState.difficulty === 2) {
+            glowClass = 'hover:card-glow';
+          } else {
+            glowClass = 'hover:card-glow-danger';
+          }
+          
+          // 根据怪物星级设置不同的边框颜色、发光效果和图标颜色
+          let borderColor = '';
+          let iconColor = '';
+          let starEffectClass = '';
+          
+          // 1星：绿色
+          if (monster.star === 1) {
+            borderColor = '#22C55E'; // 绿色
+            iconColor = 'text-green-400';
+          }
+          // 2星：蓝色
+          else if (monster.star === 2) {
+            borderColor = '#3B82F6'; // 蓝色
+            iconColor = 'text-blue-400';
+          }
+          // 3星：黄色
+          else if (monster.star === 3) {
+            borderColor = '#EAB308'; // 黄色
+            iconColor = 'text-yellow-400';
+          }
+          // 4星：橙色，外发光橙色
+          else if (monster.star === 4) {
+            borderColor = '#F97316'; // 橙色
+            iconColor = 'text-orange-400';
+            starEffectClass = 'star-glow-orange';
+          }
+          // 5星：红色，外发光红色
+          else if (monster.star === 5) {
+            borderColor = '#EF4444'; // 红色
+            iconColor = 'text-red-400';
+            starEffectClass = 'star-glow-red';
+          }
+          
+          // 使用内联样式设置边框和阴影
+          monsterCard.className = `bg-card rounded-xl p-4 transition-all duration-300 hover:scale-105 cursor-pointer animate-slide-up ${glowClass} ${starEffectClass}`;
+          monsterCard.style.border = `2px solid ${borderColor}`;
+        monsterCard.style.animationDelay = `${index * 0.1}s`;
+        // 获取兼容的图标名称，处理可能不存在的图标
+        function getCompatibleIcon(iconName) {
+          // 图标兼容性映射，确保所有图标都能显示
+          const iconCompatibility = {
+            'fa-mask': 'fa-question-circle',  // 可能不兼容的图标替换为通用图标
+            'fa-brain': 'fa-cog',            // 可能不兼容的图标替换为通用图标
+            'fa-expand-arrows-alt': 'fa-expand',  // 可能不兼容的图标替换为通用图标
+            'fa-pen-fancy': 'fa-pencil',  // 钢笔妖君的图标兼容处理，使用更基础的图标
+            'fa-layer-group': 'fa-sitemap',   // 图层精怪的图标兼容处理
+            'fa-palette': 'fa-paint-brush',   // 调色魔皇的图标兼容处理
+            'fa-dragon': 'fa-fire',          // 渐变龙神的图标兼容处理
+            'fa-feather-alt': 'fa-fire',      // 光影凤凰的图标兼容处理，使用火焰图标
+            'fa-running': 'fa-bolt'          // 动效白虎的图标兼容处理，使用闪电图标代替
+          };
+          return iconCompatibility[iconName] || iconName;
+        }
+        
+        const compatibleIcon = getCompatibleIcon(monster.icon);
+        
+        monsterCard.innerHTML = `
+          <div class="flex flex-col items-center text-center">
+            <div class="w-16 h-16 rounded-full bg-dark/50 flex items-center justify-center mb-3">
+              <i class="fa ${compatibleIcon} ${iconColor} text-2xl"></i>
+            </div>
+            <h3 class="font-bold text-lg mb-1">${monster.name}</h3>
+            <p class="text-xs text-ink-medium mb-3">${monster.description}</p>
+            <div class="flex items-center justify-center">
+              ${Array(monster.star).fill('<i class="fa fa-star text-yellow-400 text-xs"></i>').join('')}
+              ${Array(5 - monster.star).fill('<i class="fa fa-star-o text-ink-medium text-xs"></i>').join('')}
+            </div>
+          </div>
+        `;
+        
+        // 绑定点击事件
+         monsterCard.addEventListener('click', () => {
+           if (gameState.isPlaying && !gameState.currentQuiz) {
+             startQuiz(monster);
+           }
+         });
+        
+        elements.monstersContainer.appendChild(monsterCard);
+      });
+    }
+
+    // 开始问答
+     function startQuiz(monster) {
+      
+      // 根据怪物名字匹配相关主题
+      const monsterName = monster.name;
+      let targetThemes = [];
+      
+      // 根据怪物名字确定主题
+      if (monsterName.includes('图层')) {
+        targetThemes = ['图层'];
+      } else if (monsterName.includes('蒙版')) {
+        targetThemes = ['蒙版', '图层'];
+      } else if (monsterName.includes('滤镜')) {
+        targetThemes = ['滤镜'];
+      } else if (monsterName.includes('钢笔')) {
+        targetThemes = ['钢笔工具', '路径'];
+      } else if (monsterName.includes('调色')) {
+        targetThemes = ['色彩调整'];
+      } else if (monsterName.includes('分辨率')) {
+        targetThemes = ['图像大小', '文件格式'];
+      } else if (monsterName.includes('智能')) {
+        targetThemes = ['图层', '智能对象'];
+      } else if (monsterName.includes('渐变')) {
+        targetThemes = ['色彩调整', '渐变'];
+      } else if (monsterName.includes('笔刷')) {
+        targetThemes = ['画笔工具', '绘画'];
+      } else if (monsterName.includes('光影')) {
+        targetThemes = ['色彩调整', '亮度/对比度'];
+      } else if (monsterName.includes('3D')) {
+        targetThemes = ['3D'];
+      } else if (monsterName.includes('动效')) {
+        targetThemes = ['动画', '时间轴'];
+      } else if (monsterName.includes('像素')) {
+        targetThemes = ['图像大小', '分辨率'];
+      } else {
+        // 默认主题，匹配所有题目
+        targetThemes = [];
+      }
+      
+      // 根据难度和怪兽难度选择题目
+      let availableQuestions = [];
+      if (gameState.difficulty === 1) {
+        // 简单难度主要选择简单题目
+        availableQuestions = questionBank.filter(q => 
+          (q.difficulty === 1 || (q.difficulty === monster.difficulty && Math.random() > 0.7)) &&
+          (targetThemes.length === 0 || targetThemes.includes(q.theme))
+        );
+      } else if (gameState.difficulty === 2) {
+        // 中等难度选择中等和部分困难题目
+        availableQuestions = questionBank.filter(q => 
+          (q.difficulty <= 2 || (q.difficulty === monster.difficulty && Math.random() > 0.5)) &&
+          (targetThemes.length === 0 || targetThemes.includes(q.theme))
+        );
+      } else {
+        // 困难难度主要选择困难题目
+        availableQuestions = questionBank.filter(q => 
+          (q.difficulty >= 2 || (q.difficulty === monster.difficulty)) &&
+          (targetThemes.length === 0 || targetThemes.includes(q.theme))
+        );
+      }
+      
+      // 如果没有匹配主题和难度的题目，回退到仅匹配难度的题目
+      if (availableQuestions.length === 0) {
+        if (gameState.difficulty === 1) {
+          availableQuestions = questionBank.filter(q => q.difficulty === 1 || (q.difficulty === monster.difficulty && Math.random() > 0.7));
+        } else if (gameState.difficulty === 2) {
+          availableQuestions = questionBank.filter(q => q.difficulty <= 2 || (q.difficulty === monster.difficulty && Math.random() > 0.5));
+        } else {
+          availableQuestions = questionBank.filter(q => q.difficulty >= 2 || (q.difficulty === monster.difficulty));
+        }
+      }
+      
+      // 如果仍然没有题目，回退到所有题目
+      if (availableQuestions.length === 0) {
+        availableQuestions = questionBank;
+      }
+      
+      const randomQuestion = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
+      
+      // 保持选项原顺序
+      let options = [...randomQuestion.options];
+      let shuffledAnswer = randomQuestion.answer;
+      
+      // 保存当前问答状态
+      gameState.currentQuiz = {
+        monster,
+        question: randomQuestion,
+        shuffledAnswer
+      };
+      
+      // 更新问答界面
+      elements.monsterName.textContent = monster.name;
+      elements.quizQuestion.textContent = randomQuestion.question;
+      
+      // 生成选项
+      elements.quizOptions.innerHTML = '';
+      options.forEach((option, index) => {
+        const optionElement = document.createElement('div');
+        optionElement.className = 'bg-dark/50 rounded-lg p-3 transition-all duration-300 hover:bg-dark/70 cursor-pointer';
+        optionElement.innerHTML = `
+          <div class="flex items-center">
+            <div class="w-6 h-6 rounded-full bg-ink-dark flex items-center justify-center mr-3">
+              ${String.fromCharCode(65 + index)}
+            </div>
+            <span>${option}</span>
+          </div>
+        `;
+        
+        // 绑定点击事件
+        optionElement.addEventListener('click', () => {
+          checkAnswer(index);
+        });
+        
+        elements.quizOptions.appendChild(optionElement);
+      });
+      
+      // 重置反馈和下一步按钮
+      elements.quizFeedback.classList.add('hidden');
+      elements.quizNext.classList.add('hidden');
+      
+      // 显示问答界面
+      elements.quizScreen.classList.remove('hidden');
+      
+      // 开始问答倒计时
+      const config = difficultyConfigs[gameState.difficulty];
+      gameState.quizTimeLeft = config.quizTimeLimit;
+      elements.quizTimer.textContent = `${gameState.quizTimeLeft}秒`;
+      
+      if (gameState.quizTimer) {
+        clearInterval(gameState.quizTimer);
+      }
+      
+      gameState.quizTimer = setInterval(() => {
+        gameState.quizTimeLeft--;
+        elements.quizTimer.textContent = `${gameState.quizTimeLeft}秒`;
+        
+        // 时间警告
+        if (gameState.quizTimeLeft <= 3) {
+          elements.quizTimer.classList.add('animate-pulse');
+        }
+        
+        // 时间结束
+        if (gameState.quizTimeLeft <= 0) {
+          clearInterval(gameState.quizTimer);
+          
+          // 处理超时情况，与答错处理逻辑保持一致
+          // 获取当前怪物
+          const monster = gameState.currentQuiz.monster;
+          // 计算伤害值，与checkAnswer函数保持一致
+          const baseDamage = monster.star * 5;
+          const difficultyMultiplier = [1.0, 1.5, 2.0][gameState.difficulty - 1];
+          const damageAmount = Math.floor(baseDamage * difficultyMultiplier);
+          
+          // 检查是否有撤销神符类型的宝物
+          const protectItems = gameState.items.filter(item => item.type === 'protect' || item.name === '撤销神符');
+          
+          if (protectItems.length > 0) {
+            // 显示使用撤销神符的提示，传递isTimeout参数
+            const protectItem = protectItems[0];
+            const itemIndex = gameState.items.indexOf(protectItem);
+            showProtectItemPrompt(protectItem, itemIndex, damageAmount, true);
+          } else {
+            // 没有撤销神符，直接扣除血量
+            gameState.health = Math.max(0, gameState.health - damageAmount);
+            
+            // 检查血量是否为空
+            if (gameState.health <= 0) {
+              // 延迟结束游戏，让玩家看到反馈
+              // 保存定时器ID，以便在使用回血物品时可以清除
+              gameState.endGameTimer = setTimeout(() => {
+                // 在执行endGame前再次检查血量，如果血量已经恢复则不结束游戏
+                if (gameState.health <= 0) {
+                  endGame();
+                } else {
+                  console.log('血量已恢复，取消结束游戏');
+                }
+              }, 1500);
+            }
+            
+            // 更新血量UI，这会触发checkHealthItemsAndPrompt()，可能会清除endGameTimer
+            updateHealthUI();
+            
+            // 如果血量为空，直接返回
+            if (gameState.health <= 0) {
+              // 显示反馈
+              showFeedback(false, null, 0, 0, true);
+              return;
+            }
+            
+            // 显示反馈
+            showFeedback(false, null, 0, 0, true);
+            
+            // 显示惩罚通知
+            punishPlayer();
+          }
+        }
+      }, 1000);
+    }
+
+    // 检查答案
+     function checkAnswer(selectedIndex) {
+       // 清除问答计时器
+       clearInterval(gameState.quizTimer);
+       
+       // 重置保护状态，确保每次答题都是新的开始
+       gameState.hasProtection = false;
+       
+       // 检查是否正确（考虑答案是否被打乱）
+       const correctIndex = gameState.currentQuiz.shuffledAnswer !== undefined ? 
+         gameState.currentQuiz.shuffledAnswer : gameState.currentQuiz.question.answer;
+       const isCorrect = selectedIndex === correctIndex;
+       
+       // 添加标记，记录本次答对是否已经获得过宝物
+       if (isCorrect) {
+         gameState.hasGainedItemThisTurn = false;
+       }
+       
+       // 计算获得的经验值（如果正确）
+       let expGain = 0;
+       let bonusExp = 0;
+       if (isCorrect) {
+         const config = difficultyConfigs[gameState.difficulty];
+         const monster = gameState.currentQuiz.monster;
+         // 基于怪物星级的经验倍率，星级越高，经验越多
+         const starMultiplier = 1 + (monster.star - 1) * 0.3; // 1星1倍，2星1.3倍，3星1.6倍，4星1.9倍，5星2.2倍
+         expGain = Math.floor(gameState.currentQuiz.question.exp * config.expMultiplier * starMultiplier);
+         
+         // 检查是否有加速光环，如果有则获得双倍经验
+         if (gameState.hasAcceleration) {
+           bonusExp = expGain; // 加速光环提供额外一倍经验
+           expGain += bonusExp;
+         }
+       }
+       
+       // 显示反馈
+       showFeedback(isCorrect, selectedIndex, expGain, bonusExp);
+       
+       // 处理结果
+       if (isCorrect) {
+         // 如果有加速光环，使用后失效
+         if (gameState.hasAcceleration) {
+           gameState.hasAcceleration = false;
+         }
+         // 增加连续答对计数
+         gameState.consecutiveCorrectAnswers++;
+         
+         // 检查是否达到奖励阈值并计算额外经验
+         let bonusExp = 0;
+         let bonusPercentage = 0;
+         
+         // 根据连续答对题目数量设置奖励百分比
+         if (gameState.consecutiveCorrectAnswers === 5) {
+           // 连续答对5题，奖励5%经验
+           bonusPercentage = 5;
+         } else if (gameState.consecutiveCorrectAnswers >= 10 && gameState.consecutiveCorrectAnswers % 5 === 0) {
+           // 连续答对10题及以上，每5题奖励10%经验
+           bonusPercentage = 10;
+         }
+         
+         // 计算额外经验，基于当前等级总的经验值的百分比
+         if (bonusPercentage > 0) {
+           // 当前等级总的经验值是expToNextLevel
+           bonusExp = Math.floor(gameState.expToNextLevel * (bonusPercentage / 100));
+         }
+         
+         // 计算总经验（基础经验 + 额外奖励）
+         const totalExp = expGain + bonusExp;
+         
+         // 获得经验
+         gainExperience(totalExp);
+         
+         // 如果有额外奖励，显示通知
+         if (bonusExp > 0) {
+           // 显示连续答对奖励通知（位置更高）
+           const notification = document.createElement('div');
+           notification.className = 'fixed top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-card rounded-xl p-6 card-glow z-50 flex items-center w-80 max-w-[90%] justify-center';
+           notification.innerHTML = `
+             <div class="w-10 h-10 rounded-full bg-dark/50 flex items-center justify-center mr-3">
+               <span class="text-amber-500 text-xl">✨</span>
+             </div>
+             <div>
+               <p class="font-medium">连续答对${gameState.consecutiveCorrectAnswers}题！</p>
+               <p class="text-xs text-ink-medium">获得额外${bonusPercentage}%经验：+${bonusExp}点</p>
+             </div>
+           `;
+           
+           document.body.appendChild(notification);
+           
+           // 2秒后移除通知
+           setTimeout(() => {
+             notification.style.opacity = '0';
+             notification.style.transition = 'opacity 0.5s';
+             setTimeout(() => {
+               document.body.removeChild(notification);
+             }, 500);
+           }, 2000);
+         }
+         gameState.monstersDefeated++;
+         
+         // 获取当前怪物
+         const monster = gameState.currentQuiz.monster;
+         
+         // 3-5星怪物必爆一个奖励物品
+         if (monster.star >= 3 && !gameState.hasGainedItemThisTurn) {
+           gainItem();
+           gameState.hasGainedItemThisTurn = true;
+         } 
+         // 其他星级怪物仍然按照原来的概率计算
+         else {
+           const itemProbability = 0.3 + (gameState.difficulty - 1) * 0.05;
+           if (Math.random() < itemProbability && !gameState.hasGainedItemThisTurn) {
+             gainItem();
+             gameState.hasGainedItemThisTurn = true;
+           }
+         }
+       } else {
+         // 错误，受到惩罚
+        // 重置连续答对计数器
+        gameState.consecutiveCorrectAnswers = 0;
+        // 如果有加速光环，答错后失效
+        if (gameState.hasAcceleration) {
+          gameState.hasAcceleration = false;
+        }
+        // 获取当前怪物
+        const monster = gameState.currentQuiz.monster;
+        // 答错减血，根据怪物星级和难度设置减血量
+        // 基础伤害：1星5点，2星10点，3星15点，4星20点，5星25点
+        const baseDamage = monster.star * 5;
+        // 难度倍率：简单1.0，中等1.5，困难2.0
+        const difficultyMultiplier = [1.0, 1.5, 2.0][gameState.difficulty - 1];
+        // 计算最终伤害值
+        const damageAmount = Math.floor(baseDamage * difficultyMultiplier);
+       // 检查是否有撤销神符类型的宝物
+        const protectItems = gameState.items.filter(item => item.type === 'protect' || item.name === '撤销神符');
+         
+        if (protectItems.length > 0) {
+          // 显示使用撤销神符的提示，正常答错情况，isTimeout为false
+          const protectItem = protectItems[0];
+          const itemIndex = gameState.items.indexOf(protectItem);
+          showProtectItemPrompt(protectItem, itemIndex, damageAmount, false);
+        } else {
+          // 没有撤销神符，直接扣除血量
+          gameState.health = Math.max(0, gameState.health - damageAmount);
+          
+          // 检查血量是否为空
+          if (gameState.health <= 0) {
+            // 延迟结束游戏，让玩家看到反馈
+            // 保存定时器ID，以便在使用回血物品时可以清除
+            gameState.endGameTimer = setTimeout(() => {
+              // 在执行endGame前再次检查血量，如果血量已经恢复则不结束游戏
+              if (gameState.health <= 0) {
+                endGame();
+              } else {
+                console.log('血量已恢复，取消结束游戏');
+              }
+            }, 1500);
+          }
+          
+          // 更新血量UI，这会触发checkHealthItemsAndPrompt()，可能会清除endGameTimer
+          updateHealthUI();
+          
+          // 如果血量为空，直接返回
+          if (gameState.health <= 0) {
+            return;
+          }
+          
+          // 显示惩罚通知
+          punishPlayer();
+        }
+       }
+     }
+     
+     // 更新血量UI
+    function updateHealthUI() {
+      const healthPercentage = (gameState.health / gameState.maxHealth) * 100;
+      elements.healthBar.style.width = healthPercentage + '%';
+      elements.healthText.textContent = `${gameState.health}/${gameState.maxHealth}`;
+      
+      // 添加血量变化动画效果
+      elements.healthBar.classList.add('transition-all', 'duration-300');
+      
+      // 根据血量显示不同颜色
+      if (healthPercentage <= 20) {
+        elements.healthBar.style.backgroundColor = '#dc3545'; // bg-danger
+        // 只有当血量为0时，才检查是否有加血量宝物并提示使用
+        if (gameState.health <= 0) {
+          checkHealthItemsAndPrompt();
+        }
+      } else if (healthPercentage <= 50) {
+        elements.healthBar.style.backgroundColor = '#ffc107'; // bg-warning
+        // 移除血量低于50%时提示使用PS至尊宝的代码
+      } else {
+        elements.healthBar.style.backgroundColor = '#28a745'; // bg-success
+      }
+    }
+    
+    // 检查是否有加血量宝物并提示使用
+    function checkHealthItemsAndPrompt() {
+      // 查找物品栏中的加血量宝物
+      const healthItems = gameState.items.filter(item => item.type === 'health');
+      
+      if (healthItems.length > 0) {
+        // 获取第一个加血量宝物
+        const healthItem = healthItems[0];
+        const itemIndex = gameState.items.indexOf(healthItem);
+        
+        // 显示提示
+        showHealthItemPrompt(healthItem, itemIndex);
+        
+        // 清除可能存在的endGame定时器，避免提前结算
+        if (gameState.endGameTimer) {
+          clearTimeout(gameState.endGameTimer);
+          gameState.endGameTimer = null;
+        }
+      }
+    }
+    
+    // PS至尊宝相关函数已移除
+    
+    // 显示使用撤销神符的提示
+    function showProtectItemPrompt(item, index, damageAmount, isTimeout = false) {
+      // 检查是否已经有提示显示
+      if (document.getElementById('protect-item-prompt')) {
+        return;
+      }
+      
+      const prompt = document.createElement('div');
+      prompt.id = 'protect-item-prompt';
+      prompt.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-card rounded-xl p-6 card-glow z-50 w-80';
+      
+      // 根据是否是超时情况显示不同的提示文字
+      const errorText = isTimeout ? '回答超时！' : '回答错误！';
+      
+      prompt.innerHTML = `
+        <div class="text-center mb-4">
+          <div class="text-warning text-2xl mb-2">⚠️ ${errorText}</div>
+          <p class="text-ink-medium">将受到 <span class="text-danger font-bold">${damageAmount}</span> 点伤害，是否使用 <span class="font-bold">${item.name}</span> 免受伤害？</p>
+          <p class="text-sm text-ink-medium mt-1">当前剩余血量：<span class="text-success font-bold">${gameState.health}</span>/<span class="text-success">${gameState.maxHealth}</span></p>
+        </div>
+        <div class="flex justify-between gap-4">
+          <button class="use-protect-item-btn flex-1 bg-warning text-light py-2 rounded-lg hover:bg-warning/90 transition-colors">
+            使用 ${item.name}
+          </button>
+          <button class="cancel-protect-item-btn flex-1 bg-ink-dark/50 text-ink-medium py-2 rounded-lg hover:bg-ink-dark/70 transition-colors">
+            不使用
+          </button>
+        </div>
+      `;
+      
+      document.body.appendChild(prompt);
+      
+      // 添加按钮事件
+      const useBtn = prompt.querySelector('.use-protect-item-btn');
+      const cancelBtn = prompt.querySelector('.cancel-protect-item-btn');
+      
+      useBtn.addEventListener('click', () => {
+        // 立即关闭提示框
+        prompt.remove();
+        
+        // 使用物品，系统调用，绕过主动使用限制
+        useItem(index, true);
+        
+        // 调用惩罚函数处理保护效果
+        punishPlayer();
+        
+        // 自动关闭答题卡页面
+        elements.quizScreen.classList.add('hidden');
+        gameState.currentQuiz = null;
+        
+        // 刷新题目，重新生成新的怪兽
+        generateMonsters();
+      });
+      
+      cancelBtn.addEventListener('click', () => {
+        // 立即关闭提示框
+        prompt.remove();
+        
+        // 不使用撤销神符，扣除血量
+        gameState.health = Math.max(0, gameState.health - damageAmount);
+        
+        // 检查血量是否为空
+        if (gameState.health <= 0) {
+          // 延迟结束游戏，让玩家看到反馈
+          // 保存定时器ID，以便在使用回血物品时可以清除
+          gameState.endGameTimer = setTimeout(() => {
+            // 在执行endGame前再次检查血量，如果血量已经恢复则不结束游戏
+            if (gameState.health <= 0) {
+              endGame();
+            } else {
+              console.log('血量已恢复，取消结束游戏');
+            }
+          }, 1500);
+        }
+        
+        // 更新血量UI，这会触发checkHealthItemsAndPrompt()，可能会清除endGameTimer
+        updateHealthUI();
+        
+        // 如果血量为空，直接返回
+        if (gameState.health <= 0) {
+          return;
+        }
+        
+        // 调用惩罚函数
+        punishPlayer();
+      });
+    }
+    
+    // 显示使用加血量宝物的提示
+    function showHealthItemPrompt(item, index) {
+      // 检查是否已经有提示显示
+      if (document.getElementById('health-item-prompt')) {
+        return;
+      }
+      
+      const prompt = document.createElement('div');
+      prompt.id = 'health-item-prompt';
+      prompt.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-card rounded-xl p-6 card-glow z-50 w-80';
+      prompt.innerHTML = `
+        <div class="text-center mb-4">
+          <div class="text-danger text-2xl mb-2">⚠️ 血量危急！</div>
+          <p class="text-ink-medium">当前剩余血量：<span class="font-bold text-danger">${gameState.health}</span>，是否使用 <span class="font-bold">${item.name}</span> 恢复30点血量？</p>
+        </div>
+        <div class="flex justify-between gap-4">
+          <button id="use-health-item-btn" class="flex-1 bg-success text-light py-2 rounded-lg hover:bg-success/90 transition-colors">
+            使用 ${item.name}
+          </button>
+          <button id="cancel-health-item-btn" class="flex-1 bg-ink-dark/50 text-ink-medium py-2 rounded-lg hover:bg-ink-dark/70 transition-colors">
+            暂不使用
+          </button>
+        </div>
+      `;
+      
+      document.body.appendChild(prompt);
+      
+      // 添加按钮事件
+      document.getElementById('use-health-item-btn').addEventListener('click', () => {
+        useItem(index);
+        prompt.remove();
+      });
+      
+      document.getElementById('cancel-health-item-btn').addEventListener('click', () => {
+        prompt.remove();
+      });
+    }
+     
+     // 显示伤害提示
+     function showDamage(damageAmount) {
+       // 创建伤害提示元素
+       const damageElement = document.createElement('div');
+       damageElement.classList.add('absolute', 'text-danger', 'font-bold', 'text-2xl', 'z-50');
+       damageElement.textContent = `${damageAmount}`;
+       
+       // 设置随机位置在屏幕上方区域
+       const x = Math.random() * (elements.gameScreen.offsetWidth - 100) + 50;
+       const y = 100 + Math.random() * 100;
+       damageElement.style.left = `${x}px`;
+       damageElement.style.top = `${y}px`;
+       
+       // 添加动画效果
+       damageElement.style.transition = 'all 0.8s ease-out';
+       
+       // 添加到容器
+       elements.damageContainer.appendChild(damageElement);
+       
+       // 延迟开始动画
+       setTimeout(() => {
+         damageElement.style.transform = 'translateY(-50px)';
+         damageElement.style.opacity = '0';
+         
+         // 动画结束后移除元素
+         setTimeout(() => {
+           elements.damageContainer.removeChild(damageElement);
+         }, 800);
+       }, 10);
+     }
+
+    // 显示问答反馈
+    function showFeedback(isCorrect, selectedIndex, expGain, bonusExp = 0, isTimeout = false) {
+      const feedbackElement = elements.quizFeedback;
+      feedbackElement.classList.remove('hidden');
+      
+      if (isCorrect) {
+        feedbackElement.className = 'bg-success/20 text-success p-3 rounded-lg text-center mb-4';
+        let feedbackHTML = `
+          <i class="fa fa-check-circle mr-2"></i>
+          回答正确！成功击败${gameState.currentQuiz.monster.name}
+          <div class="mt-1 text-success/80">获得经验：+${expGain - bonusExp}点</div>
+        `;
+        
+        // 如果有答题经验加倍效果，显示出来
+        if (bonusExp > 0) {
+          feedbackHTML += `<div class="mt-1 text-warning/80"><i class="fa fa-bolt mr-2"></i>答题经验加倍生效！额外获得+${bonusExp}点经验</div>`;
+        }
+        
+        // 重置最后获得的物品，避免重复显示
+        if (gameState.lastGainedItem) {
+          gameState.lastGainedItem = null;
+        }
+        
+        feedbackElement.innerHTML = feedbackHTML;
+      } else {
+        feedbackElement.className = 'bg-danger/20 text-danger p-3 rounded-lg text-center mb-4';
+        let feedbackHTML = '';
+        
+        // 获取当前怪物
+        const monster = gameState.currentQuiz.monster;
+        // 计算伤害值，与checkAnswer函数保持一致
+        const baseDamage = monster.star * 5;
+        const difficultyMultiplier = [1.0, 1.5, 2.0][gameState.difficulty - 1];
+        const damageAmount = Math.floor(baseDamage * difficultyMultiplier);
+        
+        if (isTimeout) {
+          // 超时情况
+          feedbackHTML = `
+            <i class="fa fa-clock-o mr-2"></i>
+            回答超时....
+            <div class="mt-1 text-danger/80">${monster.name}对你造成了伤害 ${damageAmount}点</div>
+          `;
+        } else {
+          // 回答错误情况
+          feedbackHTML = `
+            <i class="fa fa-times-circle mr-2"></i>
+            回答错误！${monster.name}对你造成了伤害 ${damageAmount}点
+          `;
+        }
+        
+        // 如果使用了撤销神符，显示相关信息
+        if (gameState.hasProtection) {
+          feedbackHTML += `<div class="mt-1 text-warning/80"><i class="fa fa-undo mr-2"></i>撤销神符生效！免受伤害惩罚</div>`;
+        }
+        
+        feedbackElement.innerHTML = feedbackHTML;
+      }
+      
+      // 显示下一步按钮
+      elements.quizNext.classList.remove('hidden');
+      
+      // 禁用选项
+      // 只选择直接子div（选项元素），不包括内部的div
+      const options = Array.from(elements.quizOptions.children);
+      // 获取正确答案的索引（考虑答案可能被打乱的情况）
+      const correctIndex = gameState.currentQuiz.shuffledAnswer !== undefined ? 
+        gameState.currentQuiz.shuffledAnswer : gameState.currentQuiz.question.answer;
+      
+      options.forEach((option, index) => {
+        option.classList.remove('hover:bg-dark/70', 'cursor-pointer');
+        option.classList.add('opacity-70');
+        // 彻底禁用点击事件
+        option.style.pointerEvents = 'none';
+        
+        // 获取选项内部的span元素（包含文字的元素）
+        const spanElement = option.querySelector('span');
+        
+        // 标记正确答案
+        if (index === correctIndex) {
+          option.classList.remove('bg-dark/50');
+          option.classList.add('bg-success/20');
+          // 在文字后面添加正确答案标记
+          spanElement.innerHTML += '<i class="fa fa-check-circle text-success ml-2"></i>';
+        }
+        
+        // 标记错误选择
+        if (!isCorrect && index === selectedIndex) {
+          option.classList.remove('bg-dark/50');
+          option.classList.add('bg-danger/20');
+          // 在文字后面添加错误答案标记
+          spanElement.innerHTML += '<i class="fa fa-times-circle text-danger ml-2"></i>';
+        }
+      });
+    }
+
+    // 关闭问答界面
+    function closeQuiz() {
+      elements.quizScreen.classList.add('hidden');
+      
+      // 重置当前问答状态，确保可以开始新的问答
+      gameState.currentQuiz = null;
+      
+      // 重新生成怪兽
+      generateMonsters();
+    }
+
+    // 获得经验
+    function gainExperience(amount) {
+      gameState.exp += amount;
+      
+      // 检查是否升级
+      while (gameState.exp >= gameState.expToNextLevel) {
+        levelUp();
+      }
+      
+      // 更新UI
+      updateExpUI();
+    }
+
+    // 升级
+    function levelUp() {
+      // 扣除升级所需经验
+      gameState.exp -= gameState.expToNextLevel;
+      
+      // 提升等级
+      gameState.level++;
+      
+      // 检查是否达到最高等级10级
+      if (gameState.level >= 10) {
+        // 自动关闭答题页面
+        elements.quizScreen.classList.add('hidden');
+        gameState.currentQuiz = null;
+        
+        // 显示飞升提示
+        const ascensionNotification = document.createElement('div');
+        ascensionNotification.className = 'fixed inset-0 bg-gradient-to-br from-purple-900/95 to-blue-900/95 z-50 flex items-center justify-center p-4';
+        
+        // 添加喜庆的动画效果
+        ascensionNotification.innerHTML = `
+          <div class="bg-card rounded-3xl p-8 max-w-md w-full text-center animate-scale-in relative">
+            <button id="close-ascension-btn" class="absolute top-4 right-4 text-ink-medium hover:text-light transition-colors text-xl">
+              <i class="fa fa-times"></i>
+            </button>
+            <div class="mb-6">
+              <div class="inline-block p-4 bg-blue-500/20 rounded-full animate-pulse">
+                <i class="fa fa-rocket text-5xl text-blue-400 animate-float"></i>
+              </div>
+            </div>
+            <h2 class="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+              🎉 恭喜飞升！
+            </h2>
+            <p class="text-xl mb-6 text-ink-light">
+              你已达到PS修仙大师最高境界，成功飞升为PS大仙！
+            </p>
+            <div class="space-y-3">
+              <p class="text-lg text-blue-400">✨ 掌握了所有PS仙法</p>
+              <p class="text-lg text-blue-400">✨ 击败了无数PS妖魔鬼怪</p>
+              <p class="text-lg text-blue-400">✨ 成为了PS修仙界的传奇</p>
+            </div>
+            <div class="mt-8">
+              <button id="back-to-start-btn" class="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105">
+                返回初始页面
+              </button>
+            </div>
+          </div>
+        `;
+        
+        document.body.appendChild(ascensionNotification);
+        
+        // 添加关闭按钮事件
+        const closeBtn = ascensionNotification.querySelector('#close-ascension-btn');
+        const backBtn = ascensionNotification.querySelector('#back-to-start-btn');
+        
+        const closeAscension = () => {
+          ascensionNotification.remove();
+          // 回到初始页面
+          restartGame();
+        };
+        
+        closeBtn.addEventListener('click', closeAscension);
+        backBtn.addEventListener('click', closeAscension);
+        
+        return;
+      }
+      
+      // 根据难度设置不同的10级所需经验
+      let maxExp;
+      switch (gameState.difficulty) {
+        case 1: // 简单难度
+          maxExp = 200; // 10级需要200点经验
+          break;
+        case 2: // 中等难度
+          maxExp = 500; // 10级需要500点经验
+          break;
+        case 3: // 困难难度
+          maxExp = 800; // 10级需要800点经验
+          break;
+        default:
+          maxExp = 200;
+      }
+      
+      // 计算下一级所需经验（1级100，10级根据难度不同，线性增长）
+      const baseExp = 100;
+      const levelSpan = 9; // 从1到10级共9个跨度
+      const expIncreasePerLevel = (maxExp - baseExp) / levelSpan;
+      gameState.expToNextLevel = Math.floor(baseExp + (gameState.level - 1) * expIncreasePerLevel);
+      
+      // 显示升级动画
+      const levelElement = elements.level;
+      
+      // 更新UI
+      updateGameUI();
+      levelElement.classList.add('animate-scale-in');
+      setTimeout(() => {
+        levelElement.classList.remove('animate-scale-in');
+      }, 500);
+      
+      // 升级时血量加满
+      const previousHealth = gameState.health;
+      gameState.health = gameState.maxHealth;
+      updateHealthUI();
+      
+      // 显示血量加满的提示信息
+      if (previousHealth < gameState.maxHealth) {
+        const healthNotification = document.createElement('div');
+        healthNotification.className = 'fixed top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-card rounded-xl p-6 card-glow z-50 flex items-center w-80 max-w-[90%] justify-center';
+        
+        // 设置初始透明度为0，准备延迟入场
+        healthNotification.style.opacity = '0';
+        healthNotification.style.transform = 'translate(-50%, -60%) scale(0.8)';
+        healthNotification.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+        
+        healthNotification.innerHTML = `
+          <div class="w-12 h-12 rounded-full bg-success/50 flex items-center justify-center mr-4 text-success">
+            <span class="text-2xl">✨</span>
+          </div>
+          <div class="text-center">
+            <p class="font-medium text-lg text-success">恭喜玩家升到${gameState.level}级！</p>
+            <p class="text-sm text-ink-medium">${getLevelTitle(gameState.level)}，血量已恢复至最大值</p>
+          </div>
+        `;
+        
+        document.body.appendChild(healthNotification);
+        
+        // 延迟入场效果
+        setTimeout(() => {
+          healthNotification.style.opacity = '1';
+          healthNotification.style.transform = 'translate(-50%, -60%) scale(1)';
+        }, 300);
+        
+        // 3秒后淡出移除
+        setTimeout(() => {
+          healthNotification.style.opacity = '0';
+          setTimeout(() => {
+            healthNotification.remove();
+          }, 500);
+        }, 3000);
+      }
+      
+      // 只有在本次答对过程中还没有获得过宝物时，才给予升级奖励物品
+      if (!gameState.hasGainedItemThisTurn) {
+        gainItem();
+        gameState.hasGainedItemThisTurn = true;
+      }
+    }
+
+    // 获得物品
+    function gainItem() {
+      // 随机选择一个物品
+      const randomItem = itemDatabase[Math.floor(Math.random() * itemDatabase.length)];
+      
+      // 检查是否已存在相同类型的物品
+      const existingItemIndex = gameState.items.findIndex(item => 
+        item.name === randomItem.name && item.type === randomItem.type
+      );
+      
+      if (existingItemIndex >= 0) {
+        // 如果已存在，增加数量
+        const existingItem = gameState.items[existingItemIndex];
+        if (existingItem.count) {
+          existingItem.count++;
+        } else {
+          existingItem.count = 2; // 第一次重复，数量变为2
+        }
+        
+        // 更新最后获得的物品
+        gameState.lastGainedItem = existingItem;
+      } else {
+        // 如果不存在，创建新物品并设置数量为1
+        const newItem = { ...randomItem, count: 1 };
+        gameState.items.push(newItem);
+        gameState.itemsCollected++;
+        
+        // 更新最后获得的物品
+        gameState.lastGainedItem = newItem;
+      }
+      
+      // 标记本次答对已经获得过宝物
+      gameState.hasGainedItemThisTurn = true;
+      
+      // 更新物品栏UI
+      updateItemsUI();
+      
+      // 显示获得物品动画
+      showItemNotification(gameState.lastGainedItem);
+      
+      // 不再自动应用效果，改为主动点击使用
+    }
+    
+    // 使用物品
+    function useItem(index, isSystemCall = false) {
+      console.log('useItem调用，索引:', index, '是否系统调用:', isSystemCall);
+      
+      // 添加安全检查
+      if (index < 0 || index >= gameState.items.length) {
+        console.log('无效的物品索引:', index);
+        return;
+      }
+      
+      // 获取物品引用并保存名称和数据用于后续操作和通知
+      const item = gameState.items[index];
+      const itemName = item.name;
+      
+      // 1. 检查是否是快捷键宝典（acceleration类型）且已使用
+      if (item.type === 'acceleration') {
+        if (gameState.hasAcceleration) {
+          // 显示提示，快捷键宝典已使用，不能重复使用
+          const notification = document.createElement('div');
+          notification.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-card rounded-xl p-6 card-glow z-50 flex items-center w-80 max-w-[90%] justify-center';
+          notification.innerHTML = `
+            <div class="w-12 h-12 rounded-full bg-warning/50 flex items-center justify-center mr-4 text-warning">
+              <span class="text-2xl">⚠️</span>
+            </div>
+            <div class="text-center">
+              <p class="font-medium text-lg text-warning">无法重复使用！</p>
+              <p class="text-sm text-ink-medium">${itemName}已生效，无需重复使用</p>
+            </div>
+          `;
+          
+          document.body.appendChild(notification);
+          
+          // 3秒后淡出移除
+          setTimeout(() => {
+            notification.style.opacity = '0';
+            notification.style.transition = 'opacity 0.5s ease-out';
+            setTimeout(() => {
+              notification.remove();
+            }, 500);
+          }, 3000);
+          
+          // 不减少物品数量，直接返回
+          return;
+        }
+      }
+      
+      // 2. 检查是否是撤销神符（protect类型），不能主动使用
+      if (item.type === 'protect' && !isSystemCall) {
+        // 显示提示，撤销神符不能主动使用
+        const notification = document.createElement('div');
+        notification.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-card rounded-xl p-6 card-glow z-50 flex items-center w-80 max-w-[90%] justify-center';
+        notification.innerHTML = `
+          <div class="w-12 h-12 rounded-full bg-warning/50 flex items-center justify-center mr-4 text-warning">
+            <span class="text-2xl">⚠️</span>
+          </div>
+          <div class="text-center">
+            <p class="font-medium text-lg text-warning">无法主动使用！</p>
+            <p class="text-sm text-ink-medium">${itemName}会在答错或超时自动触发</p>
+          </div>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // 3秒后淡出移除
+        setTimeout(() => {
+          notification.style.opacity = '0';
+          notification.style.transition = 'opacity 0.5s ease-out';
+          setTimeout(() => {
+            notification.remove();
+          }, 500);
+        }, 3000);
+        
+        // 不减少物品数量，直接返回
+        return;
+      }
+      
+      // 3. 检查是否是图层护符（回血物品）且血量已满
+      if (item.type === 'health' && gameState.health >= gameState.maxHealth) {
+        // 显示提示，血量已满无需使用
+        const notification = document.createElement('div');
+        notification.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-card rounded-xl p-6 card-glow z-50 flex items-center w-80 max-w-[90%] justify-center';
+        notification.innerHTML = `
+          <div class="w-12 h-12 rounded-full bg-warning/50 flex items-center justify-center mr-4 text-warning">
+            <span class="text-2xl">⚠️</span>
+          </div>
+          <div class="text-center">
+            <p class="font-medium text-lg text-warning">血量已满！</p>
+            <p class="text-sm text-ink-medium">无需使用${itemName}，血量已达到最大值</p>
+          </div>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // 3秒后淡出移除
+        setTimeout(() => {
+          notification.style.opacity = '0';
+          notification.style.transition = 'opacity 0.5s ease-out';
+          setTimeout(() => {
+            notification.remove();
+          }, 500);
+        }, 3000);
+        
+        // 不减少物品数量，直接返回
+        return;
+      }
+      
+      // 保存物品数据用于通知显示（使用前的数据）
+      const itemForNotification = { ...item };
+      
+      // 处理物品移除/数量减少
+      // 注意：只处理指定索引处的物品，确保多个同名物品时只使用一个
+      // 这是为了确保数据模型的一致性，防止游戏状态和UI不同步
+      if (!item.count || item.count <= 1) {
+        // 如果没有count属性或count为1，则从物品栏数组中移除当前索引的物品
+        console.log('从游戏数据中移除物品:', itemName, '索引:', index);
+        gameState.items.splice(index, 1);
+      } else {
+        // 如果有多个，减少数量，不影响其他同名物品
+        item.count--;
+        console.log('减少物品数量:', itemName, '索引:', index, '剩余:', item.count);
+      }
+      
+      // 应用物品效果
+      applyItemEffect(item);
+      
+      // 如果是回血物品，清除结束游戏的定时器
+      if (item.type === 'health') {
+        if (gameState.endGameTimer) {
+          clearTimeout(gameState.endGameTimer);
+          gameState.endGameTimer = null;
+          console.log('使用回血物品，清除结束游戏定时器');
+        }
+      }
+      
+      // 应用完效果后立即调用updateItemsUI()以确保UI与游戏数据同步
+      // 移除延迟，确保物品使用后UI立即更新，防止数据和UI不同步
+      console.log('立即更新UI，游戏物品数量:', gameState.items.length);
+      updateItemsUI();
+      
+      // 显示使用物品的动画通知，撤销神符除外，因为它会在punishPlayer中显示更具体的提示
+      if (item.type !== 'protect') {
+        showItemUsedNotification(itemForNotification);
+      }
+    }
+    
+    // 显示使用物品通知
+    function showItemUsedNotification(item) {
+      const notification = document.createElement('div');
+      notification.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-card rounded-xl p-6 card-glow z-50 flex items-center w-80 max-w-[90%] justify-center';
+      notification.innerHTML = `
+        <div class="w-12 h-12 rounded-full bg-dark/50 flex items-center justify-center mr-4 ${item.color || 'text-yellow-400'}">
+          <span class="text-2xl">${getItemSymbol(item.icon)}</span>
+        </div>
+        <div class="text-center">
+          <p class="font-medium text-lg">使用宝物：${item.name}</p>
+          <p class="text-sm text-ink-medium">效果：${item.effect}</p>
+        </div>
+      `;
+      
+      document.body.appendChild(notification);
+      
+      // 设置初始透明度和缩放，添加过渡效果
+      notification.style.opacity = '0';
+      notification.style.transform = 'translate(-50%, -50%) scale(0.8)';
+      notification.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+      
+      // 延迟入场效果
+      setTimeout(() => {
+        notification.style.opacity = '1';
+        notification.style.transform = 'translate(-50%, -50%) scale(1)';
+      }, 10);
+      
+      // 1.5秒后淡出移除
+      setTimeout(() => {
+        notification.style.opacity = '0';
+        setTimeout(() => {
+          notification.remove();
+        }, 500);
+      }, 1500);
+    }
+    
+    // 显示特殊物品提示
+    function showSpecialItemHint(itemName, hintText) {
+      const hint = document.createElement('div');
+      // 使用紫色调背景和金色光晕效果，使其更具神秘感
+      hint.className = 'fixed top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-purple-900/90 rounded-xl p-6 z-51 w-80 max-w-[90%] text-center';
+      hint.innerHTML = `
+        <div class="mb-2">
+          <span class="text-3xl animate-pulse">✨</span>
+        </div>
+        <p class="font-bold text-xl text-white mb-2">${hintText}</p>
+        <p class="text-sm text-purple-200">「${itemName}」效果显现</p>
+      `;
+      
+      document.body.appendChild(hint);
+      
+      // 设置初始状态，添加更华丽的过渡效果
+      hint.style.opacity = '0';
+      hint.style.transform = 'translate(-50%, -50%) scale(0.9)';
+      hint.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.6s ease-out';
+      hint.style.boxShadow = '0 0 10px rgba(255, 215, 0, 0.3)';
+      
+      // 延迟入场效果，先出现基础效果
+      setTimeout(() => {
+        hint.style.opacity = '1';
+        hint.style.transform = 'translate(-50%, -50%) scale(1)';
+        hint.style.boxShadow = '0 0 25px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 215, 0, 0.3)';
+      }, 10);
+      
+      // 2.5秒后淡出移除，比普通通知显示时间更长
+      setTimeout(() => {
+        hint.style.opacity = '0';
+        hint.style.transform = 'translate(-50%, -50%) scale(0.9)';
+        hint.style.boxShadow = '0 0 5px rgba(255, 215, 0, 0.2)';
+        setTimeout(() => {
+          if (document.body.contains(hint)) {
+            hint.remove();
+          }
+        }, 600);
+      }, 2500);
+    }
+    
+    // 获取物品符号
+    function getItemSymbol(icon) {
+      const symbolMap = {
+        'fa-book': '📚',
+        'fa-keyboard': '⌨️',
+        'fa-layer-group': '🧩',
+        'fa-shield-alt': '🛡️',
+        'fa-wand-magic-sparkles': '🪄',
+        'fa-undo': '↩️',
+        'fa-pills': '💊',
+        'fa-mirror': '🪞',
+        'fa-crown': '👑',
+        'fa-gem': '💎',
+        'fa-treasure-chest': '📦'
+      };
+      return symbolMap[icon] || '💎';
+    }
+
+    // 应用物品效果
+    function applyItemEffect(item) {
+      switch (item.type) {
+        case 'exp':
+          // 提取数字
+          const expAmount = parseInt(item.effect.match(/\d+/)[0]);
+          gainExperience(expAmount);
+          break;
+        case 'health':
+          // 提取数字
+          const healthAmount = parseInt(item.effect.match(/\d+/)[0]);
+          // 增加血量，但不超过最大值
+          gameState.health = Math.min(gameState.maxHealth, gameState.health + healthAmount);
+          // 更新血量UI
+          updateHealthUI();
+          break;
+
+        case 'time':
+          // 提取数字
+          const timeAmount = parseInt(item.effect.match(/\d+/)[0]);
+          // 时间效果在无限模式下无效
+          break;
+        // PS至尊宝相关的level类型已移除
+        case 'protect':
+          // 保护效果，记录下来
+          // 清除之前的保护状态，确保每次只生效一次
+          gameState.hasProtection = true;
+          console.log('撤销神符应用效果：保护状态设置为true');
+          break;
+        case 'refresh':
+          // 刷新怪物效果
+          generateMonsters();
+          console.log('魔棒法器应用效果：刷新所有怪物');
+          break;
+        case 'acceleration':
+          // 加速光环效果，下一题答对获得双倍经验
+          gameState.hasAcceleration = true;
+          console.log('快捷键宝典应用效果：加速光环设置为true');
+          break;
+      }
+    }
+
+    // 显示获得物品通知
+    function showItemNotification(item) {
+      // 特殊符号映射表
+      const symbolMap = {        
+        'fa-book': '📚',
+        'fa-keyboard': '⌨️',
+        'fa-layer-group': '🧩',
+        'fa-shield-alt': '🛡️',
+        'fa-wand-magic-sparkles': '🪄',
+        'fa-undo': '↩️',
+        'fa-pills': '💊',
+        'fa-mirror': '🪞',
+        'fa-crown': '👑',
+        'fa-gem': '💎'
+      };
+      
+      const notification = document.createElement('div');
+      notification.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-card rounded-xl p-6 card-glow z-50 flex items-center w-80 max-w-[90%] justify-center';
+      // 初始设置透明度为0，准备延迟入场
+      notification.style.opacity = '0';
+      notification.style.transform = 'translate(-50%, -50%) scale(0.8)';
+      notification.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+      
+      // 获取对应的特殊符号
+      const specialSymbol = symbolMap[item.icon] || '💎';
+      const itemColor = item.color || 'text-yellow-400';
+      
+      notification.innerHTML = `
+        <div class="w-12 h-12 rounded-full bg-dark/50 flex items-center justify-center mr-4 ${itemColor}">
+          <span class="text-2xl">${specialSymbol}</span>
+        </div>
+        <div class="text-center">
+          <p class="font-medium text-lg">获得宝物：${item.name}</p>
+          <p class="text-sm text-ink-medium">效果：${item.effect}</p>
+        </div>
+      `;
+      
+      document.body.appendChild(notification);
+      
+      // 延迟入场效果
+      setTimeout(() => {
+        notification.style.opacity = '1';
+        notification.style.transform = 'translate(-50%, -50%) scale(1)';
+      }, 300); // 300ms延迟入场
+      
+      // 1.5秒后移除
+      setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transition = 'opacity 0.5s';
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 500);
+      }, 1500);
+    }
+
+    // 惩罚玩家
+    function punishPlayer() {
+      // 检查是否有保护
+      if (gameState.hasProtection) {
+        // 先显示通知，然后重置保护状态
+        const notification = document.createElement('div');
+        
+        // 立即重置保护状态，确保只生效一次
+        gameState.hasProtection = false;
+        notification.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-card rounded-xl p-6 card-glow z-50 flex items-center w-80 max-w-[90%] justify-center';
+        notification.innerHTML = `
+          <div class="w-10 h-10 rounded-full bg-dark/50 flex items-center justify-center mr-3">
+            <i class="fa fa-undo text-primary text-xl"></i>
+          </div>
+          <div>
+            <p class="font-medium">撤销神符生效</p>
+            <p class="text-xs text-ink-medium">免受此次惩罚</p>
+          </div>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // 3秒后移除
+        setTimeout(() => {
+          notification.style.opacity = '0';
+          notification.style.transition = 'opacity 0.5s';
+          setTimeout(() => {
+            document.body.removeChild(notification);
+          }, 500);
+        }, 3000);
+        
+        return;
+      }
+      
+      // 根据需求，不再扣除经验，只在checkAnswer中扣除血量
+      // 保留此函数以处理保护符的情况
+      
+      // 显示惩罚通知
+      const notification = document.createElement('div');
+      notification.className = 'fixed bottom-4 right-4 bg-card rounded-xl p-4 card-glow-danger animate-slide-up z-50 flex items-center';
+      notification.innerHTML = `
+        <div class="w-10 h-10 rounded-full bg-dark/50 flex items-center justify-center mr-3">
+          <i class="fa fa-trophy text-danger"></i>
+        </div>
+        <div>
+          <p class="font-medium text-danger">受到惩罚</p>
+          <p class="text-xs text-ink-medium">经验减少${expPenalty}点</p>
+        </div>
+      `;
+      
+      document.body.appendChild(notification);
+      
+      // 3秒后移除
+      setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transition = 'opacity 0.5s';
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 500);
+      }, 3000);
+      
+      // 摇shake屏幕效果
+      document.body.classList.add('animate-shake');
+      setTimeout(() => {
+        document.body.classList.remove('animate-shake');
+      }, 500);
+    }
+
+    // 更新经验UI
+    function updateExpUI() {
+      const expPercentage = (gameState.exp / gameState.expToNextLevel) * 100;
+      elements.expBar.style.width = `${expPercentage}%`;
+      elements.expText.textContent = `${gameState.exp}/${gameState.expToNextLevel}`;
+      
+      // 经验条动画
+      elements.expBar.classList.add('transition-all', 'duration-500');
+    }
+
+    // 更新物品栏UI
+    function updateItemsUI() {
+      // 特殊符号映射表
+      const symbolMap = {
+        'fa-book': '📚',
+        'fa-keyboard': '⌨️',
+        'fa-layer-group': '🧩',
+        'fa-shield-alt': '🛡️',
+        'fa-wand-magic-sparkles': '🪄',
+        'fa-undo': '↩️',
+        'fa-pills': '💊',
+        'fa-mirror': '🪞',
+        'fa-crown': '👑',
+        'fa-gem': '💎',
+        'fa-treasure-chest': '📦'
+      };
+      
+      if (gameState.items.length === 0) {
+        elements.itemsContainer.innerHTML = `
+          <div class="flex-shrink-0 w-16 h-16 bg-ink-dark/30 rounded-lg flex flex-col items-center justify-center text-ink-medium">
+            <div class="text-xl mb-1">📦</div>
+            <span class="text-xs">空空如也</span>
+          </div>
+        `;
+        return;
+      }
+      
+      elements.itemsContainer.innerHTML = '';
+      
+      gameState.items.forEach((item, index) => {
+        // 确保所有物品都有图标，如果没有则使用默认图标
+        const itemIcon = item.icon || 'fa-gem';
+        const itemColor = item.color || 'text-yellow-400';
+        
+        // 获取对应的特殊符号
+        const specialSymbol = symbolMap[itemIcon] || '💎';
+        
+        const itemElement = document.createElement('div');
+          itemElement.className = 'flex-shrink-0 w-16 h-16 bg-dark/50 rounded-lg flex flex-col items-center justify-center p-2 hover:scale-105 transition-transform cursor-pointer border border-ink-dark/50 relative';
+          itemElement.style.animationDelay = `${index * 0.1}s`;
+          
+          // 构建物品UI，包括数量标识
+          let countHtml = '';
+          // 确保count是数字类型并进行调试
+          const itemCount = typeof item.count === 'number' ? item.count : 1;
+          console.log('物品数量检查:', item.name, '索引:', index, 'count:', itemCount);
+          
+          // 只有当物品数量大于1时才显示数量标识
+          // 修复了当物品数量为1时可能错误显示的问题
+          if (itemCount > 1) {
+            countHtml = `
+              <div class="absolute -top-2 -right-3 bg-danger text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center z-10">
+                ${itemCount}
+              </div>
+            `;
+          } else {
+            // 确保当物品数量为1时，不显示数量标识
+            // 清除任何可能存在的count属性，防止显示混乱
+            if (item.count === 1) {
+              // 为了保持一致性，可以考虑设置count为1或移除该属性
+              // 这里保留count=1但不显示标识
+            }
+          }
+          
+          itemElement.innerHTML = `
+            <div class="w-8 h-8 flex items-center justify-center rounded-full bg-dark/80 mb-1 ${itemColor} relative">
+              <span class="text-lg animate-float">${specialSymbol}</span>
+              ${countHtml}
+            </div>
+            <span class="text-xs text-center truncate">${item.name}</span>
+          `;
+        
+        // 悬停显示效果
+        itemElement.addEventListener('mouseenter', () => {
+          const tooltip = document.createElement('div');
+          tooltip.className = 'absolute bg-dark/90 text-light text-xs p-2 rounded-lg z-50 max-w-40';
+          tooltip.textContent = `${item.name} - ${item.effect}`;
+          tooltip.id = 'item-tooltip';
+          
+          const rect = itemElement.getBoundingClientRect();
+          tooltip.style.top = `${rect.bottom + window.scrollY + 5}px`;
+          tooltip.style.left = `${rect.left + window.scrollX + rect.width/2 - 40}px`;
+          
+          document.body.appendChild(tooltip);
+        });
+        
+        itemElement.addEventListener('mouseleave', () => {
+          const tooltip = document.getElementById('item-tooltip');
+          if (tooltip) {
+            document.body.removeChild(tooltip);
+          }
+        });
+        
+        // 点击使用物品
+        itemElement.addEventListener('click', () => {
+          // 检查是否正在使用其他道具，如果是则不允许使用
+          if (gameState.isItemBeingUsed) {
+            console.log('正在使用其他道具，无法使用当前道具');
+            return;
+          }
+          
+          console.log('点击物品:', item.name, '当前索引:', index);
+          
+          // 移除提示框
+          const tooltip = document.getElementById('item-tooltip');
+          if (tooltip) {
+            document.body.removeChild(tooltip);
+          }
+          
+          // 设置正在使用道具的状态
+          gameState.isItemBeingUsed = true;
+          
+          // 添加点击动画提供即时反馈
+          itemElement.style.transform = 'scale(0.95)';
+          
+          // 关键修复：使用超时确保动画效果可见，但不会影响数据同步
+          // 这样可以在视觉上提供反馈，同时保证useItem函数能正确执行
+          setTimeout(() => {
+            // 立即调用useItem函数处理物品的实际移除和效果应用
+            useItem(index);
+            
+            // 重置动画状态
+            itemElement.style.transform = 'scale(1)';
+            
+            // 重置正在使用道具的状态
+            gameState.isItemBeingUsed = false;
+          }, 30);
+        });
+        
+        elements.itemsContainer.appendChild(itemElement);
+      });
+    }
+
+
+
+    // 更新游戏UI
+     function updateGameUI() {
+       elements.level.textContent = gameState.level;
+       
+       // 更新等级称号
+       if (elements.levelTitle) {
+         elements.levelTitle.textContent = `(${getLevelTitle(gameState.level)})`;
+       }
+       
+       updateExpUI();
+       
+       // 更新血量UI
+       updateHealthUI();
+       
+       // 更新难度显示
+       if (gameState.difficulty && elements.difficultyDisplay) {
+         elements.difficultyDisplay.textContent = gameState.difficultyNames[gameState.difficulty - 1];
+       }
+       
+       updateItemsUI();
+     }
+
+    // 结束游戏
+    function endGame() {
+      gameState.isPlaying = false;
+      
+      // 清除计时器
+      if (gameState.quizTimer) {
+        clearInterval(gameState.quizTimer);
+      }
+      
+      // 更新结束界面
+      elements.endLevel.textContent = `${gameState.level}级 (${getLevelTitle(gameState.level)})`;
+      elements.endMonsters.textContent = `${gameState.monstersDefeated}只`;
+      elements.endItems.textContent = `${gameState.itemsCollected}个`;
+      
+      // 根据难度和等级判断结果
+      const difficultyBonus = gameState.difficulty === 3 ? '（困难模式）' : 
+                            (gameState.difficulty === 2 ? '（中等模式）' : '（简单模式）');
+      
+      if (gameState.level >= 5) {
+        elements.endIcon.className = 'fa-trophy text-yellow-400 text-5xl mb-4';
+        elements.endTitle.textContent = `修仙成功！${difficultyBonus}`;
+        elements.endMessage.textContent = `你在${gameState.difficultyNames[gameState.difficulty - 1]}难度下已达到${getLevelTitle(gameState.level)}，成为PS大师！`;
+      } else if (gameState.level >= 3) {
+        elements.endIcon.className = 'fa-star text-primary text-5xl mb-4';
+        elements.endTitle.textContent = `修仙小成！${difficultyBonus}`;
+        elements.endMessage.textContent = `你在${gameState.difficultyNames[gameState.difficulty - 1]}难度下已达到${getLevelTitle(gameState.level)}，继续努力可成为PS大师！`;
+      } else {
+        elements.endIcon.className = 'fa-meh-o text-ink-medium text-5xl mb-4';
+        elements.endTitle.textContent = `修仙失败！${difficultyBonus}`;
+        elements.endMessage.textContent = `你在${gameState.difficultyNames[gameState.difficulty - 1]}难度下仅达到${getLevelTitle(gameState.level)}，还需多加练习PS技巧！`;
+      }
+      
+      // 关闭答题界面
+      elements.quizScreen.classList.add('hidden');
+      
+      // 显示结束界面
+      elements.endScreen.classList.remove('hidden');
+      
+      // 确保重新绑定restartGame事件，防止事件丢失
+      elements.restartBtn.onclick = restartGame;
+    }
+
+    // 获取等级称号
+    function getLevelTitle(level) {
+      const titles = [
+        '凡人',
+        '筑基期',
+        '金丹期',
+        '元婴期',
+        '化神期',
+        '炼虚期',
+        '合体期',
+        '大乘期',
+        '渡劫期',
+        'PS仙人'
+      ];
+      
+      return titles[Math.min(level - 1, titles.length - 1)];
+    }
+
+    // 添加通知函数
+    function showNotification(message, type = 'info') {
+      const notification = document.createElement('div');
+      let bgClass, textClass, iconClass;
+      
+      switch (type) {
+        case 'warning':
+          bgClass = 'bg-amber-500/20';
+          textClass = 'text-amber-400';
+          iconClass = 'fa-exclamation-circle';
+          break;
+        case 'error':
+          bgClass = 'bg-danger/20';
+          textClass = 'text-danger';
+          iconClass = 'fa-times-circle';
+          break;
+        default:
+          bgClass = 'bg-primary/20';
+          textClass = 'text-primary';
+          iconClass = 'fa-info-circle';
+      }
+      
+      notification.className = `fixed top-4 right-4 ${bgClass} ${textClass} rounded-xl p-4 z-50 flex items-center animate-slide-up`;
+      notification.innerHTML = `
+        <i class="fa ${iconClass} mr-3 text-xl"></i>
+        <span>${message}</span>
+      `;
+      
+      document.body.appendChild(notification);
+      
+      // 1秒后移除
+      setTimeout(() => {
+        notification.classList.add('animate-fade-out');
+        setTimeout(() => {
+          if (document.body.contains(notification)) {
+            document.body.removeChild(notification);
+          }
+        }, 300);
+      }, 1000);
+    }
+    
+    // 初始化游戏
+    document.addEventListener('DOMContentLoaded', initGame);
+  </script>
+</body>
+</html>
+
