@@ -193,7 +193,7 @@
     </header>
 
     <!-- 游戏状态区域 -->
-      <div id="game-status" class="bg-card rounded-xl p-4 mb-6 flex flex-wrap justify-between items-center">
+      <div id="game-status" class="bg-card rounded-xl p-4 mb-6 flex flex-wrap justify-between items-center hidden">
         <div class="flex items-center mb-2 sm:mb-0">
           <i class="fa fa-balance-scale text-secondary text-xl mr-2"></i>
           <span class="text-lg font-medium">难度:</span>
@@ -229,7 +229,7 @@
     <!-- 游戏主区域 -->
     <main class="mb-8">
       <!-- 开始界面 -->
-      <div id="start-screen" class="flex flex-col items-center justify-center  animate-fade-in">
+      <div id="start-screen" class="flex flex-col items-center justify-center py-12 animate-fade-in">
         <div class="bg-card rounded-2xl p-8 max-w-md w-full card-glow">
           <div class="text-center mb-6">
             <i class="fa fa-magic text-primary text-5xl mb-4 animate-float"></i>
@@ -1539,6 +1539,7 @@
        gameScreen: document.getElementById('game-screen'),
        quizScreen: document.getElementById('quiz-screen'),
        endScreen: document.getElementById('end-screen'),
+       gameStatus: document.getElementById('game-status'),
        easyBtn: document.getElementById('easy-btn'),
        mediumBtn: document.getElementById('medium-btn'),
        hardBtn: document.getElementById('hard-btn'),
@@ -1602,6 +1603,8 @@
      // 选择难度
      function selectDifficulty(difficulty) {
        gameState.difficulty = difficulty;
+       // 重置连续答对计数器，确保新难度从零开始计算
+       gameState.consecutiveCorrectAnswers = 0;
        elements.difficultyInfo.textContent = `已选择 ${gameState.difficultyNames[difficulty - 1]} 难度，准备开始修仙之旅！`;
        
        // 延迟一秒后开始游戏
@@ -1615,6 +1618,8 @@
       // 切换屏幕
       elements.startScreen.classList.add('hidden');
       elements.gameScreen.classList.remove('hidden');
+      // 显示游戏状态栏
+      elements.gameStatus.classList.remove('hidden');
       
       // 更新游戏状态
       gameState.isPlaying = true;
@@ -1646,6 +1651,8 @@
        elements.endScreen.classList.add('hidden');
        elements.startScreen.classList.remove('hidden');
        elements.gameScreen.classList.add('hidden');
+       // 隐藏游戏状态栏
+       elements.gameStatus.classList.add('hidden');
        
        // 重置游戏状态
        gameState.isPlaying = false;
