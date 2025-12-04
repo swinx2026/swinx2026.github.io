@@ -141,8 +141,8 @@ function initSnowEffect() {
     const snowContainer = document.getElementById('snow-container');
     if (!snowContainer) return;
     
-    // 雪花数量
-    const snowflakeCount = 100;
+    // 雪花数量 - 增加到200个
+    const snowflakeCount = 200;
     
     // 生成雪花
     function createSnowflake() {
@@ -154,9 +154,9 @@ function initSnowEffect() {
         snowflake.style.width = `${size}px`;
         snowflake.style.height = `${size}px`;
         
-        // 随机位置
+        // 随机位置 - 包括屏幕内的位置，确保初始就有全屏雪花
         snowflake.style.left = `${Math.random() * 100}vw`;
-        snowflake.style.top = '-10vh';
+        snowflake.style.top = `${Math.random() * 110}vh`;
         
         // 随机透明度（0.3-1）
         snowflake.style.opacity = Math.random() * 0.7 + 0.3;
@@ -169,12 +169,16 @@ function initSnowEffect() {
         const duration = Math.random() * 10 + 5;
         snowflake.style.animationDuration = `${duration}s`;
         
-        // 随机动画延迟
-        snowflake.style.animationDelay = `${Math.random() * 5}s`;
+        // 随机动画延迟 - 去掉延迟，确保立即显示
+        snowflake.style.animationDelay = `0s`;
         
         // 随机X轴偏移量（50-150px）
         const translateX = Math.random() * 100 + 50;
         snowflake.style.setProperty('--translate-x', `${translateX}px`);
+        
+        // 随机摆动幅度（10-30px）
+        const swayAmount = Math.random() * 20 + 10;
+        snowflake.style.setProperty('--sway-amount', `${swayAmount}px`);
         
         snowContainer.appendChild(snowflake);
         
@@ -184,11 +188,11 @@ function initSnowEffect() {
         }, (duration + 5) * 1000);
     }
     
-    // 初始生成所有雪花
+    // 初始生成所有雪花 - 立即生成，不延迟
     for (let i = 0; i < snowflakeCount; i++) {
-        setTimeout(createSnowflake, Math.random() * 5000);
+        createSnowflake();
     }
     
-    // 持续生成新雪花
-    setInterval(createSnowflake, 200);
+    // 持续生成新雪花 - 增加生成频率
+    setInterval(createSnowflake, 100);
 }

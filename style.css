@@ -50,25 +50,33 @@ body {
     background-color: white;
     border-radius: 50%;
     opacity: 0.8;
-    animation: fall linear infinite;
+    animation: fall-with-sway linear infinite;
     transform: rotate(20deg);
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-/* 雪花飘落动画 */
-@keyframes fall {
+/* 雪花下落并摆动的复合动画 */
+@keyframes fall-with-sway {
     0% {
         transform: translateY(-10vh) translateX(0) rotate(20deg);
         opacity: 0;
     }
     10% {
         opacity: 0.8;
+        transform: translateY(5vh) translateX(0) rotate(20deg);
+    }
+    30% {
+        transform: translateY(30vh) translateX(var(--sway-amount, 20px)) rotate(20deg);
+    }
+    60% {
+        transform: translateY(60vh) translateX(calc(var(--sway-amount, 20px) * -1)) rotate(20deg);
     }
     90% {
         opacity: 0.8;
+        transform: translateY(90vh) translateX(0) rotate(20deg);
     }
     100% {
-        transform: translateY(110vh) translateX(var(--translate-x, 100px)) rotate(20deg);
+        transform: translateY(110vh) translateX(calc(var(--sway-amount, 20px) * 0.3)) rotate(20deg);
         opacity: 0;
     }
 }
