@@ -9,12 +9,16 @@
 <body>
     <!-- 视频背景 -->
     <div id="background-video"></div>
+    <div id="background-layer-2"></div>
     <!-- 雪花容器 -->
     <div id="snow-container"></div>
     
     <div class="container">
         <header>
-            <img src="pic/logo.png" alt="仙人指路" class="site-logo">
+            <div id="time-display" style="text-align: center; margin-bottom: 20px;">
+                <div id="clock" style="font-size: 60px; font-weight: bold; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5);"></div>
+                <div id="date-info" style="font-size: 14px; color: rgba(255,255,255,0.9); margin-top: 5px;"></div>
+            </div>
             <div class="search-box">
                 <select id="searchEngineSelect" class="search-engine">
                     <option value="baidu">百度</option>
@@ -33,15 +37,15 @@
             </div>
             
             <!-- 热门搜索 -->
-            <div class="hot-searches" style="margin-top: 10px; text-align: center; color: #666; font-size: 14px;">
+            <div class="hot-searches" style="margin-top: 10px; text-align: center; color: white; font-size: 14px;">
                 <span style="margin-right: 10px;"><img src="pic/fire.png" alt="热门" style="width: 12px; height: 12px; vertical-align: middle; margin-right: 5px;">热门常用：</span>
-                <a href="https://mp.weixin.qq.com/s?__biz=Mzg3NTU2NTMwNw==&mid=2247526073&idx=1&sn=5dcdfea6a4074cb90cf0b0bcd5fc3007&chksm=cf3dbf2df84a363bee06a7670a28661e33e1f563a119f55f98bf2f3aa63097d8abb97ab1956c&scene=178&cur_album_id=3854794802835308550#rd" target="_blank" style="margin: 0 8px; color: #666; text-decoration: none;">软件下载</a>
-                <a href="https://www.psdashi.com/" target="_blank" style="margin: 0 8px; color: #666; text-decoration: none;">PS下载</a>
-                <a href="https://www.likefont.com/" target="_blank" style="margin: 0 8px; color: #666; text-decoration: none;">字体识别1</a>
-                <a href="https://font.chinaz.com/zhaozi/" target="_blank" style="margin: 0 8px; color: #666; text-decoration: none;">字体识别2</a>
-                <a href="https://font.chinaz.com/ai/" target="_blank" style="margin: 0 8px; color: #666; text-decoration: none;">AI识字</a>
-                <a href="https://ps.gaoding.com/" target="_blank" style="margin: 0 8px; color: #666; text-decoration: none;">PS网页版</a>
-           
+                <a href="https://mp.weixin.qq.com/s?__biz=Mzg3NTU2NTMwNw==&mid=2247526073&idx=1&sn=5dcdfea6a4074cb90cf0b0bcd5fc3007&chksm=cf3dbf2df84a363bee06a7670a28661e33e1f563a119f55f98bf2f3aa63097d8abb97ab1956c&scene=178&cur_album_id=3854794802835308550#rd" target="_blank" style="margin: 0 8px; color: white; text-decoration: none;">软件下载</a>
+                <a href="https://www.psdashi.com/" target="_blank" style="margin: 0 8px; color: white; text-decoration: none;">PS下载</a>
+                <a href="https://www.likefont.com/" target="_blank" style="margin: 0 8px; color: white; text-decoration: none;">字体识别1</a>
+                <a href="https://font.chinaz.com/zhaozi/" target="_blank" style="margin: 0 8px; color: white; text-decoration: none;">字体识别2</a>
+                <a href="https://font.chinaz.com/ai/" target="_blank" style="margin: 0 8px; color: white; text-decoration: none;">AI识字</a>
+                <a href="https://ps.gaoding.com/" target="_blank" style="margin: 0 8px; color: white; text-decoration: none;">PS网页版</a>
+        
             </div>
         </header>
         
@@ -179,130 +183,223 @@
     <!-- 小程序链接横栏 -->
      <section class="mini-programs">
         
-         <h3 class="mini-programs-title">修仙<br>小程序</h3>
+         <h3 class="mini-programs-title">设计<br>百宝箱</h3>
          <div class="mini-programs-list">
-            <a href="#" class="mini-program-card" id="fortune-telling-card">
-                 <div class="mini-program-icon"><img src="pic/X1.png" alt="小程序4"></div>
-                 <div class="mini-program-name">卜上一卦</div>
+              <a href="#" class="mini-program-card" id="treasure-hunt-card" target="_blank">
+                 <div class="mini-program-icon"><img src="pic/X2.png" alt="设计网站"></div>
+                 <div class="mini-program-name">设计网站</div>
              </a>
-               <a href="#" class="mini-program-card"  id="cultivation-guide-card" target="_blank">
-                 <div class="mini-program-icon"><img src="pic/X8.png" alt="小程序1"></div>
-                 <div class="mini-program-name">感悟天道</div>
+            <a href="https://mp.weixin.qq.com/s?__biz=Mzg3NTU2NTMwNw==&mid=2247526073&idx=1&sn=5dcdfea6a4074cb90cf0b0bcd5fc3007&chksm=cf3dbf2df84a363bee06a7670a28661e33e1f563a119f55f98bf2f3aa63097d8abb97ab1956c&scene=178&cur_album_id=3854794802835308550#rd" class="mini-program-card" target="_blank">
+                 <div class="mini-program-icon"><img src="pic/X1.png" alt="软件大全"></div>
+                 <div class="mini-program-name">软件大全</div>
              </a>
-
-             <a href="#" class="mini-program-card" id="treasure-hunt-card" target="_blank">
-                 <div class="mini-program-icon"><img src="pic/X12.png" alt="秘境探索"></div>
-                 <div class="mini-program-name">秘境探索</div>
+             <a href="#" class="mini-program-card" id="font-recognition-card">
+                 <div class="mini-program-icon"><img src="pic/X8.png" alt="字体识别"></div>
+                 <div class="mini-program-name">字体识别</div>
              </a>
-
-                           <a href="#" class="mini-program-card" id="heavenly-materials-card">
-                 <div class="mini-program-icon"><img src="pic/X11.png" alt="小程序1"></div>
-                 <div class="mini-program-name">天材地宝</div>
+               <a href="https://www.psdashi.com/" class="mini-program-card" target="_blank">
+                 <div class="mini-program-icon"><img src="pic/X5.png" alt="PS下载"></div>
+                 <div class="mini-program-name">PS下载</div>
              </a>
-    <a href="#" class="mini-program-card" id="pill-game-card" >
-                 <div class="mini-program-icon"><img src="pic/X4.png" alt="灵丹妙药"></div>
-                 <div class="mini-program-name">灵丹妙药</div>
+   <a href="https://ps.gaoding.com/" class="mini-program-card" target="_blank">
+                 <div class="mini-program-icon"><img src="pic/X6.png" alt="PS下载"></div>
+                 <div class="mini-program-name">PS在线</div>
              </a>
-             
-              <a href="#" class="mini-program-card" id="cultivation-practice-card" >
-                 <div class="mini-program-icon"><img src="pic/X9.png" alt="功法修炼"></div>
-                 <div class="mini-program-name">功法修炼</div>
-             </a>
-
-            
-                                     <a href="#" class="mini-program-card" id="artifact-card" >
-                 <div class="mini-program-icon"><img src="pic/X3.png" alt="神器法宝"></div>
-                 <div class="mini-program-name">神器法宝</div>
-             </a>
-             
-             <a href="#" class="mini-program-card" id="ps-cultivation-card">
-                 <div class="mini-program-icon"><img src="pic/X10.png" alt="PS修仙"></div>
-                 <div class="mini-program-name">PS修仙</div>
-             </a>
+           
              
           
          </div>
      </section>
 <section class="copyright-section">
-    <div class="copyright">Copyright © 2025 Swin.X 测试版本8.11.18</div>
+    <div class="copyright">Copyright © 2026 Swin.X 版本2.26</div>
 </section>
-<script src="treasure_card_game.js"></script>
-    <script src="fortune_telling.js"></script>
-    <script src="cultivation_guide.js"></script>
-    <script src="treasure_hunt.js"></script>
-    <script src="pill_game.js"></script>
+<script src="treasure_hunt.js"></script>
     <script>
-        // 初始化卦象功能和法宝获取功能
         document.addEventListener('DOMContentLoaded', function() {
-            if (window.initFortuneTelling) {
-                window.initFortuneTelling();
-            }
             if (window.initTreasureHunt) {
                 window.initTreasureHunt();
             }
         });
     </script>
-    <!-- PS修仙弹窗 -->
-    <div id="ps-cultivation-modal" class="modal" style="display: none; background-color: rgba(0,0,0,0.5); backdrop-filter: blur(5px); overflow: hidden !important;">
-        <div class="modal-content" style="width: 1400px; height: 800px; max-width: none; max-height: none; margin: 2% auto; border-radius: 10px; border: none; box-shadow: 0 5px 15px rgba(0,0,0,0.3); animation: modalAppear 0.3s ease-out; overflow: hidden !important; padding: 0; position: relative;">
-            <div class="modal-header" style="padding: 0; background-color: transparent; color: white; border-top-left-radius: 10px; border-top-right-radius: 10px; display: flex; justify-content: flex-end; align-items: flex-start; margin: 0; position: absolute; top: 0; left: 0; right: 0; z-index: 10;">
-                <span class="close-btn" id="close-ps-cultivation" style="font-size: 24px; color: white; background-color: rgba(0,0,0,0.5); width: 30px; height: 30px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; margin: 10px 10px; padding: 0;">&times;</span>
-            </div>
-            <div class="modal-body" style="height: 100%; padding: 0; overflow: hidden !important; margin: 0;">
-                <iframe src="PS.html" style="width: 100%; height: 100%; border: none; overflow: hidden !important; scrollbar-width: none; -ms-overflow-style: none; display: block;"></iframe>
-            </div>
-        </div>
-    </div>
+    
     
     <script>
-        // 初始化修炼宝典功能
         document.addEventListener('DOMContentLoaded', function() {
-            initCultivationGuide();
-            
-            // 为功法修炼卡片添加点击事件
-            const cultivationPracticeCard = document.getElementById('cultivation-practice-card');
-            if (cultivationPracticeCard) {
-                cultivationPracticeCard.addEventListener('click', function(e) {
+            // 为字体识别卡片添加点击事件
+            const fontRecognitionCard = document.getElementById('font-recognition-card');
+            if (fontRecognitionCard) {
+                fontRecognitionCard.addEventListener('click', function(e) {
                     e.preventDefault(); // 阻止默认链接行为
-                    showCultivationPriceModal();
+                    document.getElementById('font-recognition-modal').style.display = 'block';
                 });
             }
             
-            // 为神器法宝卡片添加点击事件
-            const artifactCard = document.getElementById('artifact-card');
-            if (artifactCard) {
-                artifactCard.addEventListener('click', function(e) {
-                    e.preventDefault(); // 阻止默认链接行为
-                    showArtifactModal();
-                });
-            }
-            
-            // 为PS修仙卡片添加点击事件
-            const psCultivationCard = document.getElementById('ps-cultivation-card');
-            if (psCultivationCard) {
-                psCultivationCard.addEventListener('click', function(e) {
-                    e.preventDefault(); // 阻止默认链接行为
-                    document.getElementById('ps-cultivation-modal').style.display = 'block';
-                });
-            }
-            
-            // 关闭PS修仙弹窗
-            const closePsCultivationBtn = document.getElementById('close-ps-cultivation');
-            if (closePsCultivationBtn) {
-                closePsCultivationBtn.addEventListener('click', function() {
-                    document.getElementById('ps-cultivation-modal').style.display = 'none';
+            // 关闭字体识别弹窗
+            const closeFontRecognitionBtn = document.getElementById('close-font-recognition');
+            if (closeFontRecognitionBtn) {
+                closeFontRecognitionBtn.addEventListener('click', function() {
+                    document.getElementById('font-recognition-modal').style.display = 'none';
                 });
             }
             
             // 点击模态框外部关闭
             window.addEventListener('click', function(e) {
-                const modal = document.getElementById('ps-cultivation-modal');
-                if (modal && e.target === modal) {
-                    modal.style.display = 'none';
+                const fontModal = document.getElementById('font-recognition-modal');
+                if (fontModal && e.target === fontModal) {
+                    fontModal.style.display = 'none';
                 }
             });
         });
     </script>
+    
+    <script>
+        // 时间显示功能
+        function updateTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+            
+            // 更新日期信息
+            updateDateInfo(now);
+        }
+        
+        // 获取农历日期
+        function getLunarDate(date) {
+            const year = date.getFullYear();
+            const month = date.getMonth() + 1;
+            const day = date.getDate();
+            
+            // 农历月份和日期
+            const lunarMonths = ['正月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '冬月', '腊月'];
+            const lunarDays = ['初一', '初二', '初三', '初四', '初五', '初六', '初七', '初八', '初九', '初十', '十一', '十二', '十三', '十四', '十五', '十六', '十七', '十八', '十九', '二十', '廿一', '廿二', '廿三', '廿四', '廿五', '廿六', '廿七', '廿八', '廿九', '三十'];
+            
+            // 2026年农历数据
+            // 农历初一对应的公历日期
+            const lunarFirstDays = [
+                { solarMonth: 2, solarDay: 17 }, // 正月初一
+                { solarMonth: 3, solarDay: 18 }, // 二月初一
+                { solarMonth: 4, solarDay: 17 }, // 三月初一
+                { solarMonth: 5, solarDay: 16 }, // 四月初一
+                { solarMonth: 6, solarDay: 15 }, // 五月初一
+                { solarMonth: 7, solarDay: 14 }, // 六月初一
+                { solarMonth: 8, solarDay: 13 }, // 七月初一
+                { solarMonth: 9, solarDay: 11 }, // 八月初一
+                { solarMonth: 10, solarDay: 11 }, // 九月初一
+                { solarMonth: 11, solarDay: 9 }, // 十月初一
+                { solarMonth: 12, solarDay: 9 }, // 冬月初一
+                { solarMonth: 1, solarDay: 19 }  // 腊月初一（2027年）
+            ];
+            
+            // 计算当前农历月份和日期
+            let lunarMonth = 0;
+            let lunarDay = 0;
+            
+            // 查找当前月份
+            for (let i = 0; i < lunarFirstDays.length; i++) {
+                const firstDay = lunarFirstDays[i];
+                if ((month > firstDay.solarMonth) || (month === firstDay.solarMonth && day >= firstDay.solarDay)) {
+                    lunarMonth = i;
+                    // 计算农历日期
+                    if (month === firstDay.solarMonth) {
+                        lunarDay = day - firstDay.solarDay;
+                    } else if (month > firstDay.solarMonth) {
+                        // 跨月份的情况
+                        // 这里简化处理，实际应用中需要更精确的计算
+                        lunarDay = day - 1;
+                    }
+                }
+            }
+            
+            // 确保日期在有效范围内
+            lunarDay = Math.max(0, Math.min(lunarDay, lunarDays.length - 1));
+            
+            // 农历年
+            const lunarYear = "丙午年";
+            const lunarAnimal = "马";
+            
+            return `${lunarYear}${lunarAnimal} | ${lunarMonths[lunarMonth]}${lunarDays[lunarDay]}`;
+        }
+        
+        // 更新日期信息
+        function updateDateInfo(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const weekDays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+            const weekDay = weekDays[date.getDay()];
+            
+            const solarDate = `${year}-${month}-${day} ${weekDay}`;
+            const lunarDate = getLunarDate(date);
+            
+            document.getElementById('date-info').textContent = `${solarDate} | ${lunarDate}`;
+        }
+        
+        // 初始化时间显示
+        function initTimeDisplay() {
+            updateTime();
+            setInterval(updateTime, 1000);
+        }
+        
+        // 页面加载完成后初始化
+        window.addEventListener('DOMContentLoaded', initTimeDisplay);
+    </script>
+    
+    <!-- 字体识别弹窗 -->
+    <div id="font-recognition-modal" class="modal" style="display: none; background-color: rgba(0,0,0,0.5); backdrop-filter: blur(5px); overflow: hidden !important;">
+        <div class="modal-content" style="width: 400px; height: auto; max-width: 90%; max-height: 80vh; margin: 10% auto; border-radius: 10px; border: none; box-shadow: 0 5px 15px rgba(0,0,0,0.3); animation: modalAppear 0.3s ease-out; overflow: hidden !important; padding: 0; position: relative;">
+            <div class="modal-header" style="padding: 15px 20px; background-color: #1a1a2e; color: white; border-top-left-radius: 10px; border-top-right-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="margin: 0; font-size: 18px; color: white;">选择字体识别工具</h3>
+                <span class="close-btn" id="close-font-recognition" style="font-size: 24px; color: white; cursor: pointer;">&times;</span>
+            </div>
+            <div class="modal-body" style="padding: 20px;">
+                <div class="font-tool-list" style="display: flex; flex-direction: column; gap: 15px;">
+                    <a href="https://www.likefont.com/" target="_blank" class="font-tool-item" data-tool="1">
+                        <div style="font-weight: 600; margin-bottom: 5px;">识字网</div>
+                        <div style="font-size: 14px; color: #666;">https://www.likefont.com/</div>
+                    </a>
+                    <a href="https://font.chinaz.com/zhaozi/" target="_blank" class="font-tool-item" data-tool="2">
+                        <div style="font-weight: 600; margin-bottom: 5px;">站长识字</div>
+                        <div style="font-size: 14px; color: #666;">https://font.chinaz.com/zhaozi/</div>
+                    </a>
+                    <a href="https://font.chinaz.com/ai/" target="_blank" class="font-tool-item" data-tool="3">
+                        <div style="font-weight: 600; margin-bottom: 5px;">AI识字</div>
+                        <div style="font-size: 14px; color: #666;">https://font.chinaz.com/ai/</div>
+                    </a>
+                </div>
+                <style>
+                    .font-tool-item {
+                        display: block;
+                        padding: 12px 20px;
+                        background-color: #f8f9fa;
+                        border: 1px solid #dee2e6;
+                        border-radius: 8px;
+                        text-decoration: none;
+                        color: #333;
+                        transition: all 0.3s ease;
+                    }
+                    .font-tool-item:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                    }
+                    .font-tool-item[data-tool="1"]:hover {
+                        background-color: #e3f2fd !important;
+                        border-color: #bbdefb !important;
+                    }
+                    .font-tool-item[data-tool="2"]:hover {
+                        background-color: #e8f5e8 !important;
+                        border-color: #c8e6c9 !important;
+                    }
+                    .font-tool-item[data-tool="3"]:hover {
+                        background-color: #f3e5f5 !important;
+                        border-color: #e1bee7 !important;
+                    }
+                </style>
+            </div>
+        </div>
+    </div>
     
     </body>
 </html>

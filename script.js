@@ -134,15 +134,58 @@ function initPage() {
 window.addEventListener('DOMContentLoaded', () => {
     initPage();
     initSnowEffect();
+    initBackgroundRotation();
 });
+
+// 背景图片轮换功能
+function initBackgroundRotation() {
+    const bgLayer1 = document.getElementById('background-video');
+    const bgLayer2 = document.getElementById('background-layer-2');
+    if (!bgLayer1 || !bgLayer2) return;
+    
+    const bgImages = [
+        'pic/bg/bg1.jpg',
+        'pic/bg/bg2.jpg',
+        'pic/bg/bg3.jpg',
+        'pic/bg/bg4.jpg',
+        'pic/bg/bg5.jpg',
+        'pic/bg/bg6.jpg'
+    ];
+    
+    let currentIndex = Math.floor(Math.random() * bgImages.length);
+    let usingLayer1 = true;
+    
+    bgLayer1.style.backgroundImage = `url('${bgImages[currentIndex]}')`;
+    
+    function changeBackground() {
+        let newIndex;
+        do {
+            newIndex = Math.floor(Math.random() * bgImages.length);
+        } while (newIndex === currentIndex && bgImages.length > 1);
+        
+        currentIndex = newIndex;
+        
+        if (usingLayer1) {
+            bgLayer2.style.backgroundImage = `url('${bgImages[currentIndex]}')`;
+            bgLayer2.classList.add('visible');
+        } else {
+            bgLayer1.style.backgroundImage = `url('${bgImages[currentIndex]}')`;
+            bgLayer2.classList.remove('visible');
+        }
+        
+        usingLayer1 = !usingLayer1;
+    }
+    
+    setInterval(changeBackground, 10000);
+}
 
 // 雪花特效功能
 function initSnowEffect() {
     const snowContainer = document.getElementById('snow-container');
     if (!snowContainer) return;
     
-    // 雪花数量 - 增加到200个
-    const snowflakeCount = 200;
+    // 萤火虫数量
+    const snowflakeCount = 50;
     
     // 生成雪花
     function createSnowflake() {
