@@ -854,6 +854,11 @@ main {
     filter: saturate(1.5);
 }
 
+.mini-program-card img {
+    filter: saturate(1);
+    transition: filter 0.3s ease;
+}
+
 .mini-program-icon {
     width: 55px;
     height: 55px;
@@ -888,7 +893,7 @@ main {
     height: 100%;
     object-fit: cover;
     transition: filter 0.3s ease;
-    filter: saturate(0.6); /* 默认饱和度降低 */
+    
 }
 
 .mini-program-name {
