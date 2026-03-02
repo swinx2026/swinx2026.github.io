@@ -1,4 +1,4 @@
-// 秘境探索 - 抽卡系统功能
+// 设计网站大全 - 抽卡系统功能
 // 包含81个不同类型的知名设计网站，支持随机抽取和分类浏览
 
 // 精选国内设计网站数据
@@ -166,11 +166,11 @@ const categories = [
 
 // 初始化抽卡系统功能
 function initTreasureHunt() {
-  // 获取秘境探索卡片元素
+  // 获取设计网站大全卡片元素
   const treasureHuntCard = document.getElementById('treasure-hunt-card');
   
   if (!treasureHuntCard) {
-    console.error('未找到秘境探索卡片元素');
+    console.error('未找到设计网站大全卡片元素');
     return;
   }
   
@@ -224,7 +224,7 @@ function showTreasureHuntModal() {
   
   // 创建弹窗标题
   const title = document.createElement('h2');
-  title.textContent = '秘境探索 - 设计网站探索系统';
+  title.textContent = '设计网站大全';
   title.style.cssText = `
     margin-top: 0;
     color: #333;
@@ -813,11 +813,11 @@ function showWebsiteDetail(website) {
     
 // DOM加载完成后初始化
 function initializeTreasureHunt() {
-  // 获取秘境探索卡片元素
+  // 获取设计网站大全卡片元素
   const treasureHuntCard = document.getElementById('treasure-hunt-card');
   
   if (!treasureHuntCard) {
-    console.error('未找到秘境探索卡片元素');
+    console.error('未找到设计网站大全卡片元素');
     return;
   }
   
