@@ -36,17 +36,82 @@
                 <button id="mainSearchBtn" class="search-btn">搜索</button>
             </div>
             
-            <!-- 热门搜索 -->
+            <!-- 文艺句子 -->
             <div class="hot-searches" style="margin-top: 10px; text-align: center; color: white; font-size: 14px;">
-                <span style="margin-right: 10px;"><img src="pic/fire.png" alt="热门" style="width: 12px; height: 12px; vertical-align: middle; margin-right: 5px;">热门常用：</span>
-                <a href="https://mp.weixin.qq.com/s?__biz=Mzg3NTU2NTMwNw==&mid=2247526073&idx=1&sn=5dcdfea6a4074cb90cf0b0bcd5fc3007&chksm=cf3dbf2df84a363bee06a7670a28661e33e1f563a119f55f98bf2f3aa63097d8abb97ab1956c&scene=178&cur_album_id=3854794802835308550#rd" target="_blank" style="margin: 0 8px; color: white; text-decoration: none;">软件下载</a>
-                <a href="https://www.psdashi.com/" target="_blank" style="margin: 0 8px; color: white; text-decoration: none;">PS下载</a>
-                <a href="https://www.likefont.com/" target="_blank" style="margin: 0 8px; color: white; text-decoration: none;">字体识别1</a>
-                <a href="https://font.chinaz.com/zhaozi/" target="_blank" style="margin: 0 8px; color: white; text-decoration: none;">字体识别2</a>
-                <a href="https://font.chinaz.com/ai/" target="_blank" style="margin: 0 8px; color: white; text-decoration: none;">AI识字</a>
-                <a href="https://ps.gaoding.com/" target="_blank" style="margin: 0 8px; color: white; text-decoration: none;">PS网页版</a>
-        
+                <span style="margin-right: 10px; font-size: 14px; transition: opacity 0.5s ease;">💡</span>
+                <span id="chicken-soup" style="color: white; transition: opacity 0.5s ease;">加载中...</span>
             </div>
+            
+            <script>
+                // 符号数组
+                const symbols = ["💡", "✨", "🌟", "🌸", "🌙", "🌊", "🍃", "🌈", "🌺", "🌻", "🍀", "🌿", "🎨", "🎭", "🎵", "📚", "📝", "✍️", "🎯", "💫", "⚡", "🔥", "💖", "💗", "💓", "💕", "💞", "💝", "💟", "💜"];
+                
+                // 文艺句子数据
+                const literarySentences = [
+                    "你是晚夏遗留在深海里的星星，想把我所有的温柔都揉碎了给你。",
+                    "晚风吻尽荷花叶，任我醉倒在池边。",
+                    "我在人间贩卖黄昏，只为收集世间温柔去见你。",
+                    "山有木兮木有枝，心悦君兮君不知。",
+                    "愿有岁月可回首，且以深情共白头。",
+                    "白茶清欢无别事，我在等风也等你。",
+                    "满地都是六便士，他却抬头看见了月亮。",
+                    "世界上所有的相遇，都是久别重逢。",
+                    "你是我绕过山河错落，才找到的人间烟火。",
+                    "愿你三冬暖，愿你春不寒，愿你天黑有灯，下雨有伞。",
+                    "人生若只如初见，何事秋风悲画扇。",
+                    "你是藏在云层里的月亮，也是我穷极一生寻找的宝藏。",
+                    "岁月漫长，然而值得等待。",
+                    "我与春风皆过客，你携秋水揽星河。",
+                    "海底月是天上月，眼前人是心上人。",
+                    "情不知所起，一往而深。",
+                    "你是人间烟火不自知，我在俗世仰望应如是。",
+                    "愿有人陪你颠沛流离，如果没有，愿你成为自己的太阳。",
+                    "你是我生命中一场意外的惊喜，也是我漫长岁月里最温暖的光。",
+                    "人生最大的幸福，是发现自己爱的人正好也爱着自己。",
+                    "时光静好，与君语；细水流年，与君同；繁华落尽，与君老。",
+                    "你是我绕过山河错落，才找到的人间烟火。",
+                    "愿你的眼睛，只看得到笑容；愿你流下的每一滴泪，都值得。",
+                    "你是我生命中的一道光，温暖了我所有的岁月。",
+                    "世界很大，大到人海茫茫；世界很小，小到一眼万年。",
+                    "愿我们在彼此看不到的岁月里，熠熠生辉。",
+                    "你是我藏在心中的欢喜，是我岁月里的温柔。",
+                    "人生如梦，一尊还酹江月。",
+                    "愿你遍历山河，觉得人间值得。",
+                    "你是我今生渡不过的劫，多看一眼就心软，拥抱一下就沦陷。"
+                ];
+                
+                // 随机获取一条文艺句子和对应的符号
+                function getRandomSoup() {
+                    const randomIndex = Math.floor(Math.random() * literarySentences.length);
+                    return {
+                        sentence: literarySentences[randomIndex],
+                        symbol: symbols[randomIndex]
+                    };
+                }
+                
+                // 更新文艺句子
+                function updateSoup() {
+                    const soupElement = document.getElementById('chicken-soup');
+                    const symbolElement = document.querySelector('.hot-searches span:first-child');
+                    // 添加淡出效果
+                    soupElement.style.opacity = '0';
+                    symbolElement.style.opacity = '0';
+                    // 等待淡出完成后更新内容并添加淡入效果
+                    setTimeout(() => {
+                        const result = getRandomSoup();
+                        soupElement.textContent = result.sentence;
+                        symbolElement.textContent = result.symbol;
+                        soupElement.style.opacity = '1';
+                        symbolElement.style.opacity = '1';
+                    }, 500);
+                }
+                
+                // 初始化
+                updateSoup();
+                
+                // 每隔10秒更换一次文艺句子
+                setInterval(updateSoup, 10000);
+            </script>
         </header>
         
         <main>
